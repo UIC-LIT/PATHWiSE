@@ -23,19 +23,19 @@
             'desc': 'Summary',
             'show_items': 1,
             'comments': [{
-                    'text': `I'm a little confused, can you explain that to me?`,
+                    'text': `I'm a little confused, can you explain ________ to me?`,
                     'emotion': 'anticipation'
                 },
                 {
-                    'text': `I THINK I understood, but could you summarize what that means for me?`,
+                    'text': `I THINK I understood, but could you summarize what ________ means for me?`,
                     'emotion': 'anticipation'
                 },
                 {
-                    'text': `How would you explain this to someone else in class?`,
+                    'text': `How would you explain ________ to someone else in class?`,
                     'emotion': 'anticipation'
                 },
                 {
-                    'text': `So in other words, ______ _______`,
+                    'text': `So in other words, ________`,
                     'emotion': 'joy'
                 },
                 {
@@ -105,15 +105,15 @@
             'desc': 'Personal Connection',
             'show_items': 1,
             'comments': [{
-                    'text': `Is there something in your home that works this way?`,
+                    'text': `Is there something you or your family do at home that reminds you of this?`,
                     'emotion': 'anticipation'
                 },
                 {
-                    'text': `How do you think this might inform someone doing sports?`,
+                    'text': `How do you think ________ might be like ________?`,
                     'emotion': 'anticipation'
                 },
                 {
-                    'text': `Knowing this, would you change how you go about your day?`,
+                    'text': `After reading this, does it change the way you think about ________?`,
                     'emotion': 'anticipation'
                 },
                 {
@@ -153,11 +153,11 @@
                     'emotion': 'surprise'
                 },
                 {
-                    'text': `I think this is probably the key bit for us to understand!`,
+                    'text': `I think this is probably the main idea of the book.`,
                     'emotion': 'anticipation'
                 },
                 {
-                    'text': `This would be a lot of fun to do in class!`,
+                    'text': `This would be a lot of fun to do!`,
                     'emotion': 'joy'
                 },
                 {
