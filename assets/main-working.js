@@ -534,10 +534,12 @@
                         "[Create your own comment]"
                     );
                 }
-                // This always crashes
+                // This always crashes: Anis fixed a few issues like added data-type for ai comments
                 if ($(elem).hasClass("ce")) {
                     var groupName = $(elem).attr("data-parent").trim();
-                    var currentCommentId = $(elem).attr("data-id").trim();
+                    if(!$(elem).hasClass("cai")) {
+                      var currentCommentId = $(elem).attr("data-id").trim();
+                    }
                     var latestCommentId = $(
                             '#comments-template [data-group="' + groupName + '"]'
                         )
@@ -825,10 +827,11 @@
                                     $(".cai").remove();
                                     $.each($("#comments-template ul[data-group]"), function() {
                                         var groupName = $(this).attr("data-group");
+                                        var groupId = $(this).attr("data-group-id");
                                         $(this).append(
                                             '<li class="ce cai" data-parent="' +
                                             groupName +
-                                            '" draggable="true" data-emotion="">' +
+                                            '" draggable="true" data-type="' + groupId + '" data-emotion="">' +
                                             data[groupName] +
                                             "</li>"
                                         );
@@ -849,7 +852,11 @@
                                     ).append(
                                         '<li class="ce cai" data-parent="' +
                                         commentsGroup +
-                                        '" draggable="true" data-emotion="">' +
+                                        '" draggable="true" data-type="' +
+                                        $('#comments-template ul[data-group="' +
+                                            commentsGroup +
+                                            '"]').attr('data-group-id') +
+                                        '" data-emotion="">' +
                                         data[commentsGroup] +
                                         "</li>"
                                     );
@@ -1318,7 +1325,7 @@
             );
         });
         $.each(quickComments, function(i, v) {
-            elem += '<ul data-group="' + v.group + '" data-latest="0">';
+            elem += '<ul data-group-id="' + v.id + '" data-group="' + v.group + '" data-latest="0">';
             var counter = 0;
             $.each(v.comments, function(ci, cv) {
                 if (counter < v.show_items) {
@@ -1760,12 +1767,15 @@
         $.each(typePanel, function(i, v) {
             v.count = 0;
         });
+        // $("#comments-list > ul > li").each(function() {
+        //     if ($(this).attr("data-type") == 0) {
+        //         typePanel[0]["count"]++;
+        //     } else {
+        //         typePanel[$(this).attr("data-type")]["count"]++;
+        //     }
+        // });
         $("#comments-list > ul > li").each(function() {
-            if ($(this).attr("data-type") == 0) {
-                typePanel[0]["count"]++;
-            } else {
-                typePanel[$(this).attr("data-type")]["count"]++;
-            }
+            typePanel[Number($(this).attr("data-type"))]["count"]++;
         });
         renderTypePanel();
     }
