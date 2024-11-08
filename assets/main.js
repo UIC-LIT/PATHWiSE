@@ -676,7 +676,7 @@
         commentPinCount = 1;
         $('#comments-list > ul').empty();
         $('#pages div.cp').remove();
-        var recreatePins = JSON.parse($('#resume').attr("data-pins"));
+        var recreatePins = JSON.parse($('#pins-data').text().trim());
         $.each(recreatePins, function(i, v) {
             var pinId = Number(v.id.slice(1));
             if (pinId >= commentPinCount) {
@@ -789,7 +789,7 @@
                     var response = JSON.parse(result);
                     if (response.status) {
                         $('#resume').removeClass('temporary-hidden');
-                        $('#resume').attr("data-pins", response.pins);
+                        $('#pins-data').text(response.pins);
                     }
                 } else {
                     console.log('Something went wrong from fetching the latest data!');

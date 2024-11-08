@@ -339,71 +339,51 @@
             var emotionId = getEmotionId($(this).text().trim());
             $("#selected-emotion > ul li").removeClass("active");
             $this.addClass("active");
-            $this
-                .parents("#selected-emotion")
-                .children("p")
-                .text($(this).text().trim());
+            $this.parents("#selected-emotion").children("p").text($(this).text().trim());
             $this.parents("#selected-emotion").attr("data-toggler", "0");
             if (emotionId !== "") {
                 // console.log("valid emotion selected, resetting")
                 $this.parents("#robot-emotions").attr("class", "blink");
                 setTimeout(function() {
-                    $this
-                        .parents("#robot-emotions")
-                        .attr("class", $this.text().trim().toLowerCase());
+                    $this.parents("#robot-emotions").attr("class", $this.text().trim().toLowerCase());
                 }, 150);
             }
             if ($(".cp.focused").length == 1) {
                 $(".cp#" + $(".cp.focused").attr("id")).attr("data-emotion", emotionId);
-                $(
-                    '#comments-list [data-id="' + $(".cp.focused").attr("id") + '"]'
-                ).attr("data-emotion", emotionId);
+                $('#comments-list [data-id="' + $(".cp.focused").attr("id") + '"]').attr("data-emotion", emotionId);
                 managePin($(".cp.focused").attr("id"), "updateEmotion", emotionId);
                 // flori: add blue background to active comment id
-                $('#comments-list ul li[data-id="' + $(".cp.focused").attr("id") + '"]')
-                    .find(".comment-id")
-                    .addClass("active");
+                $('#comments-list ul li[data-id="' + $(".cp.focused").attr("id") + '"]').find(".comment-id").addClass("active");
             }
             // flori: update emotions panel and sort
             updateEmotionsPanel();
             checkSortOption();
         });
         // flori: open/close bottom panel on click
-        $(document).ready(function() {
-            $("#bottom-panel-type-bar").on("click", function(e) {
-                e.stopPropagation();
-                $(this).toggleClass("active");
-            });
-            $(document).on("click", function() {
-                $("#bottom-panel-type-bar").removeClass("active");
-            });
-            $(".hide-type").on("click", function(e) {
-                e.stopPropagation();
-            });
-            $(".hide-bottom-panel-text").on("click", sortTypeAndEmotions);
+        $("#bottom-panel-type-bar").on("click", function(e) {
+            e.stopPropagation();
+            $(this).toggleClass("active");
         });
+        $(document).on("click", function() {
+            $("#bottom-panel-type-bar").removeClass("active");
+        });
+        $(".hide-type").on("click", function(e) {
+            e.stopPropagation();
+        });
+        $(".hide-bottom-panel-text").on("click", sortTypeAndEmotions);
         //  flori: toggle active class for each type bar text
         $(document).on("click", ".hide-bottom-panel-text", function() {
             $(this).toggleClass("active");
         });
         //  flori: toggle active class for each emoji
         $(document).on("click", ".emoji", sortTypeAndEmotions);
-        $(document).ready(function() {
-            // flori: open/close user profile
-            $("#user-profile").on("click", function(e) {
-                e.stopPropagation();
-                $(this).toggleClass("active");
-            });
-            $(document).on("click", function() {
-                $("#user-profile").removeClass("active");
-            });
-            $("#user-profile-menu").on("click", function(e) {
-                e.stopPropagation();
-            });
-            $("#user-profile-menu").on("click", function() {
-                $(this).toggleClass("active");
-            });
+        $(document).on("click", "#user-profile", function(e) {
+            $(this).toggleClass("active");
         });
+        $(document).on("click", "#user-profile-menu > ul > li", function() {
+            $("#user-profile").removeClass("active");
+        });
+        // flori: end code snippet
 
         $("#editor").scroll(function() {
             scrolledDistance = parseInt($("#editor").scrollTop());
@@ -428,9 +408,7 @@
             e.preventDefault();
             // console.log("pin dropped!")
             //init();
-            var elem = $.parseHTML(
-                e.originalEvent.dataTransfer.getData("text/html")
-            )[0];
+            var elem = $.parseHTML(e.originalEvent.dataTransfer.getData("text/html"))[0];
             var posTop = e.originalEvent.clientY - pagesOffsetTop + scrolledDistance;
             var posLeft = e.originalEvent.clientX - pagesOffsetLeft;
             var cText = $(elem).text().trim();
@@ -444,39 +422,21 @@
                 cText = "";
             }
             if ($(elem).hasClass("cp") || $(elem).hasClass("rp")) {
-                diffY = e.originalEvent.dataTransfer
-                    .getData("text/plain")
-                    .split("-")[0];
-                diffX = e.originalEvent.dataTransfer
-                    .getData("text/plain")
-                    .split("-")[1];
+                diffY = e.originalEvent.dataTransfer.getData("text/plain").split("-")[0];
+                diffX = e.originalEvent.dataTransfer.getData("text/plain").split("-")[1];
             }
             if ($(elem).hasClass("cp")) {
                 var cID = $(elem).attr("id").trim();
-                $(document)
-                    .find(".cp#" + cID)
-                    .css("top", posTop - diffY);
-                $(document)
-                    .find(".cp#" + cID)
-                    .css("left", posLeft - diffX);
-                $(document)
-                    .find('#comments-list>ul[data-id="' + cID + '"]')
-                    .attr("data-top", posTop - diffY);
-                $(document)
-                    .find('#comments-list>ul[data-id="' + cID + '"]')
-                    .attr("data-left", posLeft - diffX);
+                $(document).find(".cp#" + cID).css("top", posTop - diffY);
+                $(document).find(".cp#" + cID).css("left", posLeft - diffX);
+                $(document).find('#comments-list>ul[data-id="' + cID + '"]').attr("data-top", posTop - diffY);
+                $(document).find('#comments-list>ul[data-id="' + cID + '"]').attr("data-left", posLeft - diffX);
                 if (posLeft + 160 >= editorWidth) {
-                    $(document)
-                        .find(".cp#" + cID)
-                        .addClass("edged");
+                    $(document).find(".cp#" + cID).addClass("edged");
                 } else {
-                    $(document)
-                        .find(".cp#" + cID)
-                        .removeClass("edged");
+                    $(document).find(".cp#" + cID).removeClass("edged");
                 }
-                $(document)
-                    .find(".cp#" + cID + ">p")
-                    .click();
+                $(document).find(".cp#" + cID + ">p").click();
                 sortComments(cID);
                 // flori: update sort (so order doesnt change when dragging bubble on editor)
                 checkSortOption();
@@ -537,8 +497,8 @@
                 // This always crashes: Anis fixed a few issues like added data-type for ai comments
                 if ($(elem).hasClass("ce")) {
                     var groupName = $(elem).attr("data-parent").trim();
-                    if(!$(elem).hasClass("cai")) {
-                      var currentCommentId = $(elem).attr("data-id").trim();
+                    if (!$(elem).hasClass("cai")) {
+                        var currentCommentId = $(elem).attr("data-id").trim();
                     }
                     var latestCommentId = $(
                             '#comments-template [data-group="' + groupName + '"]'
@@ -605,16 +565,8 @@
             $(".cp").removeClass("focused");
             $($this).addClass("focused");
             // flori: add blue background to active comment id
-            $('#comments-list ul li[data-id="' + $this.attr("id") + '"]')
-                .find(".comment-id")
-                .addClass("active");
-            $(document)
-                .find(
-                    '#selected-emotion > ul li[data-id="' +
-                    $($this).attr("data-emotion").trim() +
-                    '"]'
-                )
-                .click();
+            $('#comments-list ul li[data-id="' + $this.attr("id") + '"]').find(".comment-id").addClass("active");
+            $(document).find('#selected-emotion > ul li[data-id="' + $($this).attr("data-emotion").trim() + '"]').click();
             $("#comment-input textarea").val($($this).attr("data-comment").trim());
             if ($($this).attr("data-comment").trim() == "") {
                 $("#comment-input[data-play]").removeAttr("data-play");
@@ -634,13 +586,9 @@
             $("#comment-input textarea").focus();
         });
         $(document).on("click", "#comments-list ul li", function() {
-            $(document)
-                .find(".cp#" + $(this).attr("data-id") + ">p")
-                .click();
+            $(document).find(".cp#" + $(this).attr("data-id") + ">p").click();
             $("#editor").animate({
-                scrollTop: $("#editor").offset().top +
-                    parseInt($(".cp#" + $(this).attr("data-id")).css("top"), 10) -
-                    200,
+                scrollTop: $("#editor").offset().top + parseInt($(".cp#" + $(this).attr("data-id")).css("top"), 10) - 200,
             });
             // 200 = 116(height from body top to pages/editor top is 116) + 84(scroll to 84px above the pin)
             // flori: add blue background to active comment pin
@@ -648,22 +596,11 @@
         });
         $(document).on("input", "#comment-input textarea", function() {
             if ($(".cp.focused").length == 1) {
-                $(".cp#" + $(".cp.focused").attr("id")).attr(
-                    "data-comment",
-                    $(this).val()
-                );
-                $(
-                    '#comments-list [data-id="' + $(".cp.focused").attr("id") + '"]'
-                ).attr("data-comment", $(this).val());
-                $(
-                    '#comments-list [data-id="' + $(".cp.focused").attr("id") + '"] > p'
-                ).text($(this).val());
+                $(".cp#" + $(".cp.focused").attr("id")).attr("data-comment", $(this).val());
+                $('#comments-list [data-id="' + $(".cp.focused").attr("id") + '"]').attr("data-comment", $(this).val());
+                $('#comments-list [data-id="' + $(".cp.focused").attr("id") + '"] > p').text($(this).val());
                 // flori: update custom comment text when typing in input area
-                $(
-                    '#comments-list [data-id="' +
-                    $(".cp.focused").attr("id") +
-                    '"] .comment-text > p'
-                ).text($(this).val());
+                $('#comments-list [data-id="' + $(".cp.focused").attr("id") + '"] .comment-text > p').text($(this).val());
                 managePin($(".cp.focused").attr("id"), "updateComment", $(this).val());
             }
             if ($(this).val().trim() == "") {
@@ -683,7 +620,7 @@
             $("#group-name p span").attr("data-group-id", $this.attr("data-group"));
             $this.parents("#group-name").toggleClass("active");
         });
-        $(document).on("click", "#article-menu p", function() {
+        $(document).on("click", ".teacher-facing #article-menu p", function() {
             $(this).parents("#article-menu").toggleClass("active");
         });
         $(document).on("click", "#article-menu li:not(.active)", function() {
@@ -717,35 +654,21 @@
             $(this).parents(".custom-comment-title").toggleClass("active");
         });
         // flori: add dropdown functions to custom comment
-        $(document).on(
-            "click",
-            ".custom-comment-title li:not(.active)",
-            function() {
-                var $this = $(this);
-                var commentTitle = $this.closest(".custom-comment-title");
-                var parentID = $this.closest("li[data-id]").attr("data-id");
-                var dataTypeClicked = $this.attr("data-type");
-
-                $(".custom-comment-title li").removeClass("active");
-                $this.addClass("active");
-                $this
-                    .closest("li[data-id]")
-                    .filter('[data-id="' + parentID + '"]')
-                    .find(".custom-comment-title > p")
-                    .text($this.text());
-                $this
-                    .closest("li[data-id]")
-                    .filter('[data-id="' + parentID + '"]')
-                    .attr("data-type", dataTypeClicked);
-
-                $this.parents(".comment-container").attr("data-type", dataTypeClicked);
-                commentTitle.attr("data-type", dataTypeClicked);
-
-                $('div[id="' + parentID + '"]').attr("data-type", dataTypeClicked);
-                commentTitle.toggleClass("active");
-                typeBar();
-            }
-        );
+        $(document).on("click", ".custom-comment-title li:not(.active)", function() {
+            var $this = $(this);
+            var commentTitle = $this.closest(".custom-comment-title");
+            var parentID = $this.closest("li[data-id]").attr("data-id");
+            var dataTypeClicked = $this.attr("data-type");
+            $(".custom-comment-title li").removeClass("active");
+            $this.addClass("active");
+            $this.closest("li[data-id]").filter('[data-id="' + parentID + '"]').find(".custom-comment-title > p").text($this.text());
+            $this.closest("li[data-id]").filter('[data-id="' + parentID + '"]').attr("data-type", dataTypeClicked);
+            $this.parents(".comment-container").attr("data-type", dataTypeClicked);
+            commentTitle.attr("data-type", dataTypeClicked);
+            $('div[id="' + parentID + '"]').attr("data-type", dataTypeClicked);
+            commentTitle.toggleClass("active");
+            typeBar();
+        });
         // flori: toggle active class for sort-by dropdown
         $(document).on("click", "#sort-by p", function() {
             $(this).parents("#sort-by").toggleClass("active");
@@ -770,9 +693,7 @@
                         var groupName = $(this).attr("data-group");
                         var latestCommentId = $(this).attr("data-latest");
                         setTimeout(function() {
-                            $(document)
-                                .find('#comments-template [data-parent="' + groupName + '"]')
-                                .remove();
+                            $(document).find('#comments-template [data-parent="' + groupName + '"]').remove();
                             getNextComment(groupName, latestCommentId);
                             reorder();
                             $this.removeClass("active");
@@ -782,9 +703,7 @@
                     setTimeout(function() {
                         $("#comments-template > ul > .ce:not(.cai)").remove();
                         for (var i = 0; i < 3; i++) {
-                            var latestCommentId = $(
-                                'ul[data-group="' + commentsGroup + '"]'
-                            ).attr("data-latest");
+                            var latestCommentId = $('ul[data-group="' + commentsGroup + '"]').attr("data-latest");
                             getNextComment(commentsGroup, latestCommentId);
                         }
                         if (selectedText == "") {
@@ -1072,15 +991,15 @@
             data.article = $("#assignment-title").text().trim();
             if (pins.length > 0) {
                 // submitToGoogleForm(JSON.stringify(pins), JSON.stringify(redactors), JSON.stringify(meta), window.pathSessionId, loginGroup);
-                // $.post(url, { 'save': data }, function(result, success) {
-                //     if (success == 'success') {
-                //         var response = result;
-                //         console.log(response);
-                //         console.log(data);
-                //     } else {
-                //         console.log('Something went wrong!');
-                //     }
-                // });
+                $.post(url, { 'save': data }, function(result, success) {
+                    if (success == 'success') {
+                        var response = result;
+                        console.log(response);
+                        console.log(data);
+                    } else {
+                        console.log('Something went wrong!');
+                    }
+                });
             } else {
                 alert("No comments to save");
             }
@@ -1285,17 +1204,18 @@
                 fetchData = {};
             fetchData.group = localStorage.getItem("auth").trim();
             fetchData.article = localStorage.getItem("currentArticleTitle").trim();
-            // $.post(fetchUrl, { 'fetch': fetchData }, function(result, success) {
-            //     if (success == 'success') {
-            //         var response = JSON.parse(result);
-            //         if (response.status) {
-            //             $('#resume').removeClass('temporary-hidden');
-            //             $('#resume').attr("data-pins", response.pins);
-            //         }
-            //     } else {
-            //         console.log('Something went wrong from fetching the latest data!');
-            //     }
-            // });
+            $.post(fetchUrl, { 'fetch': fetchData }, function(result, success) {
+                if (success == 'success') {
+                    var response = JSON.parse(result);
+                    if (response.status && $('.student-robot-facing').length) {
+                        //$('#resume').removeClass('temporary-hidden');
+                        $('#pins-data').text(response.pins);
+                        recreateCanvas();
+                    }
+                } else {
+                    console.log('Something went wrong from fetching the latest data!');
+                }
+            });
         }
         $.each(articleList, function(i, v) {
             $("#article-menu>ul").append(
@@ -1310,7 +1230,7 @@
                 "</li>"
             );
         });
-        $("#article-menu p span").text(localStorage.getItem("currentArticleTitle"));
+        $(".teacher-facing #article-menu p span").text(localStorage.getItem("currentArticleTitle"));
         $("#assignment-title").text(localStorage.getItem("currentArticleTitle"));
         window.pathArticleTitle = localStorage.getItem("currentArticleTitle");
         $.each(emotionsList, function(i, v) {
@@ -1621,7 +1541,7 @@
     var prevEmotQueryText = "";
 
     function refreshEmotion() {
-        comment_text = $("#comment-input textarea").val().trim();
+        var comment_text = $("#comment-input textarea").val().trim();
         if (comment_text == "") {
             emotion = "neutral";
             $(document)
