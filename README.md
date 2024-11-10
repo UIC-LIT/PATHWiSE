@@ -4,3 +4,4 @@
 4. Install the Open AI based Emotion and Comment Type classification system from here: https://github.com/UIC-LIT/misty-emot/ Update the origins value in the src/server/main.py file with the virtual host URL from Step 2. You may use "*" as value too for the staging/dev environemnt
 5. Update the SERVER_URL variable at the begining of the following files: assets/main.js and assets/main-working.js of this repositry. The value should match the server URL you get from Step 4.
 6. Update the misty_IP variable in assets/robot-play.js file with the appropriate robot IP
+7. That makes the system running with all dependencies. You may now open the teachers side of the editor from pathwi.se/index-working.htm or the other virtual host option from Step 2 if you choose so. Make annotations as you seem fit and save them. The student facing one fetches the latest data from your latest save. Please use the 'Cold nose article' for this simulation for now. Thanks
