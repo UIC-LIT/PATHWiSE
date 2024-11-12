@@ -1747,44 +1747,44 @@
             }
         });
     }
+
+    // flori: adds custom comment dropdown to all custom comments
+    function addCustomDropdown() {
+        $('li[data-type="0"]>div[class="comment-container"]').each(function() {
+            var $this = $(this);
+            if (!$this.hasClass("has-dropdown")) {
+                $this.addClass("has-dropdown");
+                $this.prepend(
+                    '<div class="custom-comment-title" data-type="0"><p>Custom Comment</p><ul><li data-type="0" class="active">Custom Comment</li><li data-type="1" data-group="student-summary">Summary</li><li data-type="2" data-group="vocab-support" >Vocabulary Support</li><li  data-type="3" data-group="personal-connection" >Personal Connection</li><li data-type="4" data-group="emotional-connection" >Emotional Connection</li></ul></div>'
+                );
+            }
+        });
+    }
+
+    // flori: sorts review comments list based on sort-by option
+    function checkSortOption() {
+        var commentsList = $("#comments-list > ul");
+        var comments = commentsList.find("li[data-emotion]");
+        var sortedComments = comments.toArray().sort(function(a, b) {
+            var aVal = $(a).find(".comment-id").text();
+            var bVal = $(b).find(".comment-id").text();
+            var activeOption = $('#sort-by > ul > li[class="active"]').text();
+            if (activeOption == "Order") {
+                aVal = $(a).find(".comment-id").text();
+                bVal = $(b).find(".comment-id").text();
+            } else if (activeOption == "Type") {
+                aVal = $(a).attr("data-type");
+                bVal = $(b).attr("data-type");
+            } else if (activeOption == "Emotion") {
+                aVal = $(a).attr("data-emotion");
+                bVal = $(b).attr("data-emotion");
+            }
+            if (aVal < bVal) return -1;
+            if (aVal > bVal) return 1;
+            return 0;
+        });
+
+        commentsList.empty();
+        commentsList.append(sortedComments);
+    }
 })(window.jQuery);
-
-// flori: adds custom comment dropdown to all custom comments
-function addCustomDropdown() {
-    $('li[data-type="0"]>div[class="comment-container"]').each(function() {
-        var $this = $(this);
-        if (!$this.hasClass("has-dropdown")) {
-            $this.addClass("has-dropdown");
-            $this.prepend(
-                '<div class="custom-comment-title" data-type="0"><p>Custom Comment</p><ul><li data-type="0" class="active">Custom Comment</li><li data-type="1" data-group="student-summary">Summary</li><li data-type="2" data-group="vocab-support" >Vocabulary Support</li><li  data-type="3" data-group="personal-connection" >Personal Connection</li><li data-type="4" data-group="emotional-connection" >Emotional Connection</li></ul></div>'
-            );
-        }
-    });
-}
-
-// flori: sorts review comments list based on sort-by option
-function checkSortOption() {
-    var commentsList = $("#comments-list > ul");
-    var comments = commentsList.find("li[data-emotion]");
-    var sortedComments = comments.toArray().sort(function(a, b) {
-        var aVal = $(a).find(".comment-id").text();
-        var bVal = $(b).find(".comment-id").text();
-        var activeOption = $('#sort-by > ul > li[class="active"]').text();
-        if (activeOption == "Order") {
-            aVal = $(a).find(".comment-id").text();
-            bVal = $(b).find(".comment-id").text();
-        } else if (activeOption == "Type") {
-            aVal = $(a).attr("data-type");
-            bVal = $(b).attr("data-type");
-        } else if (activeOption == "Emotion") {
-            aVal = $(a).attr("data-emotion");
-            bVal = $(b).attr("data-emotion");
-        }
-        if (aVal < bVal) return -1;
-        if (aVal > bVal) return 1;
-        return 0;
-    });
-
-    commentsList.empty();
-    commentsList.append(sortedComments);
-}
