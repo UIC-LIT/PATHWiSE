@@ -1231,6 +1231,7 @@
             );
         });
         $(".teacher-facing #article-menu p span").text(localStorage.getItem("currentArticleTitle"));
+        $(".student-robot-facing #article-menu p span").text(localStorage.getItem("currentArticleTitle"));
         $("#assignment-title").text(localStorage.getItem("currentArticleTitle"));
         window.pathArticleTitle = localStorage.getItem("currentArticleTitle");
         $.each(emotionsList, function(i, v) {

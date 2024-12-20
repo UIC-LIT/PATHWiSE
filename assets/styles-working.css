@@ -77,7 +77,8 @@ li {
     clear: both;
 }
 
-#splash {
+#splash,
+#student-splash {
     font-size: 20px;
     line-height: 40px;
     width: 100vw;
@@ -86,21 +87,44 @@ li {
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 9;
     padding-top: 100px;
     text-align: center;
 }
 
-#splash .brand {
-    font-size: 60px;
+#splash {
+    z-index: 99;
+}
+
+#student-splash {
+    z-index: 98;
+}
+
+#splash .brand,
+#student-splash .brand {
     line-height: 72px;
     margin-bottom: 50px;
 }
 
-#splash>div {
-    width: 300px;
+#splash .brand {
+    font-size: 60px;
+}
+
+#student-splash .brand {
+    font-size: 50px;
+}
+
+#splash>div,
+#student-splash>div {
     margin: 0 auto;
     position: relative;
+}
+
+#splash>div {
+    width: 300px;
+}
+
+#student-splash>div {
+    width: 700px;
 }
 
 #splash>div p {
@@ -117,19 +141,67 @@ li {
     text-align: center;
 }
 
+#student-splash ul {
+    text-align: left;
+    margin-bottom: 50px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+#student-splash ul li {
+    padding-left: 25px;
+}
+
+#student-splash ul li.active {
+    font-weight: bold;
+    color: white;
+}
+
+#student-splash ul li:not(last-child) {
+    margin-bottom: 30px;
+    position: relative;
+}
+
+#student-splash ul li::before {
+    content: "o";
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    top: -1px;
+}
+
+#student-splash ul li::after {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 30px;
+    width: 4px;
+    height: 50px;
+    border-left: dotted rgba(255, 255, 255, 0.5) 4px;
+}
+
+#student-splash ul li.active::after {
+    border-color: white !important;
+}
+
+#student-splash ul li:last-child::after {
+    display: none !important;
+}
+
 #splash input,
-#splash button {
+#splash button,
+#student-splash button {
     display: block;
-    width: 100%;
+    width: 300px;
     height: 40px;
-    margin-top: 15px;
+    margin: 15px auto 0;
     text-align: center;
     font-size: 20px;
     line-height: 40px;
     color: #457ab1;
 }
 
-#splash button {
+#splash button,
+#student-splash button {
     text-transform: uppercase;
     cursor: pointer;
 }
