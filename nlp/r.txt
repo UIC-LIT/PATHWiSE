@@ -1,0 +1,5 @@
+torch==2.5.1
+transformers==4.36.0
+numpy==1.26.4
+vosk==0.3.45
+websockets==12.0

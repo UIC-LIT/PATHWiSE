@@ -1,5 +1,5 @@
 (function($) {
-    var misty_IP = '192.168.0.111';
+    var misty_IP = '10.0.0.221';
     var behaviors = {
         "spooked": "SL 500\nFI eyes_terror.jpg\nFL true\nAU teethChatter.mp3\nTL 0 0 0 170 0 255 breathe 1220\nMH 0 10 0 90\nMT -75 0 500\nMAS 90 100 90 100\nMH 0 5 -2 100\nSL 100\nMAS 80 100 80 100\nMH 0 5 2 100\nMH 0 5 -2 100\nMH 0 5 2 100\nMAS 90 100 90 100\nMH 0 5 -2 100\nSL 100\nMAS 80 100 80 100",
         "boredom": "SL 500\nFI eyes_boredom.jpg\nTL 0 0 0 47 0 255 breathe 3474\nMH -20 0 -5 100\nMAS 90 90 90 90",
@@ -112,30 +112,22 @@
 
     $(document).ready(function() {
         setTimeout(function() {
-            var fetchUrl = "/validate/",
-                fetchData = {};
-            fetchData.group = localStorage.getItem("auth").trim();
-            fetchData.article = localStorage.getItem("currentArticleTitle").trim();
-            $.post(fetchUrl, { 'fetch': fetchData }, function(result, success) {
-                if (success == 'success') {
-                    var response = JSON.parse(result);
-                    console.log(response);
-                    if (response.status && $('.student-robot-facing').length) {
-                        $('#pins-data').text(response.pins);
-                        recreateCanvas();
-                    }
-                } else {
-                    console.log('Something went wrong from fetching the latest data!');
-                }
-            });
+            if ($('.student-robot-facing').length || $('.student-computer-facing').length) {
+                recreateCanvas();
+            }
         }, 150);
 
         $(document).on("click", '.cp', function() {
             var $this = $(this);
             setTimeout(function() {
                 var text = $this.attr('data-comment');
-                var emotion = emotionsList[$this.attr('data-emotion')];
-                sendToRobot(text, emotion);
+                var emotion = $this.attr('data-emotion');
+                var behavior = emotionsList[emotion];
+                if ($('.student-robot-facing').length) {
+                    sendToRobot(text, behavior);
+                } else if ($('.student-computer-facing').length) {
+                    playInComputer(text, emotion);
+                }
             }, 150);
         });
     });
@@ -165,8 +157,8 @@
         });
     }
 
-    function sendToRobot(text, emotion) {
-        executeBehavior(emotion);
+    function sendToRobot(text, behavior) {
+        executeBehavior(behavior);
         Promise.race([
                 fetch('http://' + misty_IP + '/api/tts/speak', {
                     method: 'POST',
@@ -176,5 +168,19 @@
             ])
             .then(response => response.json())
             .then(jsonData => console.log(jsonData));
+    }
+
+    function playInComputer(text, emotion) {
+        $(document).find('#selected-emotion > ul li[data-id="' + emotion + '"]').click();
+        var msg = new SpeechSynthesisUtterance();
+        var voices = window.speechSynthesis.getVoices();
+        msg.voice = voices[1];
+        msg.voiceURI = "native";
+        msg.volume = 1;
+        msg.rate = 0.9;
+        msg.pitch = 1.4;
+        msg.text = text;
+        msg.lang = "en-US";
+        speechSynthesis.speak(msg);
     }
 })(window.jQuery);

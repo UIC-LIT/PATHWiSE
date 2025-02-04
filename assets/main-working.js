@@ -1207,10 +1207,9 @@
             $.post(fetchUrl, { 'fetch': fetchData }, function(result, success) {
                 if (success == 'success') {
                     var response = JSON.parse(result);
-                    if (response.status && $('.student-robot-facing').length) {
+                    if (response.status) {
                         //$('#resume').removeClass('temporary-hidden');
                         $('#pins-data').text(response.pins);
-                        recreateCanvas();
                     }
                 } else {
                     console.log('Something went wrong from fetching the latest data!');
@@ -1231,6 +1230,7 @@
             );
         });
         $(".teacher-facing #article-menu p span").text(localStorage.getItem("currentArticleTitle"));
+        $(".student-robot-facing #article-menu p span").text(localStorage.getItem("currentArticleTitle"));
         $("#assignment-title").text(localStorage.getItem("currentArticleTitle"));
         window.pathArticleTitle = localStorage.getItem("currentArticleTitle");
         $.each(emotionsList, function(i, v) {

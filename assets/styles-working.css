@@ -21,16 +21,16 @@ body {
 
 .temporary-disabled {
     cursor: not-allowed !important;
-    pointer-events: none;
-    opacity: 0.4;
+    pointer-events: none !important;
+    opacity: 0.4 !important;
 }
 
 .temporary-hidden {
-    display: none;
+    display: none !important;
     /*previously no display none*/
     cursor: not-allowed !important;
-    pointer-events: none;
-    opacity: 0;
+    pointer-events: none !important;
+    opacity: 0 !important;
 }
 
 #temporary-menu a {
@@ -77,7 +77,8 @@ li {
     clear: both;
 }
 
-#splash {
+#splash,
+#student-splash {
     font-size: 20px;
     line-height: 40px;
     width: 100vw;
@@ -86,21 +87,44 @@ li {
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 9;
     padding-top: 100px;
     text-align: center;
 }
 
-#splash .brand {
-    font-size: 60px;
+#splash {
+    z-index: 99;
+}
+
+#student-splash {
+    z-index: 98;
+}
+
+#splash .brand,
+#student-splash .brand {
     line-height: 72px;
     margin-bottom: 50px;
 }
 
-#splash>div {
-    width: 300px;
+#splash .brand {
+    font-size: 60px;
+}
+
+#student-splash .brand {
+    font-size: 50px;
+}
+
+#splash>div,
+#student-splash>div {
     margin: 0 auto;
     position: relative;
+}
+
+#splash>div {
+    width: 300px;
+}
+
+#student-splash>div {
+    width: 700px;
 }
 
 #splash>div p {
@@ -117,19 +141,67 @@ li {
     text-align: center;
 }
 
+#student-splash ul {
+    text-align: left;
+    margin-bottom: 50px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+#student-splash ul li {
+    padding-left: 25px;
+}
+
+#student-splash ul li.active {
+    font-weight: bold;
+    color: white;
+}
+
+#student-splash ul li:not(last-child) {
+    margin-bottom: 30px;
+    position: relative;
+}
+
+#student-splash ul li::before {
+    content: "o";
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    top: -1px;
+}
+
+#student-splash ul li::after {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 30px;
+    width: 4px;
+    height: 50px;
+    border-left: dotted rgba(255, 255, 255, 0.5) 4px;
+}
+
+#student-splash ul li.active::after {
+    border-color: white !important;
+}
+
+#student-splash ul li:last-child::after {
+    display: none !important;
+}
+
 #splash input,
-#splash button {
+#splash button,
+#student-splash button {
     display: block;
-    width: 100%;
+    width: 300px;
     height: 40px;
-    margin-top: 15px;
+    margin: 15px auto 0;
     text-align: center;
     font-size: 20px;
     line-height: 40px;
     color: #457ab1;
 }
 
-#splash button {
+#splash button,
+#student-splash button {
     text-transform: uppercase;
     cursor: pointer;
 }
@@ -1397,11 +1469,55 @@ MAIN CONTENT
     max-width: calc(100% - 470px);
 }
 
-.student-robot-facing #main-content-wrapper {
+.student-facing #main-content-wrapper {
     width: calc(100% - 470px);
     min-width: calc(100% - 470px);
     max-width: calc(100% - 470px);
+}
+
+.student-robot-facing #main-content-wrapper {
     margin-left: 270px;
+}
+
+.student-facing #pages .cp {
+    max-width: 50px !important;
+    cursor: pointer !important;
+}
+
+.student-facing #pages .cp p {
+    width: 100%;
+    display: inline-block;
+    height: 35px;
+    padding-left: 0;
+    opacity: 0 !important;
+}
+
+.student-facing #pages .cp p::before {
+    content: "" !important;
+}
+
+.student-facing #pages .cp p::after {
+    display: none !important;
+}
+
+.student-computer-facing #robot-column {
+    width: 470px !important;
+    min-width: 470px !important;
+    max-width: 470px !important;
+}
+
+.student-facing #robot-emotions {
+    height: 100%;
+    bottom: 0;
+    background-size: 290px !important;
+    background-position-x: 125px !important;
+    background-position-y: 365px !important;
+
+}
+
+.student-computer-facing #robot-emotions::after {
+    height: 595px !important;
+    bottom: 0;
 }
 
 #main-content-wrapper {

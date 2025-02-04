@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Conversation Manager Test Environment</title>
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .container {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .controls {
+        margin-bottom: 20px;
+    }
+
+    button {
+        padding: 10px 20px;
+        margin-right: 10px;
+        background: #007bff;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+
+    .status {
+        margin: 10px 0;
+        padding: 10px;
+        background: #f0f0f0;
+    }
+
+    .transcript,
+    .intent-display {
+        margin: 20px 0;
+        padding: 15px;
+        background: #f8f9fa;
+        min-height: 100px;
+    }
+
+    .notification {
+        display: none;
+        padding: 10px;
+        background: #ffd700;
+        margin: 10px 0;
+    }
+
+    .intent-result {
+        display: inline-block;
+        padding: 3px 8px;
+        margin-left: 10px;
+        font-weight: bold;
+    }
+
+    .intent-positive {
+        background: #d4edda;
+        color: #155724;
+    }
+
+    .intent-negative {
+        background: #f8d7da;
+        color: #721c24;
+    }
+
+    .intent-uncertain {
+        background: #fff3cd;
+        color: #856404;
+    }
+
+    .debug-info {
+        font-size: 12px;
+        color: #666;
+        margin-top: 4px;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Conversation Manager Test Environment</h1>
+        <div class="controls">
+            <button id="startRecord">Start Recording</button>
+            <button id="stopRecord">Stop Recording</button>
+        </div>
+        <div id="status" class="status">Status: Ready</div>
+        <div id="silenceNotification" class="notification">Silence Detected</div>
+        <div class="transcript-section">
+            <h3>Live Transcript:</h3>
+            <div id="transcript" class="transcript"></div>
+        </div>
+        <div class="intent-section">
+            <h3>Intent Classification:</h3>
+            <div id="intentDisplay" class="intent-display"></div>
+        </div>
+        <div id="recordingPlayer" class="recording-player"></div>
+    </div>
+    <script>
+    let ws;
+    let isRecording = false;
+    let audioContext = null;
+    let processor = null;
+    let source = null;
+    let stream = null;
+
+    function connect() {
+        ws = new WebSocket('ws://localhost:8765');
+
+        ws.onopen = () => {
+            console.log('WebSocket connected');
+            updateStatus('Connected to server');
+        };
+
+        ws.onclose = () => {
+            console.log('WebSocket disconnected');
+            updateStatus('Disconnected from server');
+            setTimeout(connect, 1000);
+        };
+
+        ws.onerror = (error) => {
+            console.error('WebSocket error:', error);
+            updateStatus('Error: ' + error.message);
+        };
+
+        ws.onmessage = (event) => {
+            console.log('Received message:', event.data);
+            const data = JSON.parse(event.data);
+            handleServerMessage(data);
+        };
+    }
+
+    function handleServerMessage(data) {
+        console.log('Processing message type:', data.type);
+
+        switch (data.type) {
+            case 'calibration_start':
+                updateStatus('Calibrating... Please remain silent');
+                break;
+
+            case 'calibration_complete':
+                updateStatus('Calibration complete - Ready to record');
+                console.log('Calibration completed with:', data);
+                break;
+
+            case 'speech_recognized':
+                if (data.result && data.result.text) {
+                    console.log('Speech recognized:', data.result.text);
+                    appendTranscript(data.result.text);
+                }
+                break;
+
+            case 'silence_detected':
+                console.log('Silence detected, duration:', data.duration);
+                showSilenceNotification();
+                break;
+
+            case 'intent_classification':
+                console.log('Intent classified:', data.intent);
+                appendIntent(data.intent);
+                break;
+        }
+    }
+
+    function appendTranscript(text) {
+        const transcript = document.getElementById('transcript');
+        const p = document.createElement('p');
+        p.textContent = text;
+        const debug = document.createElement('div');
+        debug.className = 'debug-info';
+        debug.textContent = `Timestamp: ${new Date().toISOString()}`;
+        p.appendChild(debug);
+        transcript.appendChild(p);
+        transcript.scrollTop = transcript.scrollHeight;
+
+        // Send for intent classification
+        if (ws.readyState === WebSocket.OPEN) {
+            ws.send(JSON.stringify({
+                type: 'classify_intent',
+                text: text
+            }));
+        }
+    }
+
+    function appendIntent(intent) {
+        const intentDisplay = document.getElementById('intentDisplay');
+        const p = document.createElement('p');
+        const timestamp = new Date().toISOString();
+        p.innerHTML = `Classification: <span class="intent-result intent-${intent}">${intent}</span>
+                          <div class="debug-info">Timestamp: ${timestamp}</div>`;
+        intentDisplay.appendChild(p);
+        intentDisplay.scrollTop = intentDisplay.scrollHeight;
+    }
+
+    function updateStatus(status) {
+        document.getElementById('status').textContent = `Status: ${status}`;
+    }
+
+    function showSilenceNotification() {
+        const notification = document.getElementById('silenceNotification');
+        notification.style.display = 'block';
+        setTimeout(() => {
+            notification.style.display = 'none';
+        }, 2000);
+    }
+
+    function startRecording() {
+        if (isRecording) return;
+
+        navigator.mediaDevices.getUserMedia({ audio: true })
+            .then(audioStream => {
+                stream = audioStream;
+                audioContext = new AudioContext({ sampleRate: 16000 });
+                source = audioContext.createMediaStreamSource(stream);
+                processor = audioContext.createScriptProcessor(4096, 1, 1);
+
+                processor.onaudioprocess = (e) => {
+                    if (!isRecording) return;
+
+                    const inputData = e.inputBuffer.getChannelData(0);
+                    const audioData = new Int16Array(inputData.length);
+                    for (let i = 0; i < inputData.length; i++) {
+                        audioData[i] = Math.max(-1, Math.min(1, inputData[i])) * 0x7FFF;
+                    }
+
+                    if (ws.readyState === WebSocket.OPEN) {
+                        const buffer = new ArrayBuffer(audioData.length * 2);
+                        const view = new DataView(buffer);
+                        audioData.forEach((sample, index) => {
+                            view.setInt16(index * 2, sample, true);
+                        });
+
+                        const base64data = btoa(String.fromCharCode(...new Uint8Array(buffer)));
+                        ws.send(JSON.stringify({
+                            type: 'audio_data',
+                            audio: base64data
+                        }));
+                    }
+                };
+
+                source.connect(processor);
+                processor.connect(audioContext.destination);
+                isRecording = true;
+                updateStatus('Recording...');
+            })
+            .catch(error => {
+                console.error('Error accessing microphone:', error);
+                updateStatus('Error: ' + error.message);
+            });
+    }
+
+    function stopRecording() {
+        if (!isRecording) return;
+
+        isRecording = false;
+        if (stream) {
+            stream.getTracks().forEach(track => track.stop());
+        }
+        if (source) {
+            source.disconnect();
+        }
+        if (processor) {
+            processor.disconnect();
+        }
+        if (audioContext) {
+            audioContext.close();
+        }
+
+        stream = null;
+        source = null;
+        processor = null;
+        audioContext = null;
+
+        updateStatus('Recording stopped');
+    }
+
+    document.getElementById('startRecord').addEventListener('click', startRecording);
+    document.getElementById('stopRecord').addEventListener('click', stopRecording);
+
+    // Connect on page load
+    connect();
+    </script>
+</body>
+
+</html>

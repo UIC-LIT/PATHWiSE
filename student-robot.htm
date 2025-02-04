@@ -4,35 +4,13 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Pathwise - Building Green</title>
+    <title>Pathwise - Robot based student interface</title>
     <!-- This snippet is used in production (included from viewer.html) -->
     <link rel="resource" type="application/l10n" href="locale/locale.properties" />
     <link rel="stylesheet" type="text/css" href="viewer.css" />
     <link rel="stylesheet" type="text/css" href="assets/styles-working.css" />
     <link rel="icon" type="image/x-icon" href="assets/icons/favicon.png" />
     <script type="text/javascript" src="assets/articles.js"></script>
-    <style type="text/css">
-    .student-robot-facing #pages .cp {
-        max-width: 50px !important;
-        cursor: pointer !important;
-    }
-
-    .student-robot-facing #pages .cp p {
-        width: 100%;
-        display: inline-block;
-        height: 35px;
-        padding-left: 0;
-        opacity: 0 !important;
-    }
-
-    .student-robot-facing #pages .cp p::before {
-        content: "" !important;
-    }
-
-    .student-robot-facing #pages .cp p::after {
-        display: none !important;
-    }
-    </style>
 </head>
 
 <body class="student-facing student-robot-facing">
@@ -46,6 +24,13 @@
             <input type="text" id="group-password" />
             <button id="login">Login</button>
             <button id="guest-login">Guest Login</button>
+        </div>
+    </div>
+    <div id="student-splash">
+        <div class="brand">Assignments</div>
+        <div>
+            <ul id="assignment-list"></ul>
+            <button id="start-assignment">Start</button>
         </div>
     </div>
     <nav id="primary-nav">
@@ -65,7 +50,7 @@
                     <div id="group-version">Group: 1</div>
                 </div>
             </div>
-            <div id="nav-right">
+            <div id="nav-right" class="hide">
                 <div id="resume" class="temporary-hidden">Resume</div>
                 <button id="save-btn" class="temporary-hidden">Save</button>
                 <div id="user-profile">
@@ -549,6 +534,8 @@
     <script type="text/javascript" src="viewer.js" defer></script>
     <script type="text/javascript" src="assets/main-working.js"></script>
     <script type="text/javascript" src="assets/robot-play.js"></script>
+    <!-- <script type="module" src="nlp/robot-play.js"></script> -->
+    <script type="text/javascript" src="assets/session-recording.js"></script>
     <script type="text/javascript" src="assets/logging.js"></script>
 </body>
 

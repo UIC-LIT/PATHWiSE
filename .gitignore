@@ -1,1 +1,3 @@
-web/build
+nlp/best_model.pt
+nlp/google_creds.js
+nlp/pathnlp
