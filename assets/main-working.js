@@ -1,6 +1,6 @@
 (function($) {
     // @TODO replace with server url in production
-    var SERVER_URL = "http://localhost:8000";
+    var SERVER_URL = "https://pathwiseapi.evl.uic.edu";
     var a1, a2, a3, b1, b2, b3, c1, c2, c3;
     a1 = b2 = c3 = [3, 6, 9, 13, 16, 21, 22, 23, 28, 30];
     a2 = b1 = c2 = [2, 4, 6, 9, 12, 20, 21, 22, 29];
