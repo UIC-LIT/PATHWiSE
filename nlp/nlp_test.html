@@ -110,7 +110,7 @@
     let stream = null;
 
     function connect() {
-        ws = new WebSocket('ws://localhost:8765');
+        ws = new WebSocket('wss://localhost:8765');
 
         ws.onopen = () => {
             console.log('WebSocket connected');

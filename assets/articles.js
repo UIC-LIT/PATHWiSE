@@ -2,6 +2,14 @@ if (localStorage.getItem("auth") == null) {
     localStorage.setItem("auth", "true");
 }
 var articleLibrary = [{
+        'title': 'Menacing Meningitis',
+        'filename': 'menacing-meningitis'
+    },
+    {
+        'title': 'Meet the Microbes',
+        'filename': 'meet-the-microbes'
+    },
+    {
         'title': 'Doctor with an eye for eyes',
         'filename': 'doctor-with-an-eye-for-eyes'
     },
@@ -107,17 +115,7 @@ var groups = [{
         'name': 'Group 2',
         'id': 'group-2',
         'password': 'test2',
-        'articles': [articleLibrary[13], articleLibrary[14], articleLibrary[15]]
-    }, {
-        'name': 'Group 3',
-        'id': 'group-3',
-        'password': 'test3',
-        'articles': [articleLibrary[16], articleLibrary[17], articleLibrary[18]]
-    }, {
-        'name': 'Group 4',
-        'id': 'group-4',
-        'password': 'test4',
-        'articles': [articleLibrary[19], articleLibrary[20], articleLibrary[21]]
+        'articles': [articleLibrary[0], articleLibrary[1]]
     }
 ];
 var articles = [
@@ -130,11 +128,11 @@ var articles = [
     articleLibrary[6],
     articleLibrary[7],
     articleLibrary[8],
-    articleLibrary[9]
+    articleLibrary[9],
+    articleLibrary[10],
+    articleLibrary[11]
 ];
 var articlesPrev = [
-    articleLibrary[10],
-    articleLibrary[11],
     articleLibrary[12],
     articleLibrary[13],
     articleLibrary[14],
@@ -144,7 +142,9 @@ var articlesPrev = [
     articleLibrary[18],
     articleLibrary[19],
     articleLibrary[20],
-    articleLibrary[21]
+    articleLibrary[21],
+    articleLibrary[22],
+    articleLibrary[23]
 ];
 if (localStorage.getItem("auth") == "guest") {
     articleList = articles;

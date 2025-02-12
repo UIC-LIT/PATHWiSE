@@ -126,7 +126,7 @@ class ConversationManager {
 
     setupWebSocket() {
         // console.log('Setting up WebSocket connection...');
-        this.ws = new WebSocket('ws://localhost:8765');
+        this.ws = new WebSocket('wss://localhost:8765');
 
         this.ws.onopen = async () => {
             console.log('NLP_Server Websocket connected');

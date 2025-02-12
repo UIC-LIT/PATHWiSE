@@ -368,7 +368,7 @@ if __name__ == "__main__":
     async def main():
         # Create the server
         server = await websockets.serve(nlp_server, "localhost", 8765)
-        print("NLP Server starting on ws://localhost:8765")
+        print("NLP Server starting on wss://localhost:8765")
         
         try:
             # Keep the server running
