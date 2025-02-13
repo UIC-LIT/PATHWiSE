@@ -391,7 +391,7 @@ nav>.container>ul>li>span {
 /* ------ USER PROFILE --------- */
 
 #save-btn {
-    width: 80px;
+    width: 100px;
     height: 30px;
     color: white;
     font-weight: bold;
@@ -712,7 +712,7 @@ ul#comments-column-toggler[data-toggler="1"] li.comments-template-toggle {
     word-wrap: break-word;
     background-color: white;
     padding: 15px;
-    border-radius: 100px;
+    border-radius: 50px;
     cursor: move;
     margin-bottom: 15px;
     position: relative;
@@ -2410,6 +2410,64 @@ iframe {
 
 #audiences>ul li:not(:last-child) {
     margin-bottom: 5px;
+}
+
+.confirmation {
+    background-color: rgba(69, 122, 177, 0.4);
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+}
+
+.confirmation-container {
+    width: 585px;
+    height: 200px;
+    padding: 50px;
+    margin-top: calc((100vh - 200px) / 2);
+    margin-left: calc((100vw - 585px) / 2);
+    background-color: rgba(69, 122, 177, 1);
+    border-radius: 20px;
+}
+
+.confirmation-container>p {
+    font-size: 26px;
+    color: white;
+    margin-bottom: 30px;
+    line-height: 32px;
+    text-align: center;
+}
+
+.confirmation-container>div {
+    text-align: center;
+}
+
+#confirmation-save,
+#confirmation-exit {
+    width: 120px;
+    height: 40px;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    line-height: 25px;
+    font-size: 16px;
+    margin-right: 15px;
+    border-radius: 40px;
+    padding: 0 10px;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+#confirmation-save {
+    background: #254F78;
+    border: none;
+}
+
+#confirmation-exit {
+    background-color: transparent;
+    border: 1px solid white;
 }
 
 #sidebarContainer,

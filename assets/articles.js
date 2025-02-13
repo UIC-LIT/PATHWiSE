@@ -3,11 +3,15 @@ if (localStorage.getItem("auth") == null) {
 }
 var articleLibrary = [{
         'title': 'Menacing Meningitis',
-        'filename': 'menacing-meningitis'
+        'filename': 'menacing-meningitis',
+        'from': new Date('2025-02-12T10:00:00'),
+        'to': new Date('2025-02-18T13:30:00')
     },
     {
         'title': 'Meet the Microbes',
-        'filename': 'meet-the-microbes'
+        'filename': 'meet-the-microbes',
+        'from': new Date('2025-02-18T13:31:00'),
+        'to': new Date('2025-02-28T13:30:00')
     },
     {
         'title': 'Doctor with an eye for eyes',
@@ -51,21 +55,15 @@ var articleLibrary = [{
     },
     {
         'title': 'Cold Nose Article',
-        'filename': 'cold_nose_article',
-        'from': new Date('2025-02-04T10:00:00'),
-        'to': new Date('2025-02-16T13:30:00')
+        'filename': 'cold_nose_article'
     },
     {
         'title': 'Exoplanet Article',
-        'filename': 'exoplanet_article',
-        'from': new Date('2025-02-16T13:31:00'),
-        'to': new Date('2025-02-26T16:30:00')
+        'filename': 'exoplanet_article'
     },
     {
         'title': 'Osmosis Article',
-        'filename': 'osmosis_article',
-        'from': new Date('2025-02-26T16:31:00'),
-        'to': new Date('2025-03-05T16:30:00')
+        'filename': 'osmosis_article'
     },
     {
         'title': 'Frogs Evaluation Article',

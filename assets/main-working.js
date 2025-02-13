@@ -5,6 +5,7 @@
     a1 = b2 = c3 = [3, 6, 9, 13, 16, 21, 22, 23, 28, 30];
     a2 = b1 = c2 = [2, 4, 6, 9, 12, 20, 21, 22, 29];
     a3 = b3 = c1 = [3, 6, 9, 22, 23, 28, 30];
+    var isUpdated = false;
     var commentPinCount = 1;
     var redactPinCount = 1;
     var pagesOffsetTop = $("#editor-body").offset().top;
@@ -406,8 +407,7 @@
         });
         $(document).on("drop", "#pages", function(e) {
             e.preventDefault();
-            // console.log("pin dropped!")
-            //init();
+            isUpdated = true;
             var elem = $.parseHTML(e.originalEvent.dataTransfer.getData("text/html"))[0];
             var posTop = e.originalEvent.clientY - pagesOffsetTop + scrolledDistance;
             var posLeft = e.originalEvent.clientX - pagesOffsetLeft;
@@ -800,10 +800,9 @@
             }, 1000);
         });
         $(document).on("click", ".delete-pin", function() {
+            isUpdated = true;
             managePin($(this).parents(".cp").attr("id"), "delete");
-            $(
-                '#comments-list li[data-id="' + $(this).parents(".cp").attr("id") + '"]'
-            ).remove();
+            $('#comments-list li[data-id="' + $(this).parents(".cp").attr("id") + '"]').remove();
             $(this).parents(".cp").remove();
             // flori: update total comment count
             commentPinCount--;
@@ -814,6 +813,7 @@
             checkSortOption();
         });
         $(document).on("click", ".duplicate-pin, .new-pin", function() {
+            isUpdated = true;
             var target = $(document).find(".cp#" + $(this).parents(".cp").attr("id"));
             var posTop = parseInt(target.css("top"), 10);
             var posLeft = parseInt(target.css("left"), 10);
@@ -972,36 +972,50 @@
             location.reload();
         });
         $(document).on("click", "#logout", function() {
-            localStorage.setItem("auth", "true");
-            location.reload();
+            if (isUpdated) {
+                activateConfirmation(false);
+            } else {
+                logout();
+            }
         });
         $(document).on("click", "#resume", function() {
             recreateCanvas();
+            typeBar();
+            $("#bottom-panel-title").text("Comments: " + (commentPinCount - 1));
             $(this).addClass("temporary-hidden");
         });
         $(document).on("click", "#save-btn", function() {
-            var url = "/validate/",
-                data = {};
-            save();
-            data.pins = JSON.stringify(pins);
-            data.redactors = JSON.stringify(redactors);
-            data.meta = JSON.stringify(meta);
-            data.uid = window.pathSessionId;
-            data.group = loginGroup;
-            data.article = $("#assignment-title").text().trim();
-            if (pins.length > 0) {
-                // submitToGoogleForm(JSON.stringify(pins), JSON.stringify(redactors), JSON.stringify(meta), window.pathSessionId, loginGroup);
-                $.post(url, { 'save': data }, function(result, success) {
-                    if (success == 'success') {
-                        var response = result;
-                        console.log(response);
-                        console.log(data);
-                    } else {
-                        console.log('Something went wrong!');
-                    }
-                });
+            if (isUpdated) {
+                var url = "/validate/",
+                    data = {};
+                save();
+                data.pins = JSON.stringify(pins);
+                data.redactors = JSON.stringify(redactors);
+                data.meta = JSON.stringify(meta);
+                data.uid = window.pathSessionId;
+                data.group = loginGroup;
+                data.article = $("#assignment-title").text().trim();
+                if (pins.length > 0) {
+                    // submitToGoogleForm(JSON.stringify(pins), JSON.stringify(redactors), JSON.stringify(meta), window.pathSessionId, loginGroup);
+                    $.post(url, { 'save': data }, function(result, success) {
+                        if (success == 'success') {
+                            var response = result;
+                            isUpdated = false;
+                            $("#save-btn").text("Saved ✔")
+                            setTimeout(function() {
+                                $("#save-btn").text("Save")
+                            }, 1000);
+                            console.log(response);
+                            console.log(data);
+                        } else {
+                            console.log('Something went wrong!');
+                        }
+                    });
+                } else {
+                    alert("No comments to save");
+                }
             } else {
-                alert("No comments to save");
+                alert("No updates to save");
             }
         });
         $(document).on("mouseup keyup", "#editor-body", function() {
@@ -1021,19 +1035,59 @@
                 selectedText = "";
             }
         });
+        $("#comment-input textarea").on("focusout", function() {
+            refreshEmotion();
+        });
+        $(document).on("click", "#confirmation-save", function() {
+            $('#save-btn').click();
+            $("#confirmation-save").text("Saved ✔")
+            setTimeout(function() {
+                logout();
+            }, 500);
+        });
+        $(document).on("click", "#confirmation-exit", function() {
+            isUpdated = false;
+            logout();
+        });
         $(window).resize(function() {
             $("#outerContainer").width($("#pages").width());
             setTimeout(function() {
                 $("#pages").height($("#outerContainer #viewer").height());
             }, 500);
         });
-
-        $("#comment-input textarea").on("focusout", function() {
-            refreshEmotion();
+        window.addEventListener('beforeunload', (event) => {
+            if (isUpdated) {
+                activateConfirmation(true);
+                // Prevent the immediate closing of the tab
+                event.preventDefault();
+                event.returnValue = '';
+            }
         });
     });
 
+    function logout() {
+        localStorage.setItem("auth", "true");
+        location.reload();
+    }
+
+    function activateConfirmation(exiting) {
+        $('.confirmation').remove();
+        var exitButtonText = exiting ? 'Exit' : 'Logout';
+        $('body').append(`
+            <div class="confirmation">
+                <div class="confirmation-container">
+                    <p>There has been some changes already! Do you want to save it before exiting?</p>
+                    <div class="confirmation-buttons">
+                        <button id="confirmation-save">Save</button>
+                        <button id="confirmation-exit">` + exitButtonText + `</button>
+                    </div>
+                </div>
+            </div>
+        `);
+    }
+
     function recreateCanvas() {
+        isUpdated = true;
         commentPinCount = 1;
         $("#comments-list > ul").empty();
         $("#pages div.cp").remove();
@@ -1056,20 +1110,17 @@
                 v.top +
                 `px; left:` +
                 v.left +
-                `px;"> <p>` +
-                pinId +
-                `</p>
-                <ul>
-                    <li class="delete-pin">Delete</li>
-                    <li class="duplicate-pin">Duplicate</li>
-                    <li class="new-pin">Create New</li>
-                </ul>
-            </div>
-            `
+                `px;">
+                    <p>` + pinId + `</p>
+                    <ul>
+                        <li class="delete-pin">Delete</li>
+                        <li class="duplicate-pin">Duplicate</li>
+                        <li class="new-pin">Create New</li>
+                    </ul>
+                </div>`
             );
             $("#comments-list > ul").append(
-                `
-            <li data-type="` +
+                `<li data-type="` +
                 v.type +
                 `" data-top="` +
                 v.top +
@@ -1082,15 +1133,15 @@
                 `" data-id="c` +
                 pinId +
                 `">
-                <span class="comment-id">` +
-                pinId +
-                `</span>
-                <p>` +
-                v.text +
-                `</p>
-            </li>
-            `
+                    <div class="comment-container"><span class="comment-id">` + pinId + `</span>
+                        <div class="existing-comment-elements"></div>
+                        <div class="comment-text">
+                            <p>` + v.text + `</p>
+                        </div>
+                    </div>
+                </li>`
             );
+
         });
         setTimeout(function() {
             $(
@@ -1208,7 +1259,7 @@
                 if (success == 'success') {
                     var response = JSON.parse(result);
                     if (response.status) {
-                        //$('#resume').removeClass('temporary-hidden');
+                        $('#resume').removeClass('temporary-hidden');
                         $('#pins-data').text(response.pins);
                     }
                 } else {
