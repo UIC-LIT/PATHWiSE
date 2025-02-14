@@ -383,6 +383,8 @@
         $(document).on("click", "#user-profile-menu > ul > li", function() {
             $("#user-profile").removeClass("active");
         });
+        // flori: toggle emoji 
+        $(document).on("click", "#emoji-toggle", toggleEmoji);
         // flori: end code snippet
 
         $("#editor").scroll(function() {
@@ -530,6 +532,8 @@
                 // flori: update emotions and type panel
                 typeBar();
                 updateEmotionsPanel();
+                // //flori: update toggle
+                // toggleEmoji();
             }
 
             if ($(elem).hasClass("re")) {
@@ -1786,5 +1790,33 @@
 
         commentsList.empty();
         commentsList.append(sortedComments);
+    }
+
+    //flori: toggle emoji images 
+
+    function toggleEmoji() {
+      $(this).toggleClass("active");
+      document.querySelectorAll("#comments-list ul li").forEach((listItem) => {
+        listItem.classList.toggle("active");
+      });
+      document
+        .querySelectorAll("#bottom-panel-emoji-panel-container>ul")
+        .forEach((listItem) => {
+          listItem.classList.toggle("active");
+        });
+      document.querySelectorAll("#pages .cp").forEach((listItem) => {
+        listItem.classList.toggle("active");
+      });
+      document.querySelectorAll("#robot-emotions>div").forEach((listItem) => {
+        listItem.classList.toggle("active");
+      });
+      document.querySelectorAll("#pages .cp>p").forEach((listItem) => {
+        listItem.classList.toggle("active");
+      });
+      document
+        .querySelectorAll("#selected-emotion ul")
+        .forEach((listItem) => {
+          listItem.classList.toggle("active");
+        });
     }
 })(window.jQuery);

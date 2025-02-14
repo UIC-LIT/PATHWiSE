@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pathwise</title>
+    <link rel="stylesheet" type="text/css" href="assets/styles-working.css" />
+    <link rel="stylesheet" type="text/css" href="dashboard-styles.css" />
+    <link rel="icon" type="image/x-icon" href="assets/icons/favicon.png" />
+  </head>
+
+  <body class="student-facing student-robot-facing">
+    <nav id="primary-nav">
+      <!-- Navigation -->
+      <div class="container">
+        <div class="brand">PATHWiSE</div>
+        <div id="nav-right">
+          <div id="user-profile">
+            <div id="user-profile-menu">
+              <!-- class="temporary-hidden" -->
+              <div id="user-profile-menu-top">
+                <div id="user-profile-menu-icon"></div>
+                <div id="user-profile-menu-details">
+                  <div id="user-profile-menu-header" style="font-weight: bold">
+                    Profile Name
+                  </div>
+                  <p>Profile@gmail.com</p>
+                  <p>User</p>
+                </div>
+              </div>
+              <ul>
+                <li>Dashboard</li>
+                <li>Settings</li>
+                <li id="logout">Logout</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <main>
+      <div class="container">
+        <!-- LEFT SIDEBAR -->
+        <div id="left-sidebar">
+          <div id="group-section">
+            <div id="group-section-header">
+              <div id="groups-icon"></div>
+              <div id="groups">Groups</div>
+              <div id="edit"></div>
+              <div id="expand">...</div>
+            </div>
+            <div id="all-group">
+              <p id="all">All</p>
+              <p id="student-number">40 students</p>
+            </div>
+            <div id="categories">
+              <ul>
+                <li class="category-title" style="font-weight: bold">
+                  Challenge
+                </li>
+                <li class="category-title">Interest</li>
+                <li class="category-title">Quiz Scores</li>
+              </ul>
+            </div>
+
+            <ul>
+              <li class="group-container">
+                <div class="group-header">
+                  <div class="group-name">Regular</div>
+                  <div class="group-population">9 Students</div>
+                </div>
+                <div class="group-class-container">
+                  <ul>
+                    <li>
+                      <div class="group-class-details">Class 2: 16</div>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li class="group-container">
+                <div class="group-header">
+                  <div class="group-name">Easy</div>
+                  <div class="group-population">9 Students</div>
+                </div>
+                <div class="group-class-container">
+                  <ul>
+                    <li>
+                      <div class="group-class-details">Class 2: 16</div>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li class="group-container">
+                <div class="group-header">
+                  <div class="group-name">Advanced</div>
+                  <div class="group-population">9 Students</div>
+                </div>
+                <div class="group-class-container">
+                  <ul>
+                    <li>
+                      <div class="group-class-details">Class 2: 16</div>
+                    </li>
+                    <li>
+                      <div class="group-class-details">Class 3: 16</div>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <!-- END OF GROUP SECTION // START OF INBOX SECTION -->
+
+          <div id="inbox-section">
+            <div id="inbox-section-header">
+              <div id="inbox-icon"></div>
+              <div id="inbox-title">Inbox</div>
+            </div>
+            <div id="inbox-list-container">
+              <ul>
+                <li class="inbox-message-container">
+                  <div class="message-header">
+                    <div class="student-icon">ST</div>
+                    <div class="student-name">Student Name</div>
+                    <div class="message-time">2:15 PM</div>
+                  </div>
+                  <div class="student-message">
+                    I have a question about this topic
+                  </div>
+                </li>
+                <li class="inbox-message-container">
+                  <div class="message-header">
+                    <div class="student-icon">ST</div>
+                    <div class="student-name">Student Name</div>
+                    <div class="message-time">2:15 PM</div>
+                  </div>
+                  <div class="student-message">
+                    I have a question about this topic
+                  </div>
+                </li>
+                <li class="inbox-message-container">
+                  <div class="message-header">
+                    <div class="student-icon">ST</div>
+                    <div class="student-name">Student Name</div>
+                    <div class="message-time">2:15 PM</div>
+                  </div>
+                  <div class="student-message">
+                    I have a question about this topic
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- END OF INBOX -->
+          <div id="minimize-button"><p><</p></div>
+        </div>
+        <div id="minimized-sidebar" class="hide">
+          <div id="expand-button"><p>></p></div>
+        </div>
+        <!-- END OF LEFT SIDEBAR -->
+
+        <div id="dashboard-content-wrapper">
+          <!-- main content start -->
+          <div id="main-content">
+            <div id="dashboard-title">Your Dashboard</div>
+            <div id="dashboard-options">
+              <div id="left-options">
+                <div id="assignments">Assignments</div>
+                <button id="all-button" class="active">
+                  <div id="all-checkbox">
+                    <div id="checkmark" class="hide"></div>
+                  </div>
+                  <p>All</p>
+                </button>
+                <button id="active-button" active-type="active">
+                  Active
+                  <div id="active-counter">1</div>
+                </button>
+                <button id="inactive-button" active-type="inactive">
+                  Inactive
+                  <div id="inactive-counter">1</div>
+                </button>
+              </div>
+              <div id="right-options">
+                <button id="search"><p>Search</p></button>
+                <button id="create">Create +</button>
+                <div id="more">...</div>
+              </div>
+            </div>
+            <!-- assignment tiles -->
+            <div id="assignments-container">
+              <ul>
+                <li class="assignment">
+                  <div class="tile-info">
+                  <img
+                    class="assignment-image"
+                    src="assets/images/dashboard/article-1.png"
+                  />
+                  <div class="assignment-header">
+                    <div class="assignment-counter">1</div>
+                    <div class="assignment-name">Yellow Assignment</div>
+                  </div>
+                  <ul class="assignment-details">
+                    <li class="assignment-status">
+                      <div class="status-bubble"></div>
+                      Active
+                    </li>
+                    <li class="assignment-category">
+                      <div class="category-icon"></div>
+                      Interest
+                    </li>
+                    <li class="assignment-deadline">
+                      <div class="date-icon"></div>
+                      03/04/2025
+                    </li>
+                  </ul>
+                  <div class="assignment-button"></div>
+                </div>
+                  <div class="expanded-information hide" assignmentNumber="">
+                    <div class="assignment-header">
+                      <div class="expanded-assignment-button"></div>
+                      <div class="assignment-counter">1</div>
+                      <div class="assignment-name">Yellow Assignment</div>
+                    </div>
+                    <div id="expanded-viewing-container" class="hide">
+                      <div id="home">
+                        <ul class="expanded-assignment-details">
+                          <li class="assignment-status">
+                            <div class="status-bubble"></div>
+                            Active
+                          </li>
+                          <li class="assignment-category">
+                            <div class="category-icon"></div>
+                            Interest
+                          </li>
+                          <li class="assignment-deadline">
+                            <div class="date-icon"></div>
+                            03/04/2025
+                          </li>
+                        </ul>
+                        <ul class="group-list">
+                          <li>
+                            <img
+                              class="expanded-assignment-image"
+                              src="assets/images/dashboard/article-1.png"
+                            />
+                            <div class="group-details">
+                              <div class="group-details-header">
+                                <img
+                                  class="group-icon"
+                                  src="assets/images/dashboard/redgroup.png"
+                                />
+                                <div class="group-name">Advanced</div>
+                                <img
+                                  class="bars-icon"
+                                  src="assets/images/dashboard/bars.png"
+                                />
+                                <div class="type-bar"></div>
+                                <div class="emotions-list"></div>
+                              </div>
+                              <div class="comment-count">36 comments</div>
+                              <div class="completion">
+                                <img
+                                  class="circle-checkmark"
+                                  src="assets/images/dashboard/checkmark-circle.png"
+                                />
+                                <div class="student-completion">
+                                  19/20 students completed
+                                </div>
+                              </div>
+                            </div>
+                          </li>
+                          <li>
+                            <img
+                              class="expanded-assignment-image"
+                              src="assets/images/dashboard/article-1.png"
+                            />
+                            <div class="group-details">
+                              <div class="group-details-header">
+                                <img
+                                  class="group-icon"
+                                  src="assets/images/dashboard/yellowgroup.png"
+                                />
+                                <div class="group-name">Regular</div>
+                                <img
+                                  class="bars-icon"
+                                  src="assets/images/dashboard/bars.png"
+                                />
+                                <div class="type-bar"></div>
+                                <div class="emotions-list"></div>
+                              </div>
+                              <div class="comment-count">40 comments</div>
+                              <div class="completion">
+                                <img
+                                  class="circle-checkmark"
+                                  src="assets/images/dashboard/checkmark-circle.png"
+                                />
+                                <div class="student-completion">
+                                  19/20 students completed
+                                </div>
+                              </div>
+                            </div>
+                          </li>
+                          <li>
+                            <img
+                              class="expanded-assignment-image"
+                              src="assets/images/dashboard/article-1.png"
+                            />
+                            <div class="group-details">
+                              <div class="group-details-header">
+                                <img
+                                  class="group-icon"
+                                  src="assets/images/dashboard/yellowgroup.png"
+                                />
+                                <div class="group-name">Easy</div>
+                                <img
+                                  class="bars-icon"
+                                  src="assets/images/dashboard/bars.png"
+                                />
+                                <div class="type-bar"></div>
+                                <div class="emotions-list"></div>
+                              </div>
+                              <div class="comment-count">30 comments</div>
+                              <div class="completion">
+                                <img
+                                  class="circle-checkmark"
+                                  src="assets/images/dashboard/checkmark-circle.png"
+                                />
+                                <div class="student-completion">
+                                  19/20 students completed
+                                </div>
+                              </div>
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
+                      <div id="analysis" class="hide">
+                        <div id="analysis-left">
+                          <div class="header">Assignment Details</div>
+                          <div class="analysis-details">Source: "Space.pdf"</div>
+                          <div class="analysis-details">Word Count: 1000</div>
+                          <div class="analysis-details">Length: 26 pages</div>
+                          <div class="analysis-details">Deadline: 1/30/24</div>
+                          <div class="header">Analysis</div>
+                          <div class="analysis-details">Tone: Professional, Positive</div>
+                          <div class="analysis-details">Reading Level: 5</div>
+                          <div class="analysis-details">Topic: Science, Space</div>
+                        </div>
+                        <div class="calendar-container"></div>
+                      </div>
+                      <div id="progress" class="hide">
+                        <div class="header">Students Who Started Assignment
+                          <ul></ul>
+                        </div>
+                        <div class="header">Students Who Have Not Started Assignment
+                          <ul></ul>
+                        </div>
+                        <div class="header">Student Feedback
+                          <ul></ul>
+                        </div>
+                      </div>
+                      <div id="performance" class="hide">
+                        <div class="header">Student Performance</div>
+                        <div id="performance-details-container">
+                          <div class="performance-details">Average Duration: 45 minutes</div>
+                          <div class="performance-details">Average Answer: 45 minutes</div>
+                          <div class="performance-details">Longest time: 45 minutes</div>
+                          <div class="performance-details">Shortest time: 45 minutes</div>
+                          <div class="performance-details">Difficulty Level: 45 minutes</div>
+                        </div>
+                        <div class="header">Activity: Past Week</div>
+                        <img id="performance-graph">
+                      </div>
+                    </div>
+    
+                    <ul class="bottom-options">
+                      <div class="left-options">
+                        <div class="analysis"></div>
+                        <div class="progress"></div>
+                        <div class="performance"></div>
+                      </div>
+                      <div class="right-options">
+                        <div class="edit">Edit</div>
+                        <div class="archive">Archive</div>
+                        <div class="publish">Publish</div>
+                      </div>
+                    </ul>
+                  </div>
+                </li>
+                <li class="assignment" active-type="active">
+                  <img
+                    class="assignment-image"
+                    src="assets/images/dashboard/article-1.png"
+                  />
+                  <div class="assignment-header">
+                    <div class="assignment-counter">2</div>
+                    <div class="assignment-name">Yellow Assignment</div>
+                  </div>
+                  <ul class="assignment-details">
+                    <li class="assignment-status">
+                      <div class="status-bubble"></div>
+                      Active
+                    </li>
+                    <li class="assignment-category">
+                      <div class="category-icon"></div>
+                      Interest
+                    </li>
+                    <li class="assignment-deadline">
+                      <div class="date-icon"></div>
+                      03/04/2025
+                    </li>
+                  </ul>
+                  <div class="assignment-button"></div>
+                  
+                </li>
+                <li class="assignment" active-type="active">
+                  <img
+                    class="assignment-image"
+                    src="assets/images/dashboard/article-1.png"
+                  />
+                  <div class="assignment-header">
+                    <div class="assignment-counter">2</div>
+                    <div class="assignment-name">Yellow Assignment</div>
+                  </div>
+                  <ul class="assignment-details">
+                    <li class="assignment-status">
+                      <div class="status-bubble"></div>
+                      Active
+                    </li>
+                    <li class="assignment-category">
+                      <div class="category-icon"></div>
+                      Interest
+                    </li>
+                    <li class="assignment-deadline">
+                      <div class="date-icon"></div>
+                      03/04/2025
+                    </li>
+                  </ul>
+                  <div class="assignment-button"></div>
+                </li>
+                <li class="assignment" active-type="active">
+                  <img
+                    class="assignment-image"
+                    src="assets/images/dashboard/article-1.png"
+                  />
+                  <div class="assignment-header">
+                    <div class="assignment-counter">3</div>
+                    <div class="assignment-name">Yellow Assignment</div>
+                  </div>
+                  <ul class="assignment-details">
+                    <li class="assignment-status">
+                      <div class="status-bubble"></div>
+                      Active
+                    </li>
+                    <li class="assignment-category">
+                      <div class="category-icon"></div>
+                      Interest
+                    </li>
+                    <li class="assignment-deadline">
+                      <div class="date-icon"></div>
+                      03/04/2025
+                    </li>
+                  </ul>
+                  <div class="assignment-button"></div>
+                </li>
+                <li class="assignment" active-type="inactive">
+                  <img
+                    class="assignment-image"
+                    src="assets/images/dashboard/article-1.png"
+                  />
+                  <div class="assignment-header">
+                    <div class="assignment-counter">4</div>
+                    <div class="assignment-name">Yellow Assignment</div>
+                  </div>
+                  <ul class="assignment-details">
+                    <li class="assignment-status">
+                      <div class="status-bubble"></div>
+                      Active
+                    </li>
+                    <li class="assignment-category">
+                      <div class="category-icon"></div>
+                      Interest
+                    </li>
+                    <li class="assignment-deadline">
+                      <div class="date-icon"></div>
+                      03/04/2025
+                    </li>
+                  </ul>
+                  <div class="assignment-button"></div>
+                </li>
+                <li class="assignment" active-type="inactive">
+                  <img
+                    class="assignment-image"
+                    src="assets/images/dashboard/article-1.png"
+                  />
+                  <div class="assignment-header">
+                    <div class="assignment-counter">5</div>
+                    <div class="assignment-name">Yellow Assignment</div>
+                  </div>
+                  <ul class="assignment-details">
+                    <li class="assignment-status">
+                      <div class="status-bubble"></div>
+                      Active
+                    </li>
+                    <li class="assignment-category">
+                      <div class="category-icon"></div>
+                      Interest
+                    </li>
+                    <li class="assignment-deadline">
+                      <div class="date-icon"></div>
+                      03/04/2025
+                    </li>
+                  </ul>
+                  <div class="assignment-button"></div>
+                </li>
+                <li class="assignment" active-type="inactive">
+                  <img
+                    class="assignment-image"
+                    src="assets/images/dashboard/article-1.png"
+                  />
+                  <div class="assignment-header">
+                    <div class="assignment-counter">6</div>
+                    <div class="assignment-name">Yellow Assignment</div>
+                  </div>
+                  <ul class="assignment-details">
+                    <li class="assignment-status">
+                      <div class="status-bubble"></div>
+                      Active
+                    </li>
+                    <li class="assignment-category">
+                      <div class="category-icon"></div>
+                      Interest
+                    </li>
+                    <li class="assignment-deadline">
+                      <div class="date-icon"></div>
+                      03/04/2025
+                    </li>
+                  </ul>
+                  <div class="assignment-button"></div>
+                </li>
+                <li class="assignment" active-type="inactive">
+                  <img
+                    class="assignment-image"
+                    src="assets/images/dashboard/article-1.png"
+                  />
+                  <div class="assignment-header">
+                    <div class="assignment-counter">7</div>
+                    <div class="assignment-name">Yellow Assignment</div>
+                  </div>
+                  <ul class="assignment-details">
+                    <li class="assignment-status">
+                      <div class="status-bubble"></div>
+                      Active
+                    </li>
+                    <li class="assignment-category">
+                      <div class="category-icon"></div>
+                      Interest
+                    </li>
+                    <li class="assignment-deadline">
+                      <div class="date-icon"></div>
+                      03/04/2025
+                    </li>
+                  </ul>
+                  <div class="assignment-button"></div>
+                </li>
+                <li class="assignment" active-type="inactive">
+                  <img
+                    class="assignment-image"
+                    src="assets/images/dashboard/article-1.png"
+                  />
+                  <div class="assignment-header">
+                    <div class="assignment-counter">8</div>
+                    <div class="assignment-name">Yellow Assignment</div>
+                  </div>
+                  <ul class="assignment-details">
+                    <li class="assignment-status">
+                      <div class="status-bubble"></div>
+                      Active
+                    </li>
+                    <li class="assignment-category">
+                      <div class="category-icon"></div>
+                      Interest
+                    </li>
+                    <li class="assignment-deadline">
+                      <div class="date-icon"></div>
+                      03/04/2025
+                    </li>
+                  </ul>
+                  <div class="assignment-button"></div>
+                </li>
+                <li class="assignment">
+                  <img
+                    class="assignment-image"
+                    src="assets/images/dashboard/article-1.png"
+                  />
+                  <div class="assignment-header">
+                    <div class="assignment-counter">1</div>
+                    <div class="assignment-name">Yellow Assignment</div>
+                  </div>
+                  <ul class="assignment-details">
+                    <li class="assignment-status">
+                      <div class="status-bubble"></div>
+                      Active
+                    </li>
+                    <li class="assignment-category">
+                      <div class="category-icon"></div>
+                      Interest
+                    </li>
+                    <li class="assignment-deadline">
+                      <div class="date-icon"></div>
+                      03/04/2025
+                    </li>
+                  </ul>
+                  <div class="assignment-button"></div>
+                </li>
+                <li class="assignment">
+                  <img
+                    class="assignment-image"
+                    src="assets/images/dashboard/article-1.png"
+                  />
+                  <div class="assignment-header">
+                    <div class="assignment-counter">1</div>
+                    <div class="assignment-name">Yellow Assignment</div>
+                  </div>
+                  <ul class="assignment-details">
+                    <li class="assignment-status">
+                      <div class="status-bubble"></div>
+                      Active
+                    </li>
+                    <li class="assignment-category">
+                      <div class="category-icon"></div>
+                      Interest
+                    </li>
+                    <li class="assignment-deadline">
+                      <div class="date-icon"></div>
+                      03/04/2025
+                    </li>
+                  </ul>
+                  <div class="assignment-button"></div>
+                </li>
+                <li class="assignment">
+                  <div class="tile-info">
+                    <img
+                    class="assignment-image"
+                    src="assets/images/dashboard/article-1.png"
+                  />
+                  <div class="assignment-header">
+                    <div class="assignment-counter">1</div>
+                    <div class="assignment-name">Yellow Assignment</div>
+                  </div>
+                  <ul class="assignment-details">
+                    <li class="assignment-status">
+                      <div class="status-bubble"></div>
+                      Active
+                    </li>
+                    <li class="assignment-category">
+                      <div class="category-icon"></div>
+                      Interest
+                    </li>
+                    <li class="assignment-deadline">
+                      <div class="date-icon"></div>
+                      03/04/2025
+                    </li>
+                  </ul>
+                  <div class="assignment-button"></div>
+                  </div>
+                  
+                </li>
+              </ul>
+
+              
+            </div>
+          </div>
+          <!-- main content -->
+        </div>
+      </div>
+    </main>
+    <script type="text/javascript" src="assets/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="assets/skeleton.js"></script>
+    <script type="text/javascript" src="dashboard.js"></script>
+    <script src="https://unpkg.com/packery@2/dist/packery.pkgd.min.js"></script>
+    <script src="/assets/calendar.min.js"></script>
+    <link rel="stylesheet" href="/assets/calendar.css">
+    <link rel="stylesheet" href="/assets/calendar-theme.css">
+  </body>
+</html>
