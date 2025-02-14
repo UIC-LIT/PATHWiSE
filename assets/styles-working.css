@@ -797,9 +797,18 @@ ul#comments-column-toggler[data-toggler="1"] li.comments-template-toggle {
     position: absolute;
     left: 0px;
     top: 15px;
+    height: 30px;
+    width: 30px;
+    background-repeat: no-repeat;
+    background-size: 30px;
+    background-image: url("images/test-emotions/anger.png");
+}
+
+#comments-list ul li.active[data-emotion="0"] div[class="comment-text"] p::before {
+    left: 2px;
+    top: 5px;
     height: 25px;
     width: 25px;
-    background-repeat: no-repeat;
     background-size: 25px;
     background-image: url("images/emotions/anger.png");
 }
@@ -809,9 +818,18 @@ ul#comments-column-toggler[data-toggler="1"] li.comments-template-toggle {
     position: absolute;
     left: 0px;
     top: 15px;
+    height: 30px;
+    width: 30px;
+    background-repeat: no-repeat;
+    background-size: 30px;
+    background-image: url("images/test-emotions/anticipation.png");
+}
+
+#comments-list ul li.active[data-emotion="1"] div[class="comment-text"] p::before {
+    left: 2px;
+    top: 5px;
     height: 25px;
     width: 25px;
-    background-repeat: no-repeat;
     background-size: 25px;
     background-image: url("images/emotions/anticipation.png");
 }
@@ -821,9 +839,18 @@ ul#comments-column-toggler[data-toggler="1"] li.comments-template-toggle {
     position: absolute;
     left: 0px;
     top: 15px;
+    height: 30px;
+    width: 30px;
+    background-repeat: no-repeat;
+    background-size: 30px;
+    background-image: url("images/test-emotions/disgust.png");
+}
+
+#comments-list ul li.active[data-emotion="2"] div[class="comment-text"] p::before {
+    left: 2px;
+    top: 5px;
     height: 25px;
     width: 25px;
-    background-repeat: no-repeat;
     background-size: 25px;
     background-image: url("images/emotions/disgust.png");
 }
@@ -833,22 +860,39 @@ ul#comments-column-toggler[data-toggler="1"] li.comments-template-toggle {
     position: absolute;
     left: 0px;
     top: 15px;
+    height: 30px;
+    width: 30px;
+    background-repeat: no-repeat;
+    background-size: 30px;
+    background-image: url("images/test-emotions/fear.png");
+}
+
+#comments-list ul li.active[data-emotion="3"] div[class="comment-text"] p::before {
+    left: 2px;
+    top: 5px;
     height: 25px;
     width: 25px;
-    background-repeat: no-repeat;
     background-size: 25px;
     background-image: url("images/emotions/fear.png");
 }
-
 
 #comments-list ul li[data-emotion="4"] div[class="comment-text"] p::before {
     content: "";
     position: absolute;
     left: 0px;
     top: 15px;
+    height: 30px;
+    width: 30px;
+    background-repeat: no-repeat;
+    background-size: 30px;
+    background-image: url("images/test-emotions/joy.png");
+}
+
+#comments-list ul li.active[data-emotion="4"] div[class="comment-text"] p::before {
+    left: 2px;
+    top: 5px;
     height: 25px;
     width: 25px;
-    background-repeat: no-repeat;
     background-size: 25px;
     background-image: url("images/emotions/joy.png");
 }
@@ -859,9 +903,18 @@ ul#comments-column-toggler[data-toggler="1"] li.comments-template-toggle {
     position: absolute;
     left: 0px;
     top: 15px;
+    height: 30px;
+    width: 30px;
+    background-repeat: no-repeat;
+    background-size: 30px;
+    background-image: url("images/test-emotions/sadness.png");
+}
+
+#comments-list ul li.active[data-emotion="5"] div[class="comment-text"] p::before {
+    left: 2px;
+    top: 5px;
     height: 25px;
     width: 25px;
-    background-repeat: no-repeat;
     background-size: 25px;
     background-image: url("images/emotions/sadness.png");
 }
@@ -871,9 +924,18 @@ ul#comments-column-toggler[data-toggler="1"] li.comments-template-toggle {
     position: absolute;
     left: 0px;
     top: 15px;
+    height: 30px;
+    width: 30px;
+    background-repeat: no-repeat;
+    background-size: 30px;
+    background-image: url("images/test-emotions/surprise.png");
+}
+
+#comments-list ul li.active[data-emotion="6"] div[class="comment-text"] p::before {
+    left: 2px;
+    top: 5px;
     height: 25px;
     width: 25px;
-    background-repeat: no-repeat;
     background-size: 25px;
     background-image: url("images/emotions/surprise.png");
 }
@@ -883,9 +945,18 @@ ul#comments-column-toggler[data-toggler="1"] li.comments-template-toggle {
     position: absolute;
     left: 0px;
     top: 15px;
+    height: 30px;
+    width: 30px;
+    background-repeat: no-repeat;
+    background-size: 30px;
+    background-image: url("images/test-emotions/trust.png");
+}
+
+#comments-list ul li.active[data-emotion="7"] div[class="comment-text"] p::before {
+    left: 2px;
+    top: 5px;
     height: 25px;
     width: 25px;
-    background-repeat: no-repeat;
     background-size: 25px;
     background-image: url("images/emotions/trust.png");
 }
@@ -895,9 +966,18 @@ ul#comments-column-toggler[data-toggler="1"] li.comments-template-toggle {
     position: absolute;
     left: 0px;
     top: 15px;
+    height: 30px;
+    width: 30px;
+    background-repeat: no-repeat;
+    background-size: 30px;
+    background-image: url("images/test-emotions/neutral.png");
+}
+
+#comments-list ul li.active[data-emotion="8"] div[class="comment-text"] p::before {
+    left: 2px;
+    top: 5px;
     height: 25px;
     width: 25px;
-    background-repeat: no-repeat;
     background-size: 25px;
     background-image: url("images/emotions/neutral.png");
 }
@@ -1252,17 +1332,15 @@ ul#comments-column-toggler[data-toggler="1"] li.comments-template-toggle {
 }
 
 #bottom-panel-emoji-panel-container>ul {
-    display: flex;
-    flex-wrap: wrap;
-    margin-left: 15px;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 1rem;
+    margin-left: 10px;
 }
 
 #bottom-panel-emoji-panel-container>ul>li {
-    display: flex;
-    flex-direction: row;
-    width: 17px;
-    height: 17px;
-    margin: 6px;
+    width: 15px;
+    height: 15px;
     cursor: pointer;
 }
 
@@ -1270,118 +1348,190 @@ ul#comments-column-toggler[data-toggler="1"] li.comments-template-toggle {
 #bottom-panel-emoji-panel-container>ul>li[id="emoji-anger"]::before {
     display: flex;
     position: absolute;
-    top: 5px;
-    left: 5px;
     content: "";
-    background-size: 17px;
-    height: 17px;
-    width: 17px;
+    left: 3px;
+    width: 25px;
+    height: 25px;
+    background-size: 25px;
     background-repeat: no-repeat;
-    background-image: url("images/emotions/anger.png");
+    background-image: url("images/test-emotions/anger.png");
 }
 
+#bottom-panel-emoji-panel-container>ul.active>li[id="emoji-anger"]::before {
+    top: 2px;
+    left: 5px;
+    width: 20px;
+    height: 20px;
+    background-size: 20px;
+    background-image: url("images/emotions/anger.png");
+}
 
 #bottom-panel-emoji-panel-container>ul>li[id="emoji-anticipation"]::before {
     display: flex;
     position: absolute;
-    top: 5px;
-    left: 5px;
     content: "";
-    background-size: 17px;
-    height: 17px;
-    width: 17px;
+    left: 3px;
+    width: 25px;
+    height: 25px;
+    background-size: 25px;
     background-repeat: no-repeat;
+    background-image: url("images/test-emotions/anticipation.png");
+}
+
+#bottom-panel-emoji-panel-container>ul.active>li[id="emoji-anticipation"]::before {
+    top: 2px;
+    left: 5px;
+    width: 20px;
+    height: 20px;
+    background-size: 20px;
     background-image: url("images/emotions/anticipation.png");
 }
 
 #bottom-panel-emoji-panel-container>ul>li[id="emoji-fear"]::before {
     display: flex;
     position: absolute;
-    top: 5px;
-    left: 5px;
     content: "";
-    background-size: 17px;
-    height: 17px;
-    width: 17px;
+    left: 3px;
+    width: 25px;
+    height: 25px;
+    background-size: 25px;
     background-repeat: no-repeat;
+    background-image: url("images/test-emotions/fear.png");
+}
+
+#bottom-panel-emoji-panel-container>ul.active>li[id="emoji-fear"]::before {
+    top: 2px;
+    left: 5px;
+    width: 20px;
+    height: 20px;
+    background-size: 20px;
     background-image: url("images/emotions/fear.png");
 }
 
 #bottom-panel-emoji-panel-container>ul>li[id="emoji-disgust"]::before {
     display: flex;
     position: absolute;
-    top: 5px;
-    left: 5px;
     content: "";
-    background-size: 17px;
-    height: 17px;
-    width: 17px;
+    left: 3px;
+    width: 25px;
+    height: 25px;
+    background-size: 25px;
     background-repeat: no-repeat;
+    background-image: url("images/test-emotions/disgust.png");
+}
+
+#bottom-panel-emoji-panel-container>ul.active>li[id="emoji-disgust"]::before {
+    top: 2px;
+    left: 5px;
+    width: 20px;
+    height: 20px;
+    background-size: 20px;
     background-image: url("images/emotions/disgust.png");
 }
 
 #bottom-panel-emoji-panel-container>ul>li[id="emoji-joy"]::before {
     display: flex;
     position: absolute;
-    top: 5px;
-    left: 5px;
     content: "";
-    background-size: 17px;
-    height: 17px;
-    width: 17px;
+    left: 3px;
+    width: 25px;
+    height: 25px;
+    background-size: 25px;
     background-repeat: no-repeat;
+    background-image: url("images/test-emotions/joy.png");
+}
+
+#bottom-panel-emoji-panel-container>ul.active>li[id="emoji-joy"]::before {
+    top: 2px;
+    left: 5px;
+    width: 20px;
+    height: 20px;
+    background-size: 20px;
     background-image: url("images/emotions/joy.png");
 }
 
 #bottom-panel-emoji-panel-container>ul>li[id="emoji-sadness"]::before {
     display: flex;
     position: absolute;
-    top: 5px;
-    left: 5px;
     content: "";
-    background-size: 17px;
-    height: 17px;
-    width: 17px;
+    left: 3px;
+    width: 25px;
+    height: 25px;
+    background-size: 25px;
+    background-size: 25px;
     background-repeat: no-repeat;
+    background-image: url("images/test-emotions/sadness.png");
+}
+
+#bottom-panel-emoji-panel-container>ul.active>li[id="emoji-sadness"]::before {
+    top: 2px;
+    left: 5px;
+    width: 20px;
+    height: 20px;
+    background-size: 20px;
     background-image: url("images/emotions/sadness.png");
 }
 
 #bottom-panel-emoji-panel-container>ul>li[id="emoji-surprise"]::before {
     display: flex;
     position: absolute;
-    top: 5px;
-    left: 5px;
     content: "";
-    background-size: 17px;
-    height: 17px;
-    width: 17px;
+    left: 3px;
+    width: 25px;
+    height: 25px;
+    background-size: 25px;
     background-repeat: no-repeat;
+    background-image: url("images/test-emotions/surprise.png");
+}
+
+#bottom-panel-emoji-panel-container>ul.active>li[id="emoji-surprise"]::before {
+    top: 2px;
+    left: 5px;
+    width: 20px;
+    height: 20px;
+    background-size: 20px;
     background-image: url("images/emotions/surprise.png");
 }
 
 #bottom-panel-emoji-panel-container>ul>li[id="emoji-trust"]::before {
     display: flex;
     position: absolute;
-    top: 5px;
-    left: 5px;
     content: "";
-    background-size: 17px;
-    height: 17px;
-    width: 17px;
+    left: 3px;
+    width: 25px;
+    height: 25px;
+    background-size: 25px;
     background-repeat: no-repeat;
+    background-image: url("images/test-emotions/trust.png");
+}
+
+#bottom-panel-emoji-panel-container>ul.active>li[id="emoji-trust"]::before {
+    top: 2px;
+    left: 5px;
+    width: 20px;
+    height: 20px;
+    background-size: 20px;
     background-image: url("images/emotions/trust.png");
 }
 
 #bottom-panel-emoji-panel-container>ul>li[id="emoji-neutral"]::before {
     display: flex;
     position: absolute;
-    top: 5px;
-    left: 5px;
     content: "";
-    background-size: 17px;
-    height: 17px;
-    width: 17px;
+    left: 3px;
+    width: 25px;
+    height: 25px;
+    background-size: 25px;
     background-repeat: no-repeat;
+    background-image: url("images/test-emotions/neutral.png");
+}
+
+#bottom-panel-emoji-panel-container>ul.active>li[id="emoji-neutral"]::before {
+    top: 2px;
+    left: 5px;
+    width: 20px;
+    height: 20px;
+    background-size: 20px;
     background-image: url("images/emotions/neutral.png");
 }
 
@@ -1689,48 +1839,94 @@ iframe {
 #pages .cp[data-emotion]>p::after {
     content: "";
     position: absolute;
-    top: -7px;
     right: 10px;
     width: 30px;
-    height: 30px;
+    height: 22px;
     background-size: 30px;
     border-radius: 15px;
     box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.5);
 }
 
+#pages .cp.active[data-emotion]>p::after {
+    content: "";
+    position: absolute;
+    right: 10px;
+    width: 25px;
+    height: 25px;
+    background-size: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.5);
+}
+
 #pages .cp[data-emotion="0"]>p::after {
+    background-image: url("images/test-emotions/anger.png");
+}
+
+#pages .cp[data-emotion="0"]>p.active::after {
     background-image: url("images/emotions/anger.png");
 }
 
 #pages .cp[data-emotion="1"]>p::after {
+    background-image: url("images/test-emotions/anticipation.png");
+}
+
+#pages .cp[data-emotion="1"]>p.active::after {
     background-image: url("images/emotions/anticipation.png");
 }
 
 #pages .cp[data-emotion="2"]>p::after {
+    background-image: url("images/test-emotions/disgust.png");
+}
+
+#pages .cp[data-emotion="2"]>p.active::after {
     background-image: url("images/emotions/disgust.png");
 }
 
 #pages .cp[data-emotion="3"]>p::after {
+    background-image: url("images/test-emotions/fear.png");
+}
+
+#pages .cp[data-emotion="3"]>p.active::after {
     background-image: url("images/emotions/fear.png");
 }
 
 #pages .cp[data-emotion="4"]>p::after {
+    background-image: url("images/test-emotions/joy.png");
+}
+
+#pages .cp[data-emotion="4"]>p.active::after {
     background-image: url("images/emotions/joy.png");
 }
 
 #pages .cp[data-emotion="5"]>p::after {
+    background-image: url("images/test-emotions/sadness.png");
+}
+
+#pages .cp[data-emotion="5"]>p.active::after {
     background-image: url("images/emotions/sadness.png");
 }
 
 #pages .cp[data-emotion="6"]>p::after {
+    background-image: url("images/test-emotions/surprise.png");
+}
+
+#pages .cp[data-emotion="6"]>p.active::after {
     background-image: url("images/emotions/surprise.png");
 }
 
 #pages .cp[data-emotion="7"]>p::after {
+    background-image: url("images/test-emotions/trust.png");
+}
+
+#pages .cp[data-emotion="7"]>p.active::after {
     background-image: url("images/emotions/trust.png");
 }
 
 #pages .cp[data-emotion="8"]>p::after {
+    background-image: url("images/test-emotions/neutral.png");
+}
+
+#pages .cp[data-emotion="8"]>p.active::after {
     background-image: url("images/emotions/neutral.png");
 }
 
@@ -2145,38 +2341,75 @@ iframe {
 }
 
 #robot-emotions[class="anger"]>div>p::after {
+    background-image: url("images/test-emotions/anger.png");
+}
+
+#robot-emotions[class="anger"]>div.active>p::after {
     background-image: url("images/emotions/anger.png");
 }
 
 #robot-emotions[class="anticipation"]>div>p::after {
+    background-image: url("images/test-emotions/anticipation.png");
+}
+
+#robot-emotions[class="anticipation"]>div.active>p::after {
     background-image: url("images/emotions/anticipation.png");
 }
 
 #robot-emotions[class="disgust"]>div>p::after {
+    background-image: url("images/test-emotions/disgust.png");
+}
+
+#robot-emotions[class="disgust"]>div.active>p::after {
     background-image: url("images/emotions/disgust.png");
 }
 
+
 #robot-emotions[class="fear"]>div>p::after {
+    background-image: url("images/test-emotions/fear.png");
+}
+
+#robot-emotions[class="fear"]>div.active>p::after {
     background-image: url("images/emotions/fear.png");
 }
 
 #robot-emotions[class="joy"]>div>p::after {
+    background-image: url("images/test-emotions/joy.png");
+}
+
+#robot-emotions[class="joy"]>div.active>p::after {
     background-image: url("images/emotions/joy.png");
 }
 
 #robot-emotions[class="sadness"]>div>p::after {
+    background-image: url("images/test-emotions/sadness.png");
+}
+
+#robot-emotions[class="sadness"]>div.active>p::after {
     background-image: url("images/emotions/sadness.png");
 }
 
 #robot-emotions[class="surprise"]>div>p::after {
+    background-image: url("images/test-emotions/surprise.png");
+}
+
+#robot-emotions[class="surprise"]>div.active>p::after {
     background-image: url("images/emotions/surprise.png");
 }
 
 #robot-emotions[class="trust"]>div>p::after {
+    background-image: url("images/test-emotions/trust.png");
+}
+
+#robot-emotions[class="trust"]>div.active>p::after {
     background-image: url("images/emotions/trust.png");
 }
 
 #robot-emotions[class="neutral"]>div>p::after {
+    background-image: url("images/test-emotions/neutral.png");
+}
+
+#robot-emotions[class="neutral"]>div.active>p::after {
     background-image: url("images/emotions/neutral.png");
 }
 
@@ -2268,9 +2501,9 @@ iframe {
     display: block;
     background-repeat: no-repeat;
     content: "";
-    width: 20px;
-    height: 20px;
-    background-size: 20px;
+    width: 25px;
+    height: 25px;
+    background-size: 25px;
     margin-left: 5px;
     z-index: 0;
 }
@@ -2319,6 +2552,14 @@ iframe {
 #selected-emotion>ul>li[data-id="0"]::after {
     display: flex;
     content: "";
+    width: 25px;
+    height: 25px;
+    background-size: 25px;
+    background-repeat: no-repeat;
+    background-image: url("images/test-emotions/anger.png");
+}
+
+#selected-emotion>ul.active>li[data-id="0"]::after {
     width: 20px;
     height: 20px;
     background-size: 20px;
@@ -2328,6 +2569,14 @@ iframe {
 #selected-emotion>ul>li[data-id="1"]::after {
     display: flex;
     content: "";
+    width: 25px;
+    height: 25px;
+    background-size: 25px;
+    background-repeat: no-repeat;
+    background-image: url("images/test-emotions/anticipation.png");
+}
+
+#selected-emotion>ul.active>li[data-id="1"]::after {
     width: 20px;
     height: 20px;
     background-size: 20px;
@@ -2337,6 +2586,14 @@ iframe {
 #selected-emotion>ul>li[data-id="2"]::after {
     display: flex;
     content: "";
+    width: 25px;
+    height: 25px;
+    background-size: 25px;
+    background-repeat: no-repeat;
+    background-image: url("images/test-emotions/disgust.png");
+}
+
+#selected-emotion>ul.active>li[data-id="2"]::after {
     width: 20px;
     height: 20px;
     background-size: 20px;
@@ -2346,6 +2603,14 @@ iframe {
 #selected-emotion>ul>li[data-id="3"]::after {
     display: flex;
     content: "";
+    width: 25px;
+    height: 25px;
+    background-size: 25px;
+    background-repeat: no-repeat;
+    background-image: url("images/test-emotions/fear.png");
+}
+
+#selected-emotion>ul.active>li[data-id="3"]::after {
     width: 20px;
     height: 20px;
     background-size: 20px;
@@ -2355,6 +2620,14 @@ iframe {
 #selected-emotion>ul>li[data-id="4"]::after {
     display: flex;
     content: "";
+    width: 25px;
+    height: 25px;
+    background-size: 25px;
+    background-repeat: no-repeat;
+    background-image: url("images/test-emotions/joy.png");
+}
+
+#selected-emotion>ul.active>li[data-id="4"]::after {
     width: 20px;
     height: 20px;
     background-size: 20px;
@@ -2364,6 +2637,14 @@ iframe {
 #selected-emotion>ul>li[data-id="5"]::after {
     display: flex;
     content: "";
+    width: 25px;
+    height: 25px;
+    background-size: 25px;
+    background-repeat: no-repeat;
+    background-image: url("images/test-emotions/sadness.png");
+}
+
+#selected-emotion>ul.active>li[data-id="5"]::after {
     width: 20px;
     height: 20px;
     background-size: 20px;
@@ -2373,6 +2654,14 @@ iframe {
 #selected-emotion>ul>li[data-id="6"]::after {
     display: flex;
     content: "";
+    width: 25px;
+    height: 25px;
+    background-size: 25px;
+    background-repeat: no-repeat;
+    background-image: url("images/test-emotions/surprise.png");
+}
+
+#selected-emotion>ul.active>li[data-id="6"]::after {
     width: 20px;
     height: 20px;
     background-size: 20px;
@@ -2382,6 +2671,14 @@ iframe {
 #selected-emotion>ul>li[data-id="7"]::after {
     display: flex;
     content: "";
+    width: 25px;
+    height: 25px;
+    background-size: 25px;
+    background-repeat: no-repeat;
+    background-image: url("images/test-emotions/trust.png");
+}
+
+#selected-emotion>ul.active>li[data-id="7"]::after {
     width: 20px;
     height: 20px;
     background-size: 20px;
@@ -2391,6 +2688,14 @@ iframe {
 #selected-emotion>ul>li[data-id="8"]::after {
     display: flex;
     content: "";
+    width: 25px;
+    height: 25px;
+    background-size: 25px;
+    background-repeat: no-repeat;
+    background-image: url("images/test-emotions/neutral.png");
+}
+
+#selected-emotion>ul.active>li[data-id="8"]::after {
     width: 20px;
     height: 20px;
     background-size: 20px;
@@ -2484,4 +2789,29 @@ iframe {
 
 #viewerContainer {
     inset: 0 !important;
+}
+
+/* emoji-toggle */
+
+#emoji-toggle {
+    user-select: none;
+    width: 80px;
+    height: 30px;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    line-height: 30px;
+    font-size: 16px;
+    margin-right: 15px;
+    border: none;
+    border-radius: 15px;
+    padding: 0 5px;
+    background: #254F78;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+#emoji-toggle:hover,
+#emoji-toggle.active {
+    background: #5388ff;
 }
