@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimal PDF Viewer</title>
+    <style>
+        #pdf-container {
+            width: 100%;
+            height: 600px;
+            overflow: auto;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+        canvas {
+            display: block;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="pdf-container"></div>
+    <script type="module">
+        import { getDocument, GlobalWorkerOptions } from './pdf.mjs';  // Adjust path as needed
+        GlobalWorkerOptions.workerSrc = './pdf.worker.mjs';  // Adjust path as needed
+        const url = 'menacing-meningitis.pdf';  // Replace with your PDF file path
+        const pdfContainer = document.getElementById('pdf-container');
+
+        getDocument(url).promise.then(pdf => {
+            pdf.getPage(1).then(page => {
+                const canvas = document.createElement('canvas');
+                pdfContainer.appendChild(canvas);
+                const context = canvas.getContext('2d');
+
+                const viewport = page.getViewport({ scale: 1.5 });
+                canvas.width = viewport.width;
+                canvas.height = viewport.height;
+
+                page.render({ canvasContext: context, viewport: viewport });
+            });
+        });
+    </script>
+</body>
+
+</html>
