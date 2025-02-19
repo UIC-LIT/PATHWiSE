@@ -512,13 +512,14 @@ self.onmessage = async function(e) {
 
 
     if (endpoint) {
-        try {
-            const url = new URL(endpoint);
-            ipAddress = url.hostname;
-        } catch (error) {
-            console.error('Invalid endpoint URL:', endpoint);
-            ipAddress = endpoint; // Fallback to using the endpoint as is
-        }
+        // try {
+        //     const url = new URL(endpoint);
+        //     ipAddress = url.hostname;
+        // } catch (error) {
+        //     console.error('Invalid endpoint URL:', endpoint);
+        //     ipAddress = endpoint; // Fallback to using the endpoint as is
+        // }
+        ipAddress = endpoint;
     }
 
     if (!socket || socket.readyState !== WebSocket.OPEN) {

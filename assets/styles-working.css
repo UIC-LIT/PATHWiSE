@@ -340,8 +340,7 @@ nav>.container>ul>li>span {
     position: absolute;
     right: 0px;
     top: 45px;
-    background: linear-gradient(#8da7c2 50%, white 50%);
-    padding: 15px;
+    background: white;
     width: fit-content;
     height: fit-content;
     border-radius: 20px;
@@ -352,6 +351,8 @@ nav>.container>ul>li>span {
 #user-profile-menu-top {
     display: flex;
     flex-direction: row;
+    background-color: #8da7c2;
+    padding: 15px;
 }
 
 #user-profile-menu-icon {
@@ -363,20 +364,20 @@ nav>.container>ul>li>span {
     background-image: url("icons/user.png")
 }
 
-#user-profile-menu-header {
+.user-profile-menu-header {
     font-size: 18px;
+    font-weight: bold
 }
 
 
 #user-profile-menu-details {
-    margin-bottom: 15px;
     color: white;
 }
 
 #user-profile-menu>ul {
     font-weight: bold;
     color: black;
-    margin-top: 5px;
+    padding: 5px 15px 15px;
 }
 
 #user-profile-menu>ul>li {

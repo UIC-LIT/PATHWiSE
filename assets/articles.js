@@ -5,13 +5,13 @@ var articleLibrary = [{
         'title': 'Menacing Meningitis',
         'filename': 'menacing-meningitis',
         'from': new Date('2025-02-12T10:00:00'),
-        'to': new Date('2025-02-18T13:30:00')
+        'to': new Date('2025-02-22T13:30:59')
     },
     {
         'title': 'Meet the Microbes',
         'filename': 'meet-the-microbes',
-        'from': new Date('2025-02-18T13:31:00'),
-        'to': new Date('2025-02-28T13:30:00')
+        'from': new Date('2025-02-22T13:31:00'),
+        'to': new Date('2025-02-28T13:30:59')
     },
     {
         'title': 'Doctor with an eye for eyes',
@@ -102,12 +102,12 @@ var articleLibrary = [{
         'filename': 'table_readings_8'
     }
 ];
-var articleList = [];
+var articleList = [articleLibrary[0]];
 var groups = [{
         'name': 'Group 1',
         'id': 'group-1',
         'password': 'test1',
-        'articles': [articleLibrary[10], articleLibrary[11], articleLibrary[12]]
+        'articles': [articleLibrary[12], articleLibrary[13], articleLibrary[14]]
     },
     {
         'name': 'Group 2',
@@ -130,20 +130,6 @@ var articles = [
     articleLibrary[10],
     articleLibrary[11]
 ];
-var articlesPrev = [
-    articleLibrary[12],
-    articleLibrary[13],
-    articleLibrary[14],
-    articleLibrary[15],
-    articleLibrary[16],
-    articleLibrary[17],
-    articleLibrary[18],
-    articleLibrary[19],
-    articleLibrary[20],
-    articleLibrary[21],
-    articleLibrary[22],
-    articleLibrary[23]
-];
 if (localStorage.getItem("auth") == "guest") {
     articleList = articles;
 } else {
@@ -153,7 +139,5 @@ if (localStorage.getItem("auth") == "guest") {
         }
     });
 }
-if (localStorage.getItem("currentArticle") === null) {
-    localStorage.setItem("currentArticle", articleList[0].filename);
-    localStorage.setItem("currentArticleTitle", articleList[0].title);
-}
+localStorage.setItem("currentArticle", articleList[0].filename);
+localStorage.setItem("currentArticleTitle", articleList[0].title);

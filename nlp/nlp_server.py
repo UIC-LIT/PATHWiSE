@@ -1,6 +1,6 @@
 import asyncio
 import websockets
-# import ssl
+import ssl
 import json
 from vosk import Model, KaldiRecognizer
 import base64
@@ -366,8 +366,12 @@ async def nlp_server(websocket):
 
 if __name__ == "__main__":
     async def main():
-        # Create the server
-        server = await websockets.serve(nlp_server, "localhost", 8765)
+        # Load SSL certificates
+        ssl_context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
+        ssl_context.load_cert_chain(certfile="cert.crt", keyfile="key.pem")
+
+        # Create WSS server with SSL
+        server = await websockets.serve(nlp_server, "localhost", 8765, ssl=ssl_context)
         print("NLP Server starting on wss://localhost:8765")
         
         try:
