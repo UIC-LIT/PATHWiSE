@@ -1,7 +1,7 @@
 1. Install any Apache and MySQL server. (Note: XAMPP is a good option that comes as a bundle and compatible with all major OS: https://www.apachefriends.org/download.html)
-2. Create a virtual host and put all the files from this repository at the root of this new virtual host. Example URL: pathwi.se
-3. Configure and run it on SSL. You may use self signed local certificates for the dev setups.
-4. Create a Database named "pathwise_prototype" with a username of 'root' and password ''. Copy of these details can be found at validate/index.php line no 32-35
+2. Create a virtual host and put all the files from this repository at the root of this new virtual host. Example URL: http://pathwi.se
+3. Configure and run it on SSL. You may use self signed local certificates for the dev setups. You may also configure the host to auto redirect from http to https. Example URL with SSL: https://pathwi.se
+4. Create a Database named "pathwise_prototype" with a username of 'root' and password ''. Copy of these details can be found at validate/index.php line no 32-35 (Please, reach out to Anis for a demo database that can be imported and have some dummy data ready)
 6. Update the SERVER_URL variable at the begining of the following files: assets/main.js and assets/main-working.js of this repositry. The value should match the server URL you get from Step 4.
 7. Update the misty_IP variable in assets/robot-play.js file with the appropriate robot IP. (Note: This step makes the robot play a genrated audio for Google TTS or speak on the go. You may also need to configure the speech parameters to make it more human sounding in case you wanna use speak on the go)
 8. That makes the system running with all dependencies. You may now open the teachers side of the editor(i.e. https://pathwi.se/index-working.htm or the other virtual host URL from Step 2 if you choose so), make annotations as you seem fit and save them. The student facing ones(https://pathwi.se/student-robot.htm & https://pathwi.se/student-computer.htm) fetches the latest data from your latest saves.
