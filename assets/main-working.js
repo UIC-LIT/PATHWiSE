@@ -385,7 +385,9 @@
             $("#user-profile").removeClass("active");
         });
         // flori: toggle emoji 
-        $(document).on("click", "#emoji-toggle", toggleEmoji);
+        $(document).on("click", "#emoji-toggle", function() {
+            $('body').toggleClass('emoji-toggle-active');
+        });
         // flori: end code snippet
 
         $("#editor").scroll(function() {
@@ -431,15 +433,15 @@
                 var cID = $(elem).attr("id").trim();
                 $(document).find(".cp#" + cID).css("top", posTop - diffY);
                 $(document).find(".cp#" + cID).css("left", posLeft - diffX);
-                $(document).find('#comments-list>ul[data-id="' + cID + '"]').attr("data-top", posTop - diffY);
-                $(document).find('#comments-list>ul[data-id="' + cID + '"]').attr("data-left", posLeft - diffX);
+                $(document).find('#comments-list > ul [data-id="' + cID + '"]').css("order", posTop - diffY);
+                $(document).find('#comments-list > ul [data-id="' + cID + '"]').attr("data-top", posTop - diffY);
+                $(document).find('#comments-list > ul [data-id="' + cID + '"]').attr("data-left", posLeft - diffX);
                 if (posLeft + 160 >= editorWidth) {
                     $(document).find(".cp#" + cID).addClass("edged");
                 } else {
                     $(document).find(".cp#" + cID).removeClass("edged");
                 }
                 $(document).find(".cp#" + cID + ">p").click();
-                sortComments(cID);
                 // flori: update sort (so order doesnt change when dragging bubble on editor)
                 checkSortOption();
             }
@@ -463,10 +465,12 @@
                 $(document)
                     .find(".cp#c" + commentPinCount + ">p")
                     .click();
-                $("#comments-list>ul").append(
+                $("#comments-list > ul").append(
                     '<li data-top="' +
                     posTop +
-                    '" data-left="' +
+                    '" style="order: ' +
+                    posTop +
+                    ';" data-left="' +
                     posLeft +
                     '" data-comment="' +
                     cText +
@@ -482,7 +486,6 @@
                     cText +
                     " </p></div></div></div></li>"
                 );
-                sortComments("c" + commentPinCount);
                 // flori: update total comment count and typebar
                 commentPinCount++;
                 typeBar();
@@ -502,20 +505,8 @@
                     if (!$(elem).hasClass("cai")) {
                         var currentCommentId = $(elem).attr("data-id").trim();
                     }
-                    var latestCommentId = $(
-                            '#comments-template [data-group="' + groupName + '"]'
-                        )
-                        .attr("data-latest")
-                        .trim();
-                    $(document)
-                        .find(
-                            '#comments-template [data-id="' +
-                            currentCommentId +
-                            '"][data-parent="' +
-                            groupName +
-                            '"]'
-                        )
-                        .remove();
+                    var latestCommentId = $('#comments-template [data-group="' + groupName + '"]').attr("data-latest").trim();
+                    $(document).find('#comments-template [data-id="' + currentCommentId + '"][data-parent="' + groupName + '"]').remove();
                     getNextComment(groupName, latestCommentId);
                 }
                 if (posLeft + 160 >= editorWidth) {
@@ -532,8 +523,6 @@
                 // flori: update emotions and type panel
                 typeBar();
                 updateEmotionsPanel();
-                // //flori: update toggle
-                // toggleEmoji();
             }
 
             if ($(elem).hasClass("re")) {
@@ -816,6 +805,10 @@
             updateEmotionsPanel();
             checkSortOption();
         });
+
+        function reLabelPins() {
+
+        }
         $(document).on("click", ".duplicate-pin, .new-pin", function() {
             isUpdated = true;
             var target = $(document).find(".cp#" + $(this).parents(".cp").attr("id"));
@@ -855,8 +848,10 @@
                 .find(".cp#c" + commentPinCount + ">p")
                 .click();
             // flori: edit* append the comment bubble with updated html when duplicate/add new pin
-            $("#comments-list>ul").append(
-                '<li data-top="' +
+            $("#comments-list > ul").append(
+                '<li style="order: ' +
+                posTop +
+                ';" data-top="' +
                 posTop +
                 '" data-left="' +
                 posLeft +
@@ -874,7 +869,6 @@
                 cText +
                 " </p></div></div></div></li>"
             );
-            sortComments("c" + commentPinCount);
             // flori: update total comment count
             commentPinCount++;
             $("#bottom-panel-title").text("Comments: " + (commentPinCount - 1));
@@ -977,16 +971,17 @@
         });
         $(document).on("click", "#logout", function() {
             if (isUpdated) {
-                activateConfirmation(false);
+                activateExitConfirmation(false);
             } else {
                 logout();
             }
         });
         $(document).on("click", "#resume", function() {
-            recreateCanvas();
-            typeBar();
-            $("#bottom-panel-title").text("Comments: " + (commentPinCount - 1));
-            $(this).addClass("temporary-hidden");
+            if (isUpdated) {
+                activateResumeConfirmation();
+            } else {
+                resume();
+            }
         });
         $(document).on("click", "#save-btn", function() {
             if (isUpdated) {
@@ -1053,6 +1048,13 @@
             isUpdated = false;
             logout();
         });
+        $(document).on("click", "#confirmation-yes", function() {
+            resume();
+            $('#resume-confirmation').remove();
+        });
+        $(document).on("click", "#confirmation-no", function() {
+            $('#resume-confirmation').remove();
+        });
         $(window).resize(function() {
             $("#outerContainer").width($("#pages").width());
             setTimeout(function() {
@@ -1061,7 +1063,7 @@
         });
         window.addEventListener('beforeunload', (event) => {
             if (isUpdated) {
-                activateConfirmation(true);
+                activateExitConfirmation(true);
                 // Prevent the immediate closing of the tab
                 event.preventDefault();
                 event.returnValue = '';
@@ -1069,21 +1071,43 @@
         });
     });
 
+    function resume() {
+        recreateCanvas();
+        typeBar();
+        $("#bottom-panel-title").text("Comments: " + (commentPinCount - 1));
+        $("#resume").addClass("temporary-hidden");
+    }
+
     function logout() {
         localStorage.setItem("auth", "true");
         location.reload();
     }
 
-    function activateConfirmation(exiting) {
+    function activateExitConfirmation(exiting) {
         $('.confirmation').remove();
         var exitButtonText = exiting ? 'Exit' : 'Logout';
         $('body').append(`
             <div class="confirmation">
                 <div class="confirmation-container">
-                    <p>There has been some changes already! Do you want to save it before exiting?</p>
+                    <p>There have been some changes already! Do you want to "Save" it before exiting?</p>
                     <div class="confirmation-buttons">
-                        <button id="confirmation-save">Save</button>
-                        <button id="confirmation-exit">` + exitButtonText + `</button>
+                        <button id="confirmation-save" class="confirmation-button confirmation-primary">Save</button>
+                        <button id="confirmation-exit" class="confirmation-button confirmation-secondary">` + exitButtonText + `</button>
+                    </div>
+                </div>
+            </div>
+        `);
+    }
+
+    function activateResumeConfirmation() {
+        $('.confirmation').remove();
+        $('body').append(`
+            <div id="resume-confirmation" class="confirmation">
+                <div class="confirmation-container">
+                    <p>There have been some changes already, which will be overwritten. Do you want to proceed?</p>
+                    <div class="confirmation-buttons">
+                        <button id="confirmation-yes" class="confirmation-button confirmation-primary">Yes</button>
+                        <button id="confirmation-no" class="confirmation-button confirmation-secondary">No</button>
                     </div>
                 </div>
             </div>
@@ -1097,10 +1121,6 @@
         $("#pages div.cp").remove();
         var recreatePins = JSON.parse($("#pins-data").text().trim());
         $.each(recreatePins, function(i, v) {
-            var pinId = Number(v.id.slice(1));
-            if (pinId >= commentPinCount) {
-                commentPinCount = pinId + 1;
-            }
             $("#pages").append(
                 `<div data-type="` +
                 v.type +
@@ -1109,13 +1129,13 @@
                 `" data-comment="` +
                 v.text +
                 `" id="c` +
-                pinId +
+                commentPinCount +
                 `" class="cp" draggable="true" style="top:` +
                 v.top +
                 `px; left:` +
                 v.left +
                 `px;">
-                    <p>` + pinId + `</p>
+                    <p></p>
                     <ul>
                         <li class="delete-pin">Delete</li>
                         <li class="duplicate-pin">Duplicate</li>
@@ -1126,7 +1146,9 @@
             $("#comments-list > ul").append(
                 `<li data-type="` +
                 v.type +
-                `" data-top="` +
+                `" style="order: ` +
+                v.top +
+                `;" data-top="` +
                 v.top +
                 `" data-left="` +
                 v.left +
@@ -1135,9 +1157,9 @@
                 `" data-emotion="` +
                 v.emotion +
                 `" data-id="c` +
-                pinId +
+                commentPinCount +
                 `">
-                    <div class="comment-container"><span class="comment-id">` + pinId + `</span>
+                    <div class="comment-container"><span class="comment-id">` + commentPinCount + `</span>
                         <div class="existing-comment-elements"></div>
                         <div class="comment-text">
                             <p>` + v.text + `</p>
@@ -1145,14 +1167,10 @@
                     </div>
                 </li>`
             );
-
+            commentPinCount++;
         });
         setTimeout(function() {
-            $(
-                '#comments-list > ul > li[data-id="c' +
-                (commentPinCount - 1).toString() +
-                '"]'
-            ).click();
+            $('#comments-list > ul > li[data-id="c' + (commentPinCount - 1).toString() + '"]').click();
         }, 150);
     }
 
@@ -1435,62 +1453,6 @@
         });
     }
 
-    function sortComments(id) {
-        // updates the order of the newly created pin comments in the sidebar as per their position in the editor
-        var length = $("#comments-list>ul>li").length;
-        if (length > 1) {
-            var target = $('#comments-list>ul>li[data-id="' + id + '"]').detach();
-            if (length == 2) {
-                var firstChild = $("#comments-list>ul>li:first-child");
-                if (
-                    parseInt($(firstChild).attr("data-top")) >
-                    parseInt($(target).attr("data-top"))
-                ) {
-                    $(firstChild).before(target);
-                } else {
-                    $(firstChild).after(target);
-                }
-            } else {
-                if (
-                    parseInt($(target).attr("data-top")) >
-                    parseInt($("#comments-list>ul>li:last-child").attr("data-top"))
-                ) {
-                    $("#comments-list>ul>li:last-child").after(target);
-                } else {
-                    for (var i = 1; i < length; i++) {
-                        if (
-                            parseInt($(target).attr("data-top")) <
-                            parseInt(
-                                $("#comments-list>ul>li:nth-child(" + i + ")").attr("data-top")
-                            )
-                        ) {
-                            $("#comments-list>ul>li:nth-child(" + i + ")").before(target);
-                            break;
-                        } else if (
-                            parseInt($(target).attr("data-top")) >
-                            parseInt(
-                                $("#comments-list>ul>li:nth-child(" + i + ")").attr(
-                                    "data-top"
-                                )
-                            ) &&
-                            parseInt($(target).attr("data-top")) <
-                            parseInt(
-                                $("#comments-list>ul>li:nth-child(" + (i + 1) + ")").attr(
-                                    "data-top"
-                                )
-                            )
-                        ) {
-                            $("#comments-list>ul>li:nth-child(" + i + ")").after(target);
-                            break;
-                        } else {
-                            i++;
-                        }
-                    }
-                }
-            }
-        }
-    }
-
     function updateStudents(classID, groupID) {
         // generate students list from the json
         $(".audience-students li").removeClass("selected");
@@ -1587,9 +1549,9 @@
             }
             onSuccess(type);
         }).fail(function(jqXHR, textStatus, errorThrown) {
-            console.log("type api request: ", jqXHR['responseJSON'])
+            console.log("type api request: ", jqXHR['responseJSON']);
             onFail();
-        })
+        });
     }
     // End of aadya's code
 
@@ -1841,33 +1803,5 @@
 
         commentsList.empty();
         commentsList.append(sortedComments);
-    }
-
-    //flori: toggle emoji images 
-
-    function toggleEmoji() {
-      $(this).toggleClass("active");
-      document.querySelectorAll("#comments-list ul li").forEach((listItem) => {
-        listItem.classList.toggle("active");
-      });
-      document
-        .querySelectorAll("#bottom-panel-emoji-panel-container>ul")
-        .forEach((listItem) => {
-          listItem.classList.toggle("active");
-        });
-      document.querySelectorAll("#pages .cp").forEach((listItem) => {
-        listItem.classList.toggle("active");
-      });
-      document.querySelectorAll("#robot-emotions>div").forEach((listItem) => {
-        listItem.classList.toggle("active");
-      });
-      document.querySelectorAll("#pages .cp>p").forEach((listItem) => {
-        listItem.classList.toggle("active");
-      });
-      document
-        .querySelectorAll("#selected-emotion ul")
-        .forEach((listItem) => {
-          listItem.classList.toggle("active");
-        });
     }
 })(window.jQuery);

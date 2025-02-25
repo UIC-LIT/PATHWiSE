@@ -888,7 +888,7 @@ class ConversationManager {
 }
 
 (function($) {
-    const misty_IP = '10.0.0.219';
+    const misty_IP = '10.0.0.221';
 
     function initWorker() {
         console.log("Initializing worker...");
