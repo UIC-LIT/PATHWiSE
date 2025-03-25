@@ -1,5 +1,6 @@
 (function($) {
-    var misty_IP = '10.0.0.221';
+    var mistyIP = !localStorage.getItem("mistyIP") ? "10.0.0.221" : localStorage.getItem("mistyIP");
+    console.log("Misty IP is currently set to: " + mistyIP + ", you can update it here: " + window.location.origin + "/robot-ip.htm if needed. Reload this page after you're done updating to confirm the updated IP in effect.");
     var behaviors = {
         "spooked": "SL 500\nFI eyes_terror.jpg\nFL true\nAU teethChatter.mp3\nTL 0 0 0 170 0 255 breathe 1220\nMH 0 10 0 90\nMT -75 0 500\nMAS 90 100 90 100\nMH 0 5 -2 100\nSL 100\nMAS 80 100 80 100\nMH 0 5 2 100\nMH 0 5 -2 100\nMH 0 5 2 100\nMAS 90 100 90 100\nMH 0 5 -2 100\nSL 100\nMAS 80 100 80 100",
         "boredom": "SL 500\nFI eyes_boredom.jpg\nTL 0 0 0 47 0 255 breathe 3474\nMH -20 0 -5 100\nMAS 90 90 90 90",
@@ -45,7 +46,7 @@
                     break;
                 case 'FI':
                     console.log('Displaying image:', args[1]);
-                    await fetch(`http://${misty_IP}/api/images/display`, {
+                    await fetch(`http://${mistyIP}/api/images/display`, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ FileName: args[1] })
@@ -53,7 +54,7 @@
                     break;
                 case 'TL':
                     console.log('Transitioning LED:', args[1], args[2], args[3], args[4], args[5], args[6]);
-                    await fetch(`http://${misty_IP}/api/led/transition`, {
+                    await fetch(`http://${mistyIP}/api/led/transition`, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
@@ -70,7 +71,7 @@
                     break;
                 case 'MH':
                     console.log('Moving Head:', args[1], args[2], args[3], args[4]);
-                    await fetch(`http://${misty_IP}/api/head`, {
+                    await fetch(`http://${mistyIP}/api/head`, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
@@ -82,7 +83,7 @@
                     });
                     break;
                 case 'MAS':
-                    await fetch(`http://${misty_IP}/api/arms/set`, {
+                    await fetch(`http://${mistyIP}/api/arms/set`, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
@@ -112,7 +113,7 @@
 
     $(document).ready(function() {
         setTimeout(function() {
-            if ($('.student-robot-facing').length || $('.student-computer-facing').length) {
+            if (($('.student-robot-facing').length || $('.student-computer-facing').length)) {
                 recreateCanvas();
             }
         }, 150);
@@ -121,12 +122,13 @@
             var $this = $(this);
             setTimeout(function() {
                 var text = $this.attr('data-comment');
+                var clip = $this.attr('data-clip');
                 var emotion = $this.attr('data-emotion');
                 var behavior = emotionsList[emotion];
                 if ($('.student-robot-facing').length) {
-                    sendToRobot(text, behavior);
+                    isProduction ? sendToRobot(text, behavior, clip) : sendToRobot(text, behavior);
                 } else if ($('.student-computer-facing').length) {
-                    playInComputer(text, emotion);
+                    isProduction ? playInComputer(text, emotion, clip) : playInComputer(text, emotion);
                 }
             }, 150);
         });
@@ -134,43 +136,61 @@
 
     function recreateCanvas() {
         $("#pages div.cp").remove();
-        var recreatePins = JSON.parse($("#pins-data").text().trim());
-        $.each(recreatePins, function(i, v) {
-            var pinId = Number(v.id.slice(1));
-            $("#pages").append(
-                `<div data-type="` +
-                v.type +
-                `" data-emotion="` +
-                v.emotion +
-                `" data-comment="` +
-                v.text +
-                `" id="c` +
-                pinId +
-                `" class="cp" draggable="false" style="top:` +
-                v.top +
-                `px; left:` +
-                v.left +
-                `px;"><p></p>
-            </div>
-            `
-            );
-        });
+        try {
+            var recreatePins = JSON.parse($("#pins-data").text().trim());
+            $.each(recreatePins, function(i, v) {
+                var pinId = Number(v.id.slice(1));
+                var clip = isProduction ? v.clip : '';
+                $("#pages").append(
+                    `<div data-clip="` +
+                    clip +
+                    `" data-type="` +
+                    v.type +
+                    `" data-emotion="` +
+                    v.emotion +
+                    `" data-comment="` +
+                    v.text +
+                    `" id="c` +
+                    pinId +
+                    `" class="cp" draggable="false" style="top:` +
+                    v.top +
+                    `px; left:` +
+                    v.left +
+                    `px;"><p></p>
+                </div>`
+                );
+            });
+        } catch (error) {
+            console.log("No saved pins found for the slected article in the database", error);
+        }
     }
 
-    function sendToRobot(text, behavior) {
+    function sendToRobot(text, behavior, clip) {
         executeBehavior(behavior);
-        Promise.race([
-                fetch('http://' + misty_IP + '/api/tts/speak', {
-                    method: 'POST',
-                    body: '{ "text":"' + text + '","pitch":0,"speechRate":0.9,"voice":null,"flush":true,"utteranceId":null,"language":null }'
-                }),
-                new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 10000))
-            ])
-            .then(response => response.json())
-            .then(jsonData => console.log(jsonData));
+        if (isProduction) {
+            Promise.race([
+                    fetch('http://' + mistyIP + '/api/audio/play', {
+                        method: 'POST',
+                        body: '{ "FileName":"' + window.location.origin + '/assets/audios/' + clip + '.mp3" }'
+                    }),
+                    new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 10000))
+                ])
+                .then(response => response.json())
+                .then(jsonData => console.log(jsonData));
+        } else {
+            Promise.race([
+                    fetch('http://' + mistyIP + '/api/tts/speak', {
+                        method: 'POST',
+                        body: '{ "text":"' + text + '","pitch":0,"speechRate":0.9,"voice":null,"flush":true,"utteranceId":null,"language":null }'
+                    }),
+                    new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 10000))
+                ])
+                .then(response => response.json())
+                .then(jsonData => console.log(jsonData));
+        }
     }
 
-    function playInComputer(text, emotion) {
+    function playInComputer(text, emotion, clip) {
         $(document).find('#selected-emotion > ul li[data-id="' + emotion + '"]').click();
         var msg = new SpeechSynthesisUtterance();
         var voices = window.speechSynthesis.getVoices();
@@ -181,6 +201,19 @@
         msg.pitch = 1.4;
         msg.text = text;
         msg.lang = "en-US";
-        speechSynthesis.speak(msg);
+        isProduction ? playClip(window.location.origin + '/assets/audios/' + clip + '.mp3') : speechSynthesis.speak(msg);
     }
+
+    function playClip(audioSrc) {
+        // Stop all currently playing audio elements
+        document.querySelectorAll('audio').forEach(audio => {
+            audio.pause();
+            audio.currentTime = 0;
+        });
+
+        // Create a new audio element and play the given MP3 file
+        const newAudio = new Audio(audioSrc);
+        newAudio.play();
+    }
+
 })(window.jQuery);

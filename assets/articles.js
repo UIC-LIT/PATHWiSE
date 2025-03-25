@@ -1,17 +1,50 @@
 if (localStorage.getItem("auth") == null) {
     localStorage.setItem("auth", "true");
 }
+var isProduction = false;
+
+var homeworks = [{
+        'title': 'Meet the Microbes and Meningitis',
+        'homework': [
+            { "text": "I'm a little confused, can you explain that to me?", "clip": "1001", "emotion": "6", "type": "1", "top": 249, "left": 528, "id": "c1" },
+            { "text": "I THINK I understood, but could you summarize what that means for me?", "clip": "1002", "emotion": "4", "type": "1", "top": 884, "left": 651, "id": "c2" },
+            { "text": "Is there something in your home that works this way?", "clip": "1003", "emotion": "3", "type": "3", "top": 1907, "left": 565, "id": "c3" }
+        ]
+    },
+    {
+        'title': 'Human Blood',
+        'homework': [
+            { "text": "Anis I'm a little confused, can you explain that to me?", "clip": "2001", "emotion": "5", "type": "1", "top": 249, "left": 528, "id": "c1" },
+            { "text": "I THINK I understood, but could you summarize what that means for me?", "clip": "2002", "emotion": "2", "type": "1", "top": 884, "left": 651, "id": "c2" },
+            { "text": "Is there something in your home that works this way?", "clip": "2003", "emotion": "5", "type": "3", "top": 1907, "left": 565, "id": "c3" }
+        ]
+    }
+];
+
+var prompts = [
+    "Would you like to add anything else?",
+    "Is there something else you'd like to say about this?",
+    "Do you have any other thoughts to share?",
+    "Would you like to continue with more input?",
+    "Shall we add more to this discussion?",
+    "Would you like to expand on that?",
+    "Any additional thoughts you'd like to share?",
+    "Should we continue with more ideas?",
+    "Would you like to add another perspective?",
+    "Anything else you'd like to contribute?"
+];
+
 var articleLibrary = [{
         'title': 'Meet the Microbes and Meningitis',
         'filename': 'meet_the_microbes_and_meningitis',
-        'from': new Date('2025-02-12T10:00:00'),
-        'to': new Date('2025-02-28T13:30:59')
+        'from': new Date('2025-03-12T10:00:00'),
+        'to': new Date('2025-03-28T13:30:59')
     },
     {
         'title': 'Human Blood',
         'filename': 'human_blood',
-        'from': new Date('2025-02-28T13:31:00'),
-        'to': new Date('2025-03-18T13:30:59')
+        'from': new Date('2025-03-28T13:31:00'),
+        'to': new Date('2025-04-18T13:30:59')
     },
     {
         'title': 'Cells in the Human Body',
@@ -76,14 +109,14 @@ var articleLibrary = [{
     {
         'title': 'Cold Nose Article',
         'filename': 'cold_nose_article',
-        'from': new Date('2025-02-12T10:00:00'),
-        'to': new Date('2025-02-28T13:30:59')
+        'from': new Date('2025-03-12T10:00:00'),
+        'to': new Date('2025-03-28T13:30:59')
     },
     {
         'title': 'Exoplanet Article',
         'filename': 'exoplanet_article',
-        'from': new Date('2025-02-28T13:31:00'),
-        'to': new Date('2025-03-18T13:30:59')
+        'from': new Date('2025-03-28T13:31:00'),
+        'to': new Date('2025-04-18T13:30:59')
     },
     {
         'title': 'Osmosis Article',
@@ -131,7 +164,7 @@ var groups = [{
         'name': 'Group 1',
         'id': 'group-1',
         'password': 'test1',
-        'articles': [articleLibrary[0], articleLibrary[1], articleLibrary[2], articleLibrary[3], articleLibrary[4], articleLibrary[5], articleLibrary[6]]
+        'articles': [articleLibrary[0], articleLibrary[1]] //, articleLibrary[2], articleLibrary[3], articleLibrary[4], articleLibrary[5], articleLibrary[6]
     },
     {
         'name': 'Group 2',
@@ -162,11 +195,11 @@ if (localStorage.getItem("auth") == "guest") {
     });
 }
 if (localStorage.getItem("currentArticle") === null) {
-    if (localStorage.getItem("auth") == null) {
-        localStorage.setItem("currentArticle", articleLibrary[0].filename);
-        localStorage.setItem("currentArticleTitle", articleLibrary[0].title);
-    } else {
+    if (!localStorage.getItem("auth")) {
         localStorage.setItem("currentArticle", articleList[0].filename);
         localStorage.setItem("currentArticleTitle", articleList[0].title);
+    } else {
+        localStorage.setItem("currentArticle", articleLibrary[0].filename);
+        localStorage.setItem("currentArticleTitle", articleLibrary[0].title);
     }
 }

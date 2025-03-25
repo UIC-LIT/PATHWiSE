@@ -468,22 +468,21 @@ ul#comments-column-toggler {
     width: 270px;
     background-color: #254f78;
     border-radius: 50px;
+    overflow: hidden;
     margin-bottom: 15px;
-    justify-content: center;
 }
 
 ul#comments-column-toggler li {
-    margin: 0 auto;
-    padding: 10px;
-    cursor: pointer;
+    width: calc((100% - 1px) / 2);
+    height: 55px;
     display: flex;
     align-items: center;
+    justify-content: center;
+    cursor: pointer;
 }
 
 ul#comments-column-toggler li:last-child {
-    margin-left: -30px;
-    padding-left: 30px;
-    border-left: 1px solid white;
+    border-left: 1px solid #a2adbe;
 }
 
 ul#comments-column-toggler[data-toggler="0"] li.comments-template-toggle,
@@ -1472,7 +1471,7 @@ MAIN CONTENT
     bottom: 0;
     background-size: 290px !important;
     background-position-x: 125px !important;
-    background-position-y: 365px !important;
+    background-position-y: 365px !important;  /*fix this: Anis*/
 
 }
 

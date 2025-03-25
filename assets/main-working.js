@@ -969,6 +969,9 @@
             localStorage.setItem("currentArticleTitle", articleList[0].title);
             location.reload();
         });
+        $(document).on("click", "#settings", function() {
+            window.location.replace("/robot-ip.htm");
+        });
         $(document).on("click", "#logout", function() {
             if (isUpdated) {
                 activateExitConfirmation(false);
@@ -1273,21 +1276,32 @@
         } else {
             $("#logged-user > span").text(localStorage.getItem("auth-name").trim());
             $("#splash").addClass("hide");
-            var fetchUrl = "/validate/",
-                fetchData = {};
-            fetchData.group = localStorage.getItem("auth").trim();
-            fetchData.article = localStorage.getItem("currentArticleTitle").trim();
-            $.post(fetchUrl, { 'fetch': fetchData }, function(result, success) {
-                if (success == 'success') {
-                    var response = JSON.parse(result);
-                    if (response.status) {
-                        $('#resume').removeClass('temporary-hidden');
-                        $('#pins-data').text(response.pins);
+            if (isProduction) {
+                var homework = [];
+                for (let i = 0; i < homeworks.length; i++) {
+                    if (homeworks[i].title.trim() === localStorage.getItem("currentArticleTitle").trim()) {
+                        homework = homeworks[i].homework;
+                        break;
                     }
-                } else {
-                    console.log('Something went wrong from fetching the latest data!');
                 }
-            });
+                $('#pins-data').text(JSON.stringify(homework));
+            } else {
+                var fetchUrl = "/validate/",
+                    fetchData = {};
+                fetchData.group = localStorage.getItem("auth").trim();
+                fetchData.article = localStorage.getItem("currentArticleTitle").trim();
+                $.post(fetchUrl, { 'fetch': fetchData }, function(result, success) {
+                    if (success == 'success') {
+                        var response = JSON.parse(result);
+                        if (response.status) {
+                            $('#resume').removeClass('temporary-hidden');
+                            $('#pins-data').text(response.pins);
+                        }
+                    } else {
+                        console.log('Something went wrong from fetching the latest data!');
+                    }
+                });
+            }
         }
         $.each(articleList, function(i, v) {
             $("#article-menu>ul").append(
@@ -1303,7 +1317,7 @@
             );
         });
         $(".teacher-facing #article-menu p span").text(localStorage.getItem("currentArticleTitle"));
-        $(".student-robot-facing #article-menu p span").text(localStorage.getItem("currentArticleTitle"));
+        $(".student-facing #article-menu p span").text(localStorage.getItem("currentArticleTitle"));
         $("#assignment-title").text(localStorage.getItem("currentArticleTitle"));
         window.pathArticleTitle = localStorage.getItem("currentArticleTitle");
         $.each(emotionsList, function(i, v) {

@@ -4,3 +4,4 @@ nlp/pathnlp
 nlp/cert.crt
 nlp/key.pem
 pathnlp
+tts/credentials.json
