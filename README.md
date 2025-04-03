@@ -59,13 +59,36 @@
    - Open `httpd-vhosts.conf` located in `C:\wamp64\bin\apache\apache2.x.x\conf\extra`.
    - Add or update your virtual host configuration for HTTPS:
      ```
-         DocumentRoot "D:/github-desktop/pathwise"
-         ServerName pathwi.se
-         SSLEngine on
-         SSLCertificateFile "${SRVROOT}/conf/key/certificate.crt"
-         SSLCertificateKeyFile "${SRVROOT}/conf/key/private.key"
-         ErrorLog "${SRVROOT}/logs/pathwise-error.log"
-         CustomLog "${SRVROOT}/logs/pathwise-access.log" common
+         <VirtualHost *:80>
+           DocumentRoot "D:/github-desktop/pathwise"
+           ServerName pathwi.se
+           ServerAlias www.pathwi.se
+           ErrorLog "logs/pathwi.se-error.log"
+           CustomLog "logs/pathwi.se-access.log" common
+
+           RewriteEngine on
+           RewriteCond %{SERVER_NAME} =pathwi.se [OR]
+           RewriteCond %{SERVER_NAME} =www.pathwi.se
+           RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
+        </VirtualHost>
+
+        <VirtualHost *:443>
+           DocumentRoot "D:/github-desktop/pathwise"
+           ServerName pathwi.se
+           ServerAlias www.pathwi.se
+           ErrorLog "logs/pathwi.se-ssl-error.log"
+           CustomLog "logs/pathwi.se-ssl-access.log" common
+
+           SSLEngine on
+           SSLCertificateFile "C:/wamp/bin/apache/apache2.4.x/conf/key/certificate.crt"
+           SSLCertificateKeyFile "C:/wamp/bin/apache/apache2.4.x/conf/key/private.key"
+
+           <Directory "D:/github-desktop/pathwise"
+              Options Indexes FollowSymLinks
+              AllowOverride All
+              Require all granted
+           </Directory>
+        </VirtualHost>
      ```
    - Save the file.
 
