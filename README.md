@@ -13,18 +13,10 @@
    - Provide the full path to your project folder (e.g., `D:/github-desktop/pathwise`). Use the path of your project from the git clone/download
    - Click "Start the creation of the virtual host".
 
-3. **Edit Hosts File**:
-   - Open the file located at `C:\Windows\System32\drivers\etc\hosts` using Notepad with administrative privileges.
-   - Add the following line:
-     ```
-     127.0.0.1 pathwi.se
-     ```
-   - Save the file without adding any extension.
-
-4. **Restart WAMPServer**:
+3. **Restart WAMPServer**:
    - Restart WAMPServer and ensure its icon turns green, indicating all services are running properly.
 
-5. **Verify Virtual Host**:
+4. **Verify Virtual Host**:
    - Open your browser and navigate to `http://pathwi.se`. If correctly configured, your project should load.
 
 ## **Part 2: Enable SSL for HTTPS**
@@ -36,13 +28,17 @@
 2. **Generate Private Key and SSL Certificate**:
    - Open Command Prompt as Administrator.
    - Navigate to the directory where OpenSSL is installed (e.g., `C:\wamp64\bin\apache\apache2.x.x\bin`).
-   - Run the following commands:
+   - Run the following commands one after another:
      ```
-     openssl genrsa -aes256 -out private.key 2048
-     openssl rsa -in private.key -out private.key
-     openssl req -new -x509 -nodes -sha1 -key private.key -out certificate.crt -days 36500
+     .\openssl genrsa -aes256 -out private.key 2048
+     .\openssl rsa -in private.key -out private.key
+     .\openssl req -new -x509 -nodes -sha1 -key private.key -out certificate.crt -days 36500
      ```
    - When prompted, specify details like Common Name (`pathwi.se`) and other optional fields.
+   - If you see an error at the last command, find the openssl.cnf file (usually inside the `C:\wamp64\bin\apache\apache2.x.x\conf` folder) path and use that for the config like below:
+     ```
+     .\openssl req -new -x509 -nodes -sha1 -key private.key -out certificate.crt -days 36500 -config "C:\wamp64\bin\apache\apache2.x.x\conf"
+     ```
 
 3. **Move Key and Certificate Files**:
    - Create a folder named `key` in `C:\wamp64\bin\apache\apache2.x.x\conf`.
@@ -62,8 +58,6 @@
    - Open `httpd-vhosts.conf` located in `C:\wamp64\bin\apache\apache2.x.x\conf\extra`.
    - Add or update your virtual host configuration for HTTPS:
      ```
-     
-         ServerAdmin admin@pathwi.se
          DocumentRoot "D:/github-desktop/pathwise"
          ServerName pathwi.se
          SSLEngine on
@@ -71,11 +65,21 @@
          SSLCertificateKeyFile "${SRVROOT}/conf/key/private.key"
          ErrorLog "${SRVROOT}/logs/pathwise-error.log"
          CustomLog "${SRVROOT}/logs/pathwise-access.log" common
-     
      ```
    - Save the file.
 
-6. **Restart WAMPServer**:
+6. **Update SSL Configuration**:
+   - Open `httpd-ssl.conf` located in `C:\wamp64\bin\apache\apache2.x.x\conf\extra`.
+   - Add or update the following configuration for HTTPS:
+     ```
+         SSLCertificateFile "${SRVROOT}/conf/key/certificate.crt"
+     ```
+     and 
+     ```
+         SSLCertificateKeyFile "${SRVROOT}/conf/key/private.key"
+     ```
+   - Save the file.
+8. **Restart WAMPServer**:
    - Restart WAMPServer to apply changes.
    - Check for syntax errors by running this command in Command Prompt:
      ```
@@ -83,7 +87,7 @@
      ```
    Ensure there are no errors before proceeding.
 
-7. **Verify HTTPS Configuration**:
+9. **Verify HTTPS Configuration**:
    - Open your browser and navigate to `https://pathwi.se`.
    - You may encounter a security warning because the certificate is self-signed; proceed to view the site.
 
