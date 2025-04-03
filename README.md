@@ -34,10 +34,10 @@
      .\openssl rsa -in private.key -out private.key
      .\openssl req -new -x509 -nodes -sha1 -key private.key -out certificate.crt -days 36500
      ```
-   - When prompted, specify details like Common Name (`pathwi.se`) and other optional fields.
+   - When prompted, you must specify the value for Common Name as `pathwi.se`. Other fields are optional.
    - If you see an error at the last command, find the openssl.cnf file (usually inside the `C:\wamp64\bin\apache\apache2.x.x\conf` folder) path and use that for the config like below:
      ```
-     .\openssl req -new -x509 -nodes -sha1 -key private.key -out certificate.crt -days 36500 -config "C:\wamp64\bin\apache\apache2.x.x\conf"
+     .\openssl req -new -x509 -nodes -sha1 -key private.key -out certificate.crt -days 36500 -config "C:\wamp64\bin\apache\apache2.x.x\conf\openssl.cnf"
      ```
 
 3. **Move Key and Certificate Files**:
@@ -45,6 +45,7 @@
    - Move `private.key` and `certificate.crt` into this folder.
 
 4. **Configure Apache for SSL**:
+   - Turn on "ssl_module" from wampserver > Apache > Apache Modules. (Usuallay found in the last column of the list of modules)
    - Open the Apache configuration file (`httpd.conf`) located in `C:\wamp64\bin\apache\apache2.x.x\conf`.
    - Uncomment these lines:
      ```
@@ -54,7 +55,7 @@
      ```
    - Save and close the file.
 
-5. **Update Virtual Host Configuration**:
+6. **Update Virtual Host Configuration**:
    - Open `httpd-vhosts.conf` located in `C:\wamp64\bin\apache\apache2.x.x\conf\extra`.
    - Add or update your virtual host configuration for HTTPS:
      ```
@@ -68,13 +69,14 @@
      ```
    - Save the file.
 
-6. **Update SSL Configuration**:
+7. **Update SSL Configuration**:
    - Open `httpd-ssl.conf` located in `C:\wamp64\bin\apache\apache2.x.x\conf\extra`.
    - Add or update the following configuration for HTTPS:
      ```
          SSLCertificateFile "${SRVROOT}/conf/key/certificate.crt"
      ```
-     and 
+     and
+      
      ```
          SSLCertificateKeyFile "${SRVROOT}/conf/key/private.key"
      ```
