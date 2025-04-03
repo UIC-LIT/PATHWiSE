@@ -79,7 +79,7 @@
            SSLCertificateFile "C:/wamp64/bin/apache/apache2.4.x/conf/key/certificate.crt"
            SSLCertificateKeyFile "C:/wamp64/bin/apache/apache2.4.x/conf/key/private.key"
 
-           <Directory "D:/github-desktop/pathwise"
+           <Directory "D:/github-desktop/pathwise">
               Options Indexes FollowSymLinks
               AllowOverride All
               Require all granted
