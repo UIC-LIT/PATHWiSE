@@ -62,26 +62,22 @@
          <VirtualHost *:80>
            DocumentRoot "D:/github-desktop/pathwise"
            ServerName pathwi.se
-           ServerAlias www.pathwi.se
            ErrorLog "logs/pathwi.se-error.log"
            CustomLog "logs/pathwi.se-access.log" common
 
            RewriteEngine on
-           RewriteCond %{SERVER_NAME} =pathwi.se [OR]
-           RewriteCond %{SERVER_NAME} =www.pathwi.se
            RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
         </VirtualHost>
 
         <VirtualHost *:443>
            DocumentRoot "D:/github-desktop/pathwise"
            ServerName pathwi.se
-           ServerAlias www.pathwi.se
            ErrorLog "logs/pathwi.se-ssl-error.log"
            CustomLog "logs/pathwi.se-ssl-access.log" common
 
            SSLEngine on
-           SSLCertificateFile "C:/wamp/bin/apache/apache2.4.x/conf/key/certificate.crt"
-           SSLCertificateKeyFile "C:/wamp/bin/apache/apache2.4.x/conf/key/private.key"
+           SSLCertificateFile "C:/wamp64/bin/apache/apache2.4.x/conf/key/certificate.crt"
+           SSLCertificateKeyFile "C:/wamp64/bin/apache/apache2.4.x/conf/key/private.key"
 
            <Directory "D:/github-desktop/pathwise"
               Options Indexes FollowSymLinks
@@ -104,17 +100,13 @@
          SSLCertificateKeyFile "${SRVROOT}/conf/key/private.key"
      ```
    - Save the file.
-8. **Restart WAMPServer**:
+8. **Restart WAMPServer and install/add the certificates to the system manually**:
    - Restart WAMPServer to apply changes.
-   - Check for syntax errors by running this command in Command Prompt:
-     ```
-     httpd.exe -t
-     ```
-   Ensure there are no errors before proceeding.
+   - Right click on the certificate.crt file and install certificate to the local system
 
 9. **Verify HTTPS Configuration**:
    - Open your browser and navigate to `https://pathwi.se`.
-   - You may encounter a security warning because the certificate is self-signed; proceed to view the site.
+   - You may encounter a security warning because the certificate is self-signed; proceed and add exception or accept risk to view the site. 
 
 - Create a database named "pathwise_prototype" with a username of 'root' and password ''. A copy of these details can be found in validate/index.php, lines 32-35. (Please reach out to Anis for a demo database that can be imported and has some dummy data ready.)
 - Update the Misty robot IP here: https://pathwi.se/robot-ip.htm (Note: This step makes the robot play generated audio from Google TTS or speak on the go. You may also need to configure the speech parameters to make it sound more human-like if you want to use "speak on the go" inside the assets/robot-play.js file, lines 197-203)
