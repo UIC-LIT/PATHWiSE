@@ -47,7 +47,7 @@
 4. **Configure Apache for SSL**:
    - Turn on "ssl_module" from wampserver > Apache > Apache Modules. (Usuallay found in the last column of the list of modules)
    - Open the Apache configuration file (`httpd.conf`) located in `C:\wamp64\bin\apache\apache2.x.x\conf`.
-   - Uncomment these lines:
+   - Uncomment these lines one by one, by removing the # from the beginning of each lines, if not already:
      ```
      LoadModule ssl_module modules/mod_ssl.so
      Include conf/extra/httpd-ssl.conf
