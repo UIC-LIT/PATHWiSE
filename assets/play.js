@@ -124,8 +124,14 @@
             });
         }, 150);
         setTimeout(function() {
-            var randomNumber = getRandomNumber();
-            isProduction ? playInComputer(preIntros[randomNumber].text, "1", preIntros[randomNumber].clip, true) : sendToRobot(preIntros[randomNumber].text, "1");
+            try {
+                if (localStorage.getItem("auth").includes("student")) {
+                    var randomNumber = getRandomNumber();
+                    isProduction ? playInComputer(preIntros[randomNumber].text, "1", preIntros[randomNumber].clip, true) : sendToRobot(preIntros[randomNumber].text, "1");
+                }
+            } catch (error) {
+                console.log("Pre Intro Error: ", error);
+            }
         }, 500);
         $(document).on("click", "#start-assignment", function() {
             $('#student-splash').addClass('hide');

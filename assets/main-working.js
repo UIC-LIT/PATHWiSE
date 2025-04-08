@@ -977,7 +977,7 @@
             var index = Number(getArticleIndexByStudentId(stuID));
             localStorage.setItem("currentArticle", articleLibrary[index].filename);
             localStorage.setItem("currentArticleTitle", articleLibrary[index].title);
-            localStorage.setItem("auth-name", "Student " + stuID);
+            localStorage.setItem("auth-name", stuID);
             location.reload();
         });
 
