@@ -127,7 +127,7 @@
             try {
                 if (localStorage.getItem("auth").includes("student")) {
                     var randomNumber = getRandomNumber();
-                    isProduction ? playInComputer(preIntros[randomNumber].text, "1", preIntros[randomNumber].clip, true) : sendToRobot(preIntros[randomNumber].text, "1");
+                    //isProduction ? playInComputer(preIntros[randomNumber].text, "1", preIntros[randomNumber].clip, true) : sendToRobot(preIntros[randomNumber].text, "1");
                 }
             } catch (error) {
                 console.log("Pre Intro Error: ", error);
@@ -137,38 +137,45 @@
             $('#student-splash').addClass('hide');
             setTimeout(function() {
                 var randomNumber = getRandomNumber();
-                isProduction ? playInComputer(intros[randomNumber].text, "1", intros[randomNumber].clip, true) : sendToRobot(intros[randomNumber].text, "1");
+                //isProduction ? playInComputer(intros[randomNumber].text, "1", intros[randomNumber].clip, true) : sendToRobot(intros[randomNumber].text, "1");
             }, 500);
+        });
+        $(document).on("click", 'body:not(.audio-playing) .cp:not(.focused)', function() {
+            $('#reading-status li:not(.done)').first().addClass('done');
         });
         $(document).on("click", 'body:not(.audio-playing) .cp', function() {
             var $this = $(this);
             var clicked = $this.data('clicked'); // Check if the element was clicked recently
-
             // If already clicked within the last 150ms, ignore the second click
             if (clicked) {
                 return;
             }
-
             // Set flag to prevent double click
             $this.data('clicked', true);
-
             setTimeout(function() {
-                var text = $this.attr('data-comment');
-                var clip = $this.attr('data-clip');
+                var flag = false;
+                var id = $this.attr("id");
+                if (id == "c11") {
+                    var randomNumber = getRandomNumber();
+                    var text = outros[randomNumber].text;
+                    var clip = outros[randomNumber].clip;
+                    flag = true;
+                } else {
+                    var text = $this.attr('data-comment');
+                    var clip = $this.attr('data-clip');
+                }
+
                 var emotion = $this.attr('data-emotion');
                 var behavior = emotionsList[emotion];
-
                 if ($('.student-robot-facing').length) {
                     isProduction ? sendToRobot(text, behavior, clip) : sendToRobot(text, behavior);
                 } else if ($('.student-computer-facing').length) {
-                    isProduction ? playInComputer(text, emotion, clip) : playInComputer(text, emotion);
+                    isProduction ? playInComputer(text, emotion, clip, flag) : playInComputer(text, emotion);
                 }
-
                 // Reset the clicked flag after the timeout
                 $this.removeData('clicked');
             }, 150); // 150ms interval before allowing the next click
         });
-
     });
 
     function recreateCanvas() {
@@ -196,6 +203,7 @@
                     `px;"><p></p>
                 </div>`
                 );
+                $("#reading-status").append('<li data-id="c' + pinId + '"></li>');
             });
         } catch (error) {
             console.log("No saved pins found for the slected article in the database", error);

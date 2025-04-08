@@ -77,6 +77,48 @@ li {
     clear: both;
 }
 
+#reading-status {
+    position: fixed;
+    top: 18px;
+    left: 160px;
+    z-index: 2;
+    display: flex;
+    color: white;
+    font-size: 30px;
+}
+
+#reading-status li {
+    position: relative;
+}
+
+#reading-status li:not(:first-child) {
+    padding-left: 20px;
+}
+
+#reading-status li::before {
+    content: "";
+    font-weight: bold;
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+    border: solid white;
+    display: inline-block;
+}
+
+#reading-status li.done::before {
+    background-color: white;
+}
+
+#reading-status li:not(:first-child)::after {
+    content: "";
+    position: absolute;
+    left: -2px;
+    top: 11px;
+    width: 23px;
+    height: 4px;
+    border-top: solid white;
+}
+
 #splash,
 #student-splash {
     font-size: 20px;
@@ -1488,7 +1530,8 @@ MAIN CONTENT
     bottom: 0;
     background-size: 290px !important;
     background-position-x: 125px !important;
-    background-position-y: 365px !important;  /*fix this: Anis*/
+    background-position-y: 365px !important;
+    /*fix this: Anis*/
 
 }
 

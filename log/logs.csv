@@ -1,132 +1,52 @@
 
-Windows-Firefox-332899026560438,1744116950996,mousedown,div#student-splash,"{""which"":1,""pageX"":80,""pageY"":128}",,A
-Windows-Firefox-332899026560438,1744116954830,keydown,body.student-facing.student-computer-facing,"{""which"":17}",,A
-Windows-Firefox-332899026560438,1744116954949,keydown,body.student-facing.student-computer-facing,"{""which"":16}",,A
-Windows-Firefox-332899026560438,1744116963750,mousedown,div#robot-emotions.anticipation,"{""which"":3,""pageX"":1283,""pageY"":497}",,A
-Windows-Firefox-332899026560438,1744117120693,mousedown,div.textLayer,"{""which"":1,""pageX"":59,""pageY"":212}",,A
-Windows-Firefox-332899026560438,1744117121303,keydown,div#viewerContainer,"{""which"":17}",,A
-Windows-Firefox-332899026560438,1744117121502,keydown,div#viewerContainer,"{""which"":16}",,A
-Windows-Firefox-332899026560438,1744117189414,mousedown,div#student-splash,"{""which"":1,""pageX"":164,""pageY"":655}",,A
-Windows-Firefox-332899026560438,1744117189846,keydown,body.student-facing.student-computer-facing,"{""which"":17}",,A
-Windows-Firefox-332899026560438,1744117190133,keydown,body.student-facing.student-computer-facing,"{""which"":16}",,A
-Windows-Firefox-332899026560438,1744117222486,mousedown,button#start-assignment,"{""which"":1,""pageX"":291,""pageY"":544}",,A
-Windows-Chrome-548402558572186,1744117242953,mousedown,div#student-splash,"{""which"":3,""pageX"":1408,""pageY"":90}",,A
-Windows-Chrome-548402558572186,1744117252332,mousedown,div#student-splash,"{""which"":1,""pageX"":29,""pageY"":512}",,A
-Windows-Chrome-548402558572186,1744117271083,mousedown,button#start-assignment,"{""which"":1,""pageX"":323,""pageY"":554}",,A
-Windows-Chrome-548402558572186,1744117450335,mousedown,"div#c9.cp p","{""which"":1,""pageX"":620,""pageY"":375}",,A
-Windows-Firefox-332899026560438,1744117880950,mousedown,div#student-splash,"{""which"":1,""pageX"":218,""pageY"":687}",,A
-Windows-Firefox-332899026560438,1744117884137,mousedown,ul#assignment-list,"{""which"":1,""pageX"":536,""pageY"":350}",,A
-Windows-Firefox-332899026560438,1744117888764,mousedown,div#student-splash,"{""which"":1,""pageX"":583,""pageY"":558}",,A
-Windows-Firefox-332899026560438,1744117888826,mousedown,div#student-splash,"{""which"":1,""pageX"":583,""pageY"":558}",,A
-Windows-Firefox-332899026560438,1744117890018,mousedown,"ul#assignment-list li","{""which"":1,""pageX"":640,""pageY"":327}",,A
-Windows-Firefox-332899026560438,1744117890649,mousedown,div#student-splash,"{""which"":1,""pageX"":619,""pageY"":174}",,A
-Windows-Firefox-332899026560438,1744117891494,mousedown,ul#assignment-list,"{""which"":1,""pageX"":697,""pageY"":345}",,A
-Windows-Firefox-332899026560438,1744117892862,mousedown,div#student-splash,"{""which"":1,""pageX"":462,""pageY"":514}",,A
-Windows-Firefox-332899026560438,1744117893468,mousedown,div#student-splash,"{""which"":1,""pageX"":291,""pageY"":620}",,A
-Windows-Firefox-332899026560438,1744117898349,mousedown,div#student-splash,"{""which"":1,""pageX"":685,""pageY"":483}",,A
-Windows-Firefox-332899026560438,1744117909631,mousedown,button#start-assignment,"{""which"":1,""pageX"":214,""pageY"":536}",,A
-Windows-Firefox-332899026560438,1744117913163,mousedown,div.textLayer,"{""which"":1,""pageX"":127,""pageY"":390}",,A
-Windows-Firefox-332899026560438,1744117913918,mousedown,div.textLayer,"{""which"":1,""pageX"":180,""pageY"":480}",,A
-Windows-Firefox-332899026560438,1744117914730,mousedown,div.textLayer,"{""which"":1,""pageX"":891,""pageY"":551}",,A
-Windows-Firefox-332899026560438,1744117916217,mousedown,"div#c1.cp p","{""which"":1,""pageX"":995,""pageY"":755}",,A
-Windows-Firefox-332899026560438,1744117919966,mousedown,"div#c5.cp p","{""which"":1,""pageX"":676,""pageY"":637}",,A
-Windows-Firefox-332899026560438,1744118129063,mousedown,div.textLayer,"{""which"":1,""pageX"":69,""pageY"":184}",,A
-Windows-Firefox-332899026560438,1744118129633,keydown,div#viewerContainer,"{""which"":17}",,A
-Windows-Firefox-332899026560438,1744118129889,keydown,div#viewerContainer,"{""which"":16}",,A
-Windows-Firefox-332899026560438,1744118158560,mousedown,div#student-splash,"{""which"":1,""pageX"":127,""pageY"":558}",,A
-Windows-Firefox-332899026560438,1744118231677,mousedown,ul#assignment-list,"{""which"":1,""pageX"":626,""pageY"":276}",,A
-Windows-Firefox-332899026560438,1744118231744,mousedown,ul#assignment-list,"{""which"":1,""pageX"":626,""pageY"":275}",,A
-Windows-Firefox-332899026560438,1744118233361,mousedown,"ul#assignment-list li","{""which"":1,""pageX"":542,""pageY"":466}",,A
-Windows-Firefox-332899026560438,1744118234298,mousedown,div#student-splash,"{""which"":1,""pageX"":448,""pageY"":556}",,A
-Windows-Firefox-332899026560438,1744118270579,mousedown,div#student-splash,"{""which"":1,""pageX"":261,""pageY"":565}",,A
-Windows-Firefox-332899026560438,1744118271760,mousedown,button#start-assignment,"{""which"":1,""pageX"":266,""pageY"":558}",,A
-Windows-Firefox-332899026560438,1744118277571,mousedown,"div#c1.cp p","{""which"":1,""pageX"":988,""pageY"":187}",,A
-Windows-Firefox-332899026560438,1744118278916,mousedown,"div#c5.cp p","{""which"":1,""pageX"":685,""pageY"":516}",,A
-Windows-Chrome-548402558572186,1744118428288,mousedown,div#student-splash,"{""which"":1,""pageX"":90,""pageY"":412}",,A
-Windows-Chrome-548402558572186,1744118429293,mousedown,div#student-splash,"{""which"":1,""pageX"":90,""pageY"":412}",,A
-Windows-Chrome-548402558572186,1744118449114,mousedown,button#start-assignment,"{""which"":1,""pageX"":336,""pageY"":540}",,A
-Windows-Chrome-548402558572186,1744118495295,mousedown,div#student-splash,"{""which"":1,""pageX"":204,""pageY"":253}",,A
-Windows-Chrome-548402558572186,1744118495959,keydown,body.student-facing.student-computer-facing,"{""which"":17}",,A
-Windows-Chrome-548402558572186,1744118496147,keydown,body.student-facing.student-computer-facing,"{""which"":16}",,A
-Windows-Chrome-548402558572186,1744118496312,keydown,body.student-facing.student-computer-facing,"{""which"":82}",,A
-Windows-Chrome-548402558572186,1744118525518,mousedown,button#start-assignment,"{""which"":1,""pageX"":315,""pageY"":546}",,A
-Windows-Chrome-548402558572186,1744118527603,mousedown,"div#c1.cp p","{""which"":1,""pageX"":993,""pageY"":760}",,A
-Windows-Chrome-548402558572186,1744118528803,mousedown,"div#c2.cp p","{""which"":1,""pageX"":1103,""pageY"":838}",,A
-Windows-Chrome-548402558572186,1744118530651,mousedown,"div#c1.cp p","{""which"":1,""pageX"":999,""pageY"":762}",,A
-Windows-Chrome-548402558572186,1744118531725,mousedown,"div#c2.cp p","{""which"":1,""pageX"":1096,""pageY"":838}",,A
-Windows-Chrome-548402558572186,1744118532487,mousedown,"div#c1.cp p","{""which"":1,""pageX"":1011,""pageY"":770}",,A
-Windows-Chrome-548402558572186,1744118557726,mousedown,"div#c1.cp.focused p","{""which"":1,""pageX"":982,""pageY"":753}",,A
-Windows-Chrome-548402558572186,1744118569116,mousedown,"div#c2.cp p","{""which"":1,""pageX"":1100,""pageY"":830}",,A
-Windows-Chrome-548402558572186,1744118570528,mousedown,"div#c1.cp p","{""which"":1,""pageX"":993,""pageY"":762}",,A
-Windows-Chrome-548402558572186,1744118618884,mousedown,"div#c1.cp.focused p","{""which"":3,""pageX"":985,""pageY"":756}",,A
-Windows-Chrome-548402558572186,1744118619006,mousedown,"div#c1.cp.focused p","{""which"":3,""pageX"":985,""pageY"":756}",,A
-Windows-Chrome-548402558572186,1744118731396,mousedown,div.textLayer,"{""which"":1,""pageX"":135,""pageY"":327}",,A
-Windows-Chrome-548402558572186,1744118731969,keydown,div#viewerContainer,"{""which"":17}",,A
-Windows-Chrome-548402558572186,1744118732144,keydown,div#viewerContainer,"{""which"":16}",,A
-Windows-Chrome-548402558572186,1744118732216,keydown,div#viewerContainer,"{""which"":82}",,A
-Windows-Chrome-548402558572186,1744118762788,mousedown,button#start-assignment,"{""which"":1,""pageX"":266,""pageY"":538}",,A
-Windows-Chrome-548402558572186,1744118764463,mousedown,"div#c1.cp p","{""which"":1,""pageX"":981,""pageY"":757}",,A
-Windows-Chrome-548402558572186,1744118765552,mousedown,"div#c2.cp p","{""which"":1,""pageX"":1092,""pageY"":840}",,A
-Windows-Chrome-548402558572186,1744118775081,mousedown,"div#c2.cp.focused p","{""which"":1,""pageX"":1091,""pageY"":842}",,A
-Windows-Chrome-548402558572186,1744118776078,mousedown,"div#c2.cp.focused p","{""which"":1,""pageX"":1084,""pageY"":842}",,A
-Windows-Chrome-548402558572186,1744118867213,mousedown,div.container,"{""which"":1,""pageX"":211,""pageY"":24}",,A
-Windows-Chrome-548402558572186,1744118867808,keydown,body.student-facing.student-computer-facing,"{""which"":17}",,A
-Windows-Chrome-548402558572186,1744118868008,keydown,body.student-facing.student-computer-facing,"{""which"":16}",,A
-Windows-Chrome-548402558572186,1744118868112,keydown,body.student-facing.student-computer-facing,"{""which"":82}",,A
-Windows-Chrome-548402558572186,1744118870753,keydown,body.student-facing.student-computer-facing.audio-playing,"{""which"":17}",,A
-Windows-Chrome-548402558572186,1744118870937,keydown,body.student-facing.student-computer-facing.audio-playing,"{""which"":16}",,A
-Windows-Chrome-548402558572186,1744118870976,keydown,body.student-facing.student-computer-facing.audio-playing,"{""which"":82}",,A
-Windows-Chrome-548402558572186,1744118901195,mousedown,button#start-assignment,"{""which"":1,""pageX"":271,""pageY"":526}",,A
-Windows-Chrome-548402558572186,1744118903906,mousedown,"div#c1.cp p","{""which"":1,""pageX"":1002,""pageY"":364}",,A
-Windows-Chrome-548402558572186,1744118903968,mousedown,"div#c1.cp.focused p","{""which"":1,""pageX"":1002,""pageY"":364}",,A
-Windows-Chrome-548402558572186,1744118909970,mousedown,div.textLayer,"{""which"":1,""pageX"":673,""pageY"":692}",,A
-Windows-Chrome-548402558572186,1744118911196,mousedown,div#viewer.pdfViewer,"{""which"":1,""pageX"":1098,""pageY"":440}",,A
-Windows-Chrome-548402558572186,1744118913356,mousedown,div#viewer.pdfViewer,"{""which"":1,""pageX"":1090,""pageY"":439}",,A
-Windows-Chrome-548402558572186,1744118914339,mousedown,div.textLayer,"{""which"":1,""pageX"":664,""pageY"":694}",,A
-Windows-Chrome-548402558572186,1744118915492,mousedown,"div#c2.cp p","{""which"":1,""pageX"":1101,""pageY"":439}",,A
-Windows-Chrome-548402558572186,1744118918547,mousedown,div#viewer.pdfViewer,"{""which"":1,""pageX"":1101,""pageY"":440}",,A
-Windows-Chrome-548402558572186,1744118922890,mousedown,"div#c5.cp p","{""which"":1,""pageX"":674,""pageY"":693}",,A
-Windows-Chrome-548402558572186,1744118923056,mousedown,"div#c5.cp.focused p","{""which"":1,""pageX"":674,""pageY"":693}",,A
-Windows-Chrome-548402558572186,1744118935400,mousedown,"div#c3.cp p","{""which"":1,""pageX"":1068,""pageY"":681}",,A
-Windows-Chrome-548402558572186,1744118935547,mousedown,"div#c3.cp.focused p","{""which"":1,""pageX"":1068,""pageY"":681}",,A
-Windows-Chrome-548402558572186,1744118948488,mousedown,div.textLayer,"{""which"":3,""pageX"":1087,""pageY"":130}",,A
-Windows-Chrome-548402558572186,1744118948592,mousedown,div.textLayer,"{""which"":3,""pageX"":1087,""pageY"":130}",,A
-Windows-Chrome-548402558572186,1744119249216,mousedown,div#student-splash,"{""which"":1,""pageX"":465,""pageY"":713}",,A
-Windows-Chrome-548402558572186,1744119250031,keydown,body.student-facing.student-computer-facing,"{""which"":17}",,A
-Windows-Chrome-548402558572186,1744119250151,keydown,body.student-facing.student-computer-facing,"{""which"":16}",,A
-Windows-Chrome-548402558572186,1744119250271,keydown,body.student-facing.student-computer-facing,"{""which"":82}",,A
-Windows-Chrome-548402558572186,1744119278912,mousedown,button#start-assignment,"{""which"":1,""pageX"":385,""pageY"":550}",,A
-Windows-Chrome-548402558572186,1744119278978,mousedown,div.textLayer,"{""which"":1,""pageX"":385,""pageY"":550}",,A
-Windows-Chrome-548402558572186,1744119281435,mousedown,"div#c1.cp p","{""which"":1,""pageX"":981,""pageY"":767}",,A
-Windows-Chrome-548402558572186,1744119281635,mousedown,"div#c1.cp.focused p","{""which"":1,""pageX"":981,""pageY"":767}",,A
-Windows-Chrome-548402558572186,1744119281757,mousedown,"div.textLayer span","{""which"":1,""pageX"":981,""pageY"":767}",,A
-Windows-Chrome-548402558572186,1744119283046,mousedown,div.textLayer,"{""which"":1,""pageX"":1001,""pageY"":702}",,A
-Windows-Chrome-548402558572186,1744119298277,mousedown,"div#c2.cp p","{""which"":1,""pageX"":1115,""pageY"":641}",,A
-Windows-Chrome-548402558572186,1744119298412,mousedown,"div#c2.cp.focused p","{""which"":1,""pageX"":1115,""pageY"":641}",,A
-Windows-Chrome-548402558572186,1744119301327,mousedown,"div.textLayer span","{""which"":1,""pageX"":654,""pageY"":778}",,A
-Windows-Chrome-548402558572186,1744119301784,mousedown,div.textLayer,"{""which"":1,""pageX"":668,""pageY"":783}",,A
-Windows-Chrome-548402558572186,1744119302176,mousedown,div.textLayer,"{""which"":1,""pageX"":679,""pageY"":791}",,A
-Windows-Chrome-548402558572186,1744119304593,mousedown,"div#c3.cp p","{""which"":1,""pageX"":1081,""pageY"":686}",,A
-Windows-Chrome-548402558572186,1744119505913,mousedown,div#viewer.pdfViewer,"{""which"":1,""pageX"":46,""pageY"":311}",,A
-Windows-Chrome-548402558572186,1744119506855,keydown,div#viewerContainer,"{""which"":17}",,A
-Windows-Chrome-548402558572186,1744119506983,keydown,div#viewerContainer,"{""which"":82}",,A
-Windows-Chrome-548402558572186,1744119509625,keydown,body.student-facing.student-computer-facing.audio-playing,"{""which"":17}",,A
-Windows-Chrome-548402558572186,1744119509745,keydown,body.student-facing.student-computer-facing.audio-playing,"{""which"":82}",,A
-Windows-Chrome-548402558572186,1744119515279,mousedown,div#student-splash,"{""which"":1,""pageX"":166,""pageY"":249}",,A
-Windows-Chrome-548402558572186,1744119548634,mousedown,button#start-assignment,"{""which"":1,""pageX"":444,""pageY"":533}",,A
-Windows-Firefox-332899026560438,1744119694665,mousedown,div#viewer.pdfViewer,"{""which"":1,""pageX"":105,""pageY"":99}",,A
-Windows-Firefox-332899026560438,1744119695443,keydown,div#viewerContainer,"{""which"":17}",,A
-Windows-Firefox-332899026560438,1744119695530,keydown,div#viewerContainer,"{""which"":16}",,A
-Windows-Firefox-332899026560438,1744119698007,mousedown,div#user-profile,"{""which"":1,""pageX"":1872,""pageY"":47}",,A
-Windows-Firefox-332899026560438,1744119698803,mousedown,li#logout,"{""which"":1,""pageX"":1770,""pageY"":166}",,A
-Windows-Firefox-332899026560438,1744119729017,mousedown,div#splash,"{""which"":3,""pageX"":407,""pageY"":283}",,A
-Windows-Firefox-332899026560438,1744119832278,mousedown,div#splash,"{""which"":3,""pageX"":408,""pageY"":215}",,A
-Windows-Firefox-332899026560438,1744120076792,mousedown,div#user-profile,"{""which"":1,""pageX"":1481,""pageY"":20}",,A
-Windows-Firefox-332899026560438,1744120080222,mousedown,li#logout,"{""which"":1,""pageX"":1351,""pageY"":172}",,A
-Windows-Firefox-332899026560438,1744120090346,mousedown,div#splash,"{""which"":1,""pageX"":243,""pageY"":315}",,A
-Windows-Firefox-332899026560438,1744120091183,keydown,body.student-facing.student-computer-facing,"{""which"":17}",,A
-Windows-Firefox-332899026560438,1744120091332,keydown,body.student-facing.student-computer-facing,"{""which"":16}",,A
-Windows-Firefox-332899026560438,1744120103939,mousedown,button#student-login,"{""which"":1,""pageX"":650,""pageY"":302}",,A
-Windows-Firefox-332899026560438,1744120127862,mousedown,div#user-profile,"{""which"":1,""pageX"":1510,""pageY"":31}",,A
-Windows-Firefox-332899026560438,1744120128857,mousedown,li#logout,"{""which"":1,""pageX"":1352,""pageY"":159}",,A
-Windows-Firefox-332899026560438,1744120212582,mousedown,button#student-login,"{""which"":1,""pageX"":798,""pageY"":292}",,A
+Windows-Firefox-332899026560438,1744123818862,mousedown,"div#c10.cp.focused p","{""which"":3,""pageX"":672,""pageY"":300}",,A
+Windows-Firefox-332899026560438,1744123826644,mousedown,"div#c10.cp.focused p","{""which"":3,""pageX"":664,""pageY"":291}",,A
+Windows-Firefox-332899026560438,1744123860837,mousedown,div.textLayer,"{""which"":1,""pageX"":485,""pageY"":382}",,A
+Windows-Firefox-332899026560438,1744123928174,mousedown,"div#c10.cp.focused p","{""which"":3,""pageX"":677,""pageY"":761}",,A
+Windows-Firefox-332899026560438,1744124004822,mousedown,"div#c7.cp p","{""which"":3,""pageX"":630,""pageY"":220}",,A
+Windows-Firefox-332899026560438,1744124043741,mousedown,"div#c10.cp.focused p","{""which"":3,""pageX"":673,""pageY"":317}",,A
+Windows-Firefox-332899026560438,1744124376213,mousedown,"div#c10.cp.focused p","{""which"":3,""pageX"":676,""pageY"":299}",,A
+Windows-Firefox-332899026560438,1744124377643,mousedown,div.textLayer,"{""which"":1,""pageX"":732,""pageY"":591}",,A
+Windows-Firefox-332899026560438,1744124743539,mousedown,div#viewer.pdfViewer,"{""which"":1,""pageX"":94,""pageY"":347}",,A
+Windows-Firefox-332899026560438,1744124744233,keydown,div#viewerContainer,"{""which"":17}",,A
+Windows-Firefox-332899026560438,1744124744260,keydown,div#viewerContainer,"{""which"":16}",,A
+Windows-Firefox-332899026560438,1744124748897,mousedown,div#student-splash,"{""which"":3,""pageX"":94,""pageY"":347}",,A
+Windows-Firefox-332899026560438,1744124759886,mousedown,"div#c11.cp p","{""which"":1,""pageX"":669,""pageY"":539}",,A
+Windows-Firefox-332899026560438,1744124782895,mousedown,div#viewer.pdfViewer,"{""which"":1,""pageX"":100,""pageY"":101}",,A
+Windows-Firefox-332899026560438,1744124783476,keydown,div#viewerContainer,"{""which"":17}",,A
+Windows-Firefox-332899026560438,1744124783612,keydown,div#viewerContainer,"{""which"":16}",,A
+Windows-Firefox-332899026560438,1744124790555,mousedown,div#student-splash,"{""which"":3,""pageX"":355,""pageY"":510}",,A
+Windows-Firefox-332899026560438,1744124798854,mousedown,"div#c11.cp p","{""which"":1,""pageX"":693,""pageY"":184}",,A
+Windows-Firefox-332899026560438,1744124816591,mousedown,div#viewer.pdfViewer,"{""which"":1,""pageX"":164,""pageY"":396}",,A
+Windows-Firefox-332899026560438,1744124817817,keydown,div#viewerContainer,"{""which"":17}",,A
+Windows-Firefox-332899026560438,1744124817900,keydown,div#viewerContainer,"{""which"":16}",,A
+Windows-Firefox-332899026560438,1744124819407,keydown,body.student-facing.student-computer-facing,"{""which"":17}",,A
+Windows-Firefox-332899026560438,1744124819517,keydown,body.student-facing.student-computer-facing,"{""which"":16}",,A
+Windows-Firefox-332899026560438,1744124821979,mousedown,div#student-splash,"{""which"":3,""pageX"":164,""pageY"":396}",,A
+Windows-Firefox-332899026560438,1744124832530,mousedown,"div#c11.cp p","{""which"":3,""pageX"":658,""pageY"":192}",,A
+Windows-Firefox-332899026560438,1744124855303,mousedown,"div#c11.cp p","{""which"":1,""pageX"":681,""pageY"":196}",,A
+Windows-Firefox-332899026560438,1744124855328,mousedown,"div#c11.cp.focused p","{""which"":1,""pageX"":681,""pageY"":196}",,A
+Windows-Firefox-332899026560438,1744124886482,mousedown,div.textLayer,"{""which"":1,""pageX"":309,""pageY"":488}",,A
+Windows-Chrome-548402558572186,1744124888957,mousedown,"div.textLayer span","{""which"":1,""pageX"":129,""pageY"":179}",,A
+Windows-Chrome-548402558572186,1744124889611,keydown,div#viewerContainer,"{""which"":17}",,A
+Windows-Chrome-548402558572186,1744124889707,keydown,div#viewerContainer,"{""which"":16}",,A
+Windows-Chrome-548402558572186,1744124889898,keydown,div#viewerContainer,"{""which"":82}",,A
+Windows-Chrome-548402558572186,1744124891317,mousedown,div#student-splash,"{""which"":3,""pageX"":129,""pageY"":179}",,A
+Windows-Chrome-548402558572186,1744124915513,mousedown,div.textLayer,"{""which"":3,""pageX"":1217,""pageY"":744}",,A
+Windows-Chrome-548402558572186,1744124916325,mousedown,div.textLayer,"{""which"":1,""pageX"":799,""pageY"":357}",,A
+Windows-Chrome-548402558572186,1744124916981,mousedown,"div#c11.cp p","{""which"":1,""pageX"":674,""pageY"":198}",,A
+Windows-Chrome-548402558572186,1744124922056,mousedown,div#robot-emotions.anticipation.speaking,"{""which"":3,""pageX"":1533,""pageY"":232}",,A
+Windows-Chrome-548402558572186,1744125084608,mousedown,div.textLayer,"{""which"":1,""pageX"":672,""pageY"":892}",,A
+Windows-Chrome-548402558572186,1744125086534,mousedown,div.textLayer,"{""which"":1,""pageX"":673,""pageY"":905}",,A
+Windows-Chrome-548402558572186,1744125089469,mousedown,div#viewer.pdfViewer,"{""which"":1,""pageX"":151,""pageY"":325}",,A
+Windows-Chrome-548402558572186,1744125090099,keydown,div#viewerContainer,"{""which"":17}",,A
+Windows-Chrome-548402558572186,1744125090187,keydown,div#viewerContainer,"{""which"":16}",,A
+Windows-Chrome-548402558572186,1744125090404,keydown,div#viewerContainer,"{""which"":82}",,A
+Windows-Chrome-548402558572186,1744125092007,mousedown,li.active,"{""which"":3,""pageX"":915,""pageY"":253}",,A
+Windows-Chrome-548402558572186,1744125104928,mousedown,"div#c11.cp p","{""which"":1,""pageX"":677,""pageY"":600}",,A
+Windows-Firefox-332899026560438,1744125121652,mousedown,div.textLayer,"{""which"":1,""pageX"":947,""pageY"":683}",,A
+Windows-Firefox-332899026560438,1744125122331,keydown,div#viewerContainer,"{""which"":17}",,A
+Windows-Firefox-332899026560438,1744125122412,keydown,div#viewerContainer,"{""which"":16}",,A
+Windows-Firefox-332899026560438,1744125124141,mousedown,div#student-splash,"{""which"":3,""pageX"":1010,""pageY"":519}",,A
+Windows-Firefox-332899026560438,1744125128384,mousedown,div.textLayer,"{""which"":1,""pageX"":327,""pageY"":269}",,A
+Windows-Firefox-332899026560438,1744125133249,mousedown,"div#c11.cp p","{""which"":1,""pageX"":681,""pageY"":418}",,A
