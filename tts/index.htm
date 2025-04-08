@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pathwise</title>
+    <link rel="icon" type="image/x-icon" href="assets/icons/favicon.png" />
+    <style type="text/css">
+    body {
+        font-family: sans-serif;
+        margin: auto;
+        padding: 2rem;
+    }
+
+    textarea {
+        width: 100%;
+        height: 200px;
+        margin-bottom: 1rem;
+    }
+
+    button {
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+        cursor: pointer;
+    }
+
+    #status {
+        margin-top: 1rem;
+        color: green;
+    }
+    </style>
+</head>
+
+<body>
+    <h2>Google TTS Batch Audio Downloader</h2>
+    <textarea id="jsonInput" placeholder="Paste your JSON array here..."></textarea>
+    <br>
+    <button onclick="generateAllAudios()">Generate & Download Audios</button>
+    <div id="status"></div>
+    <br>
+    <br>
+    <h2>Example input:</h2>
+    <p>The "text" property is the input text and the "clip" property is the filename. All other properties will be ignored.</p>
+    <p>
+        <pre>
+[
+    { "text": "Awesome! You can start reading now. Whenever you come across a speech bubble, click on it, and I’ll ask you a question. Just remember to wait until my eyes are green before answering. Enjoy reading!", "clip": "201", "emotion": "100" },
+    { "text": "Great job! Start reading whenever you’re ready. When you see a speech bubble, click on it, and I’ll ask you something. Be sure to wait until my eyes turn green before responding. Happy reading!", "clip": "202", "emotion": "100" },
+    { "text": "All set! Begin reading the article. When you find a speech bubble, click on it and I’ll ask you a question. Don’t forget—only answer when my eyes are green! Have fun reading!", "clip": "203", "emotion": "100" },
+    { "text": "You’re ready to go! Start reading the article, and click on any speech bubble you find. I’ll ask you a question then, but wait until my eyes turn green before you answer. Enjoy!", "clip": "204", "emotion": "100" },
+    { "text": "Awesome, go ahead and start reading. Click the speech bubble when you find one, and I’ll have a question for you. Just make sure to wait until my eyes are green before you respond. Enjoy the article!", "clip": "205", "emotion": "100" },
+    { "text": "Great, you’re all set! Begin reading now. When you see a speech bubble, click it, and I’ll ask you something. Remember, only answer when my eyes turn green! Have a good read!", "clip": "206", "emotion": "100" },
+    { "text": "You’re good to go! Start reading the article. Whenever you spot a speech bubble, click on it, and I’ll ask you a question. Just hold off until my eyes are green before responding. Happy reading!", "clip": "207", "emotion": "100" },
+    { "text": "Go ahead and dive into the article! When you find a speech bubble, click it, and I’ll ask you a question. Be sure to wait for my eyes to turn green before you answer. Enjoy the read!", "clip": "208", "emotion": "100" },
+    { "text": "Great! Start reading whenever you’re ready. Click on a speech bubble when you see one, and I’ll ask you a question. Just wait for my eyes to turn green before you respond. Have fun reading!", "clip": "209", "emotion": "100" },
+    { "text": "Perfect! Go ahead and start reading now. When you come across a speech bubble, click on it, and I’ll ask you a question. Make sure to wait until my eyes are green before answering. Enjoy the article!", "clip": "210", "emotion": "100" }
+]
+        </pre>
+    </p>
+    <script>
+    const getAccessToken = async () => {
+        const response = await fetch('get-access-token.php');
+        const data = await response.json();
+        return data.access_token;
+    };
+
+    const textToSpeech = async (text) => {
+        const accessToken = await getAccessToken();
+        const response = await fetch('https://texttospeech.googleapis.com/v1/text:synthesize', {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${accessToken}`,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                input: { text },
+                voice: { languageCode: 'en-US', name: 'en-US-Neural2-F' },
+                audioConfig: { audioEncoding: 'MP3', pitch: 0.6, speakingRate: 0.9 },
+            }),
+        });
+        if (!response.ok) throw new Error(`TTS API error! status: ${response.status}`);
+        const data = await response.json();
+        return data.audioContent;
+    };
+
+    const downloadAudioFromBase64 = (base64Audio, filename = 'audio.mp3') => {
+        const audioBlob = new Blob(
+            [Uint8Array.from(atob(base64Audio), c => c.charCodeAt(0))], { type: 'audio/mp3' }
+        );
+        const audioUrl = URL.createObjectURL(audioBlob);
+        const link = document.createElement('a');
+        link.href = audioUrl;
+        link.download = filename.endsWith('.mp3') ? filename : filename + '.mp3';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(audioUrl);
+    };
+
+    const generateAllAudios = async () => {
+        const status = document.getElementById('status');
+        status.textContent = 'Processing...';
+        let list;
+        try {
+            const raw = document.getElementById('jsonInput').value;
+            list = JSON.parse(raw);
+        } catch (e) {
+            status.textContent = 'Invalid JSON format!';
+            status.style.color = 'red';
+            return;
+        }
+        for (let i = 0; i < list.length; i++) {
+            const { text, clip } = list[i];
+            try {
+                status.textContent = `Generating clip ${clip}...`;
+                const audioContent = await textToSpeech(text);
+                downloadAudioFromBase64(audioContent, clip + '.mp3');
+            } catch (err) {
+                console.error(`Failed on clip ${clip}:`, err);
+                status.textContent = `Error generating clip ${clip}`;
+                status.style.color = 'red';
+                return;
+            }
+        }
+        status.textContent = '✅ All clips generated and downloaded!';
+        status.style.color = 'green';
+    };
+    </script>
+</body>
+
+</html>

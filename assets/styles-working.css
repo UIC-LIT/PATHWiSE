@@ -88,11 +88,11 @@ li {
     top: 0;
     left: 0;
     padding-top: 100px;
-    text-align: center;
 }
 
 #splash {
     z-index: 99;
+    text-align: center;
 }
 
 #student-splash {
@@ -179,10 +179,10 @@ li {
     border-left: dotted rgba(255, 255, 255, 0.5) 4px;
 }
 
-#student-splash ul li.active::after {
+/*#student-splash ul li.active::after {
     border-color: white !important;
 }
-
+*/
 #student-splash ul li:last-child::after {
     display: none !important;
 }
@@ -193,11 +193,18 @@ li {
     display: block;
     width: 300px;
     height: 40px;
-    margin: 15px auto 0;
+    margin-top: 15px;
+    margin-bottom: 0;
     text-align: center;
     font-size: 20px;
     line-height: 40px;
     color: #457ab1;
+}
+
+#splash input,
+#splash button {
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #splash button,

@@ -969,6 +969,16 @@
             localStorage.setItem("currentArticleTitle", articleList[0].title);
             location.reload();
         });
+        $(document).on("click", "#student-login", function() {
+            var stuID = $("#group-name > p > span").attr("data-group-id").trim();
+            localStorage.setItem("auth", stuID);
+            var index = Number(getArticleIndexByStudentId(stuID));
+            localStorage.setItem("currentArticle", articleLibrary[index].filename);
+            localStorage.setItem("currentArticleTitle", articleLibrary[index].title);
+            localStorage.setItem("auth-name", "Student " + stuID);
+            location.reload();
+        });
+
         $(document).on("click", "#settings", function() {
             window.location.replace("/robot-ip.htm");
         });
@@ -1065,6 +1075,7 @@
             }, 500);
         });
         window.addEventListener('beforeunload', (event) => {
+            console.log("Testing unload: ", isUpdated);
             if (isUpdated) {
                 activateExitConfirmation(true);
                 // Prevent the immediate closing of the tab
@@ -1258,6 +1269,9 @@
         var elem = "";
         if (localStorage.getItem("auth") == "true") {
             $("#splash").removeClass("hide");
+            if ($('.student-facing').length) {
+                groups = studentsList;
+            }
             $.each(groups, function(i, v) {
                 $("#group-name>ul").append(
                     "<li" +
@@ -1276,7 +1290,7 @@
         } else {
             $("#logged-user > span").text(localStorage.getItem("auth-name").trim());
             $("#splash").addClass("hide");
-            if (isProduction) {
+            if ($(".student-facing").length) {
                 var homework = [];
                 for (let i = 0; i < homeworks.length; i++) {
                     if (homeworks[i].title.trim() === localStorage.getItem("currentArticleTitle").trim()) {
