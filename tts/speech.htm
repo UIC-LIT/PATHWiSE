@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Voice to Text with Silence Detection (jQuery)</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+    <button id="start">Start Listening</button>
+    <p id="status">Status: Idle</p>
+    <p id="transcript">Transcript: <em>(waiting)</em></p>
+    <script>
+    $(function() {
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        if (!SpeechRecognition) {
+            $('#status').text('Status: Web Speech API not supported.');
+            return;
+        }
+
+        const recognition = new SpeechRecognition();
+        recognition.continuous = true;
+        recognition.interimResults = true;
+        recognition.lang = 'en-US';
+
+        let silenceTimer = null;
+        const SILENCE_TIMEOUT = 2500; // 2.5 seconds
+        let finalTranscript = '';
+
+        $('#start').on('click', function() {
+            finalTranscript = '';
+            $('#transcript').html('Transcript: <em>(recording...)</em>');
+            $('#status').text('Status: Listening...');
+            recognition.start();
+        });
+
+        recognition.onresult = function(event) {
+            let interimTranscript = '';
+            for (let i = event.resultIndex; i < event.results.length; ++i) {
+                const transcript = event.results[i][0].transcript;
+                if (event.results[i].isFinal) {
+                    finalTranscript += transcript + ' ';
+                } else {
+                    interimTranscript += transcript;
+                }
+            }
+
+            $('#transcript').html('Transcript: ' + finalTranscript + '<em>' + interimTranscript + '</em>');
+
+            // Reset silence timer
+            if (silenceTimer) clearTimeout(silenceTimer);
+            silenceTimer = setTimeout(() => {
+                recognition.stop();
+                $('#status').text('Status: Stopped (silence detected)');
+            }, SILENCE_TIMEOUT);
+        };
+
+        recognition.onend = function() {
+            if (!finalTranscript.trim()) {
+                $('#status').text('Status: No speech detected.');
+                $('#transcript').html('Transcript: <em>(nothing)</em>');
+            }
+        };
+
+        recognition.onerror = function(event) {
+            $('#status').text('Status: Error - ' + event.error);
+        };
+    });
+    </script>
+</body>
+
+</html>

@@ -33,6 +33,24 @@
         "terror": "SL 500\nFI eyes_terror.jpg\nTL 0 0 0 170 0 255 breathe 1220\nMH 0 10 0 90\nMT -75 0 500\nMAS 90 100 90 100\nMH 0 5 -2 100\nSL 100\nMAS 80 100 80 100\nMH 0 5 2 100\nMH 0 5 -2 100\nMH 0 5 2 100\nMAS 90 100 90 100\nMH 0 5 -2 100\nSL 100\nMAS 80 100 80 100",
         "intro": "SL 500\nFI eyes_default.jpg\nCL 255 255 255\nMH 0 0 0 100\nMAS 90 100 90 100",
     };
+
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRecognition) {
+        console.log('Web Speech API not supported.');
+    }
+
+    const recognition = new SpeechRecognition();
+    recognition.continuous = true;
+    recognition.interimResults = true;
+    recognition.lang = 'en-US';
+
+    let silenceTimer = null;
+    const SILENCE_TIMEOUT = 2500; // 2.5 seconds
+    let finalTranscript = '';
+
+    var currentComment = "c1";
+    var firstAttempt = true;
+
     const executeBehavior = async (behaviorName) => {
         const behaviorContent = behaviors[behaviorName] || behaviors.default;
         const instructions = behaviorContent.split('\n');
@@ -127,7 +145,7 @@
             try {
                 if (localStorage.getItem("auth").includes("student")) {
                     var randomNumber = getRandomNumber();
-                    isProduction ? playInComputer(preIntros[randomNumber].text, "1", preIntros[randomNumber].clip, true) : sendToRobot(preIntros[randomNumber].text, "1");
+                    isProduction ? playInComputer(preIntros[randomNumber].text, "1", preIntros[randomNumber].clip, 1) : sendToRobot(preIntros[randomNumber].text, "1");
                 }
             } catch (error) {
                 console.log("Pre Intro Error: ", error);
@@ -137,7 +155,7 @@
             $('#student-splash').addClass('hide');
             setTimeout(function() {
                 var randomNumber = getRandomNumber();
-                isProduction ? playInComputer(intros[randomNumber].text, "1", intros[randomNumber].clip, true) : sendToRobot(intros[randomNumber].text, "1");
+                isProduction ? playInComputer(intros[randomNumber].text, "1", intros[randomNumber].clip, 1) : sendToRobot(intros[randomNumber].text, "1");
             }, 500);
         });
         $(document).on("click", 'body:not(.audio-playing) .cp:not(.focused)', function() {
@@ -155,11 +173,12 @@
             setTimeout(function() {
                 var flag = false;
                 var id = $this.attr("id");
+                currentComment = id;
                 if (id == "c11") {
                     var randomNumber = getRandomNumber();
                     var text = outros[randomNumber].text;
                     var clip = outros[randomNumber].clip;
-                    flag = true;
+                    flag = 1;
                 } else {
                     var text = $this.attr('data-comment');
                     var clip = $this.attr('data-clip');
@@ -176,7 +195,56 @@
                 $this.removeData('clicked');
             }, 150); // 150ms interval before allowing the next click
         });
+
+        recognition.onresult = function(event) {
+            let interimTranscript = '';
+            for (let i = event.resultIndex; i < event.results.length; ++i) {
+                const transcript = event.results[i][0].transcript;
+                if (event.results[i].isFinal) {
+                    finalTranscript += transcript + ' ';
+                } else {
+                    interimTranscript += transcript;
+                }
+            }
+
+            // Reset silence timer
+            if (silenceTimer) clearTimeout(silenceTimer);
+            silenceTimer = setTimeout(() => {
+                recognition.stop();
+                console.log('Recognition Status: Stopped (silence detected)');
+                if (firstAttempt) {
+                    runPrompts();
+                } else {
+                    console.log(finalTranscript + interimTranscript);
+                    var response = classifyResponse(finalTranscript + ' ' + interimTranscript);
+                    if (response == 2) {
+                        $('.cp#' + currentComment).click();
+                    } else if (response == 0) {
+
+                    } else {
+                        runPrompts();
+                    }
+                }
+
+            }, SILENCE_TIMEOUT);
+        };
+
+        recognition.onend = function() {
+            if (!finalTranscript.trim()) {
+                console.log('Recognition Status: No speech detected.');
+            }
+        };
+
+        recognition.onerror = function(event) {
+            console.log('Recognition Error - ' + event.error);
+        };
     });
+
+    function runPrompts() {
+        var randomNumber = getRandomNumber();
+        firstAttempt = false;
+        isProduction ? playInComputer(prompts[randomNumber].text, "1", prompts[randomNumber].clip, 2) : sendToRobot(prompts[randomNumber].text, "1");
+    }
 
     function recreateCanvas() {
         $("#pages div.cp").remove();
@@ -235,9 +303,9 @@
         }
     }
 
-    function playInComputer(text, emotion, clip, flag = false) {
+    function playInComputer(text, emotion, clip, flag = 0) {
         $(document).find('#selected-emotion > ul li[data-id="' + emotion + '"]').click();
-        if (flag) {
+        if (flag == 1 || flag == 2) {
             setTimeout(function() {
                 //$("#robot-emotions").addClass("speaking");
             }, 200);
@@ -272,12 +340,16 @@
 
         // When the audio finishes playing, remove the hide class if the flag is set
         $(newAudio).on('ended', function() {
-            if (flag) {
+            if (flag == 1 || flag == 2) {
                 $('#start-assignment').removeClass('hide');
                 $('#robot-emotions').removeClass("speaking");
             }
+            if (flag == 0 || flag == 2) {
+                finalTranscript = '';
+                recognition.start();
+            }
             $('body').removeClass('audio-playing');
-            if($("#reading-status > li.done").length == 11){
+            if ($("#reading-status > li.done").length == 11) {
                 setTimeout(function() {
                     window.open('https://uic.ca1.qualtrics.com/jfe/form/SV_8nRwUWCMwRV2JEO', '_blank');
                 }, 1500);
@@ -288,5 +360,19 @@
 
     function getRandomNumber() {
         return Math.floor(Math.random() * 9) + 1; // returns a number between 1 to 10
+    }
+
+    function classifyResponse(text) {
+        const positiveReplies = ["yes", "yeah", "yup", "sure", "okay", "ok", "absolutely", "indeed", "of course", "yessir"];
+        const negativeReplies = ["no", "nope", "nah", "never", "not at all", "no way"];
+        const repeatReplies = ["repeat", "again", "pardon", "what", "say that again", "come again", "can you", "didn't catch"];
+
+        text = text.trim().toLowerCase();
+
+        if (repeatReplies.some(word => text.includes(word))) return 2; // repeat
+        if (positiveReplies.some(word => text.includes(word))) return 1; // positive
+        if (negativeReplies.some(word => text.includes(word))) return 0; // negative
+
+        return 1; // Default to positive
     }
 })(window.jQuery);
