@@ -239,7 +239,7 @@
         $(document).find('#selected-emotion > ul li[data-id="' + emotion + '"]').click();
         if (flag) {
             setTimeout(function() {
-                $("#robot-emotions").addClass("speaking");
+                //$("#robot-emotions").addClass("speaking");
             }, 200);
         }
         var msg = new SpeechSynthesisUtterance();
