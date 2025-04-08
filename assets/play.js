@@ -127,7 +127,7 @@
             try {
                 if (localStorage.getItem("auth").includes("student")) {
                     var randomNumber = getRandomNumber();
-                    //isProduction ? playInComputer(preIntros[randomNumber].text, "1", preIntros[randomNumber].clip, true) : sendToRobot(preIntros[randomNumber].text, "1");
+                    isProduction ? playInComputer(preIntros[randomNumber].text, "1", preIntros[randomNumber].clip, true) : sendToRobot(preIntros[randomNumber].text, "1");
                 }
             } catch (error) {
                 console.log("Pre Intro Error: ", error);
@@ -137,7 +137,7 @@
             $('#student-splash').addClass('hide');
             setTimeout(function() {
                 var randomNumber = getRandomNumber();
-                //isProduction ? playInComputer(intros[randomNumber].text, "1", intros[randomNumber].clip, true) : sendToRobot(intros[randomNumber].text, "1");
+                isProduction ? playInComputer(intros[randomNumber].text, "1", intros[randomNumber].clip, true) : sendToRobot(intros[randomNumber].text, "1");
             }, 500);
         });
         $(document).on("click", 'body:not(.audio-playing) .cp:not(.focused)', function() {

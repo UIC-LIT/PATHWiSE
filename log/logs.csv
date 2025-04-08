@@ -50,3 +50,9 @@ Windows-Firefox-332899026560438,1744125122412,keydown,div#viewerContainer,"{""wh
 Windows-Firefox-332899026560438,1744125124141,mousedown,div#student-splash,"{""which"":3,""pageX"":1010,""pageY"":519}",,A
 Windows-Firefox-332899026560438,1744125128384,mousedown,div.textLayer,"{""which"":1,""pageX"":327,""pageY"":269}",,A
 Windows-Firefox-332899026560438,1744125133249,mousedown,"div#c11.cp p","{""which"":1,""pageX"":681,""pageY"":418}",,A
+Windows-Firefox-332899026560438,1744125594839,mousedown,div#user-profile,"{""which"":1,""pageX"":1872,""pageY"":43}",,A
+Windows-Firefox-332899026560438,1744125595695,mousedown,li#logout,"{""which"":1,""pageX"":1779,""pageY"":164}",,A
+Windows-Firefox-332899026560438,1744125597488,mousedown,"div#group-name p","{""which"":1,""pageX"":979,""pageY"":256}",,A
+Windows-Firefox-332899026560438,1744125598523,mousedown,"div#group-name.active li","{""which"":1,""pageX"":982,""pageY"":331}",,A
+Windows-Firefox-332899026560438,1744125599045,mousedown,button#student-login,"{""which"":1,""pageX"":979,""pageY"":310}",,A
+Windows-Firefox-332899026560438,1744125600876,mousedown,ul#assignment-list,"{""which"":3,""pageX"":984,""pageY"":413}",,A
