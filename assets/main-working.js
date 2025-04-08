@@ -555,7 +555,9 @@
             $("#comments-list ul li").each(function() {
                 $(this).find(".comment-id").removeClass("active");
             });
-            $(".cp").removeClass("focused");
+            if ($(".student-facing").length) {} else {
+                $(".cp").removeClass("focused");
+            }
             $($this).addClass("focused");
             // flori: add blue background to active comment id
             $('#comments-list ul li[data-id="' + $this.attr("id") + '"]').find(".comment-id").addClass("active");

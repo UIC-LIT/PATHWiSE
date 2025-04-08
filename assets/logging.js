@@ -10,7 +10,7 @@
 //
 // $(element).trigger('log', ['myevent', {key1: val1, key2: val2}]);
 
-var ENABLE_NETWORK_LOGGING = false; // Controls network logging.
+var ENABLE_NETWORK_LOGGING = true; // Controls network logging.
 var ENABLE_CONSOLE_LOGGING = false; // Controls console logging.
 var LOG_VERSION = 'A'; // Labels every entry with version: "A".
 
@@ -142,7 +142,7 @@ var GLOBAL_STATE_TO_LOG = function() {
             console.log(uid, time, name, target, info, state, LOG_VERSION);
         }
         if (ENABLE_NETWORK_LOGGING) {
-            sendNetworkLog(uid, time, name, target, info, state, LOG_VERSION);
+            sendNetworkLogLocal(uid, time, name, target, info, state, LOG_VERSION);
         }
     }
 
@@ -206,4 +206,40 @@ function sendNetworkLog(
     // Submit the form using an image to avoid CORS warnings.
     (new Image).src = "https://docs.google.com/forms/d/" + formid +
         "/formResponse?" + params.join("&");
+}
+
+function sendNetworkLogLocal(uid, time, name, target, info, state, version) {
+    try {
+        const logData = {
+            uid,
+            time,
+            name,
+            target,
+            info,
+            state,
+            version
+        };
+
+        const logUrl = window.origin + '/log/log.php';
+        console.log('Sending log to:', logUrl);
+
+        // Using jQuery's $.ajax to send the log
+        $.ajax({
+            url: logUrl,
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(logData),
+            success: function(response) {
+                console.log('Log sent successfully:', response);
+            },
+            error: function(xhr, status, error) {
+                console.error('Log send failed:', error);
+                console.error('Status:', status);
+                console.error('Response:', xhr.responseText);
+            },
+            timeout: 5000 // Timeout in case of slow responses
+        });
+    } catch (e) {
+        console.log("sendNetworkLogLocal error: ", e)
+    }
 }

@@ -90,6 +90,10 @@ li {
     padding-top: 100px;
 }
 
+.student-computer-facing #student-splash {
+    max-width: calc(100vw - 470px) !important;
+}
+
 #splash {
     z-index: 99;
     text-align: center;
@@ -189,7 +193,7 @@ li {
 
 #splash input,
 #splash button,
-#student-splash button {
+#student-splash button:not(.hide) {
     display: block;
     width: 300px;
     height: 40px;
@@ -212,6 +216,7 @@ li {
     text-transform: uppercase;
     cursor: pointer;
 }
+
 
 #login-error {
     margin-top: 15px;
@@ -242,6 +247,7 @@ main {
 }
 
 nav {
+    left: 0;
     top: 0;
     height: 60px;
     background-color: #457ab1;
@@ -1451,6 +1457,10 @@ MAIN CONTENT
     cursor: pointer !important;
 }
 
+.student-facing.audio-playing .cp {
+    pointer-events: none !important;
+}
+
 .student-facing #pages .cp p {
     width: 100%;
     display: inline-block;
@@ -1534,7 +1544,7 @@ MAIN CONTENT
 #editor {
     background: white;
     border: 3px solid #848E99;
-    height: calc(100vh - 60px);
+    height: calc(100vh - 75px);
     overflow-x: hidden;
     overflow-y: auto;
     width: 100%;
@@ -2283,6 +2293,18 @@ body.emoji-toggle-active #robot-emotions[class="neutral"]>div>p::after {
 
 #robot-emotions.neutral {
     background-image: url("images/misty/neutral.png");
+}
+
+#robot-emotions.speaking {
+    background-image: url("images/interactions/speaking.png") !important;
+}
+
+#robot-emotions.listening {
+    background-image: url("images/interactions/listening.png") !important;
+}
+
+#robot-emotions.transitioning {
+    background-image: url("images/interactions/transitioning.png") !important;
 }
 
 #selected-emotion {

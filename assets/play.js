@@ -11,7 +11,7 @@
         "fear": "SL 500\nFIB eyes_fear.jpg 250\nTL 0 0 0 166 0 255 breathe 1377\nMH 0 5 0 100\nSL 500\nMT -25 0 500",
         "distraction": "SL 500\nFI eyes_distraction.gif\nTL 0 0 0 255 81 0 breathe 491\nMH 0 -15 -20 95\nMAS 90 90 90 90\nSL 1750\nMH 10 -15 -15 100",
         "admiration": "SL 500\nFI eyes_admiration.jpg\nTL 0 0 0 255 242 0 breathe 1487\nMH 10 0 0 100",
-        "anger": "SL 500\nFI eyes_rage.jpg\nTL 0 0 0 255 4 0 breathe 312\nMH 0 -10 0 100\nMAS -75 90 -75 90",
+        "rage": "SL 500\nFI eyes_rage.jpg\nTL 0 0 0 255 4 0 breathe 312\nMH 0 -10 0 100\nMAS -75 90 -75 90",
         "interest": "SL 500\nFI eyes_interest.jpg\nTL 0 0 0 255 179 0 breathe 1154\nMH -25 0 0 100\nSL 500\nMT 25 0 500\nMAS 90 90 90 90",
         "acceptance": "SL 500\nFI eyes_acceptance.jpg\nTL 0 0 0 51 255 0 breathe 2601\nMH 0 0 0 100\nMAS 90 90 90 90\nMH 0 10 0 100\nMH 0 0 0 100",
         "surprise": "SL 500\nFI eyes_surprise.png\nTL 0 0 0 255 132 0 breathe 747\nMH 0 -10 0 100\nMAS -90 100 -90 100\nMH 0 0 0 100",
@@ -31,7 +31,7 @@
         "sadness": "SL 500\nFI eyes_sad.jpg\nTL 0 0 0 21 0 255 breathe 3310\nMH 0 7 0 90\nMAS 90 90 90 90",
         "apprehension": "SL 500\nFI eyes_apprehension.jpg\nTL 0 0 0 0 64 255 breathe 2387\nMAS 90 100 90 100\nMH 0 0 -2 100\nSL 100\nMAS 80 100 80 100\nMH 0 0 2 100\nMH 0 0 -2 100\nMAS 90 100 90 100\nSL 100\nMAS 80 100 80 100",
         "terror": "SL 500\nFI eyes_terror.jpg\nTL 0 0 0 170 0 255 breathe 1220\nMH 0 10 0 90\nMT -75 0 500\nMAS 90 100 90 100\nMH 0 5 -2 100\nSL 100\nMAS 80 100 80 100\nMH 0 5 2 100\nMH 0 5 -2 100\nMH 0 5 2 100\nMAS 90 100 90 100\nMH 0 5 -2 100\nSL 100\nMAS 80 100 80 100",
-        "neutral": "SL 500\nFI eyes_default.jpg\nCL 255 255 255\nMH 0 0 0 100\nMAS 90 100 90 100",
+        "intro": "SL 500\nFI eyes_default.jpg\nCL 255 255 255\nMH 0 0 0 100\nMAS 90 100 90 100",
     };
     const executeBehavior = async (behaviorName) => {
         const behaviorContent = behaviors[behaviorName] || behaviors.default;
@@ -125,25 +125,44 @@
         }, 150);
         setTimeout(function() {
             var randomNumber = getRandomNumber();
-            isProduction ? sendToRobot(preIntros[randomNumber].text, emotionsList[preIntros[randomNumber].emotion], clip) : sendToRobot(text, behavior);
+            isProduction ? playInComputer(preIntros[randomNumber].text, "1", preIntros[randomNumber].clip, true) : sendToRobot(preIntros[randomNumber].text, "1");
         }, 500);
         $(document).on("click", "#start-assignment", function() {
             $('#student-splash').addClass('hide');
+            setTimeout(function() {
+                var randomNumber = getRandomNumber();
+                isProduction ? playInComputer(intros[randomNumber].text, "1", intros[randomNumber].clip, true) : sendToRobot(intros[randomNumber].text, "1");
+            }, 500);
         });
-        $(document).on("click", '.cp', function() {
+        $(document).on("click", 'body:not(.audio-playing) .cp', function() {
             var $this = $(this);
+            var clicked = $this.data('clicked'); // Check if the element was clicked recently
+
+            // If already clicked within the last 150ms, ignore the second click
+            if (clicked) {
+                return;
+            }
+
+            // Set flag to prevent double click
+            $this.data('clicked', true);
+
             setTimeout(function() {
                 var text = $this.attr('data-comment');
                 var clip = $this.attr('data-clip');
                 var emotion = $this.attr('data-emotion');
                 var behavior = emotionsList[emotion];
+
                 if ($('.student-robot-facing').length) {
                     isProduction ? sendToRobot(text, behavior, clip) : sendToRobot(text, behavior);
                 } else if ($('.student-computer-facing').length) {
                     isProduction ? playInComputer(text, emotion, clip) : playInComputer(text, emotion);
                 }
-            }, 150);
+
+                // Reset the clicked flag after the timeout
+                $this.removeData('clicked');
+            }, 150); // 150ms interval before allowing the next click
         });
+
     });
 
     function recreateCanvas() {
@@ -202,8 +221,13 @@
         }
     }
 
-    function playInComputer(text, emotion, clip) {
+    function playInComputer(text, emotion, clip, flag = false) {
         $(document).find('#selected-emotion > ul li[data-id="' + emotion + '"]').click();
+        if (flag) {
+            setTimeout(function() {
+                $("#robot-emotions").addClass("speaking");
+            }, 200);
+        }
         var msg = new SpeechSynthesisUtterance();
         var voices = window.speechSynthesis.getVoices();
         msg.voice = voices[1];
@@ -213,22 +237,37 @@
         msg.pitch = 1.4;
         msg.text = text;
         msg.lang = "en-US";
-        isProduction ? playClip(window.location.origin + '/assets/audios/' + clip + '.mp3') : speechSynthesis.speak(msg);
+        isProduction ? playClip(window.location.origin + '/assets/audios/' + clip + '.mp3', flag) : speechSynthesis.speak(msg);
     }
 
-    function playClip(audioSrc) {
+    function playClip(audioSrc, flag) {
+        $('body').addClass('audio-playing');
         // Stop all currently playing audio elements
-        document.querySelectorAll('audio').forEach(audio => {
-            audio.pause();
-            audio.currentTime = 0;
+        $(document).find('audio').each(function() {
+            // Check if the audio is not paused
+            if (!this.paused) {
+                $(this)[0].pause(); // Pause the audio
+                $(this)[0].currentTime = 0; // Reset playback to the beginning
+            }
         });
-
         // Create a new audio element and play the given MP3 file
         const newAudio = new Audio(audioSrc);
-        newAudio.play();
+        newAudio.play().catch(function(e) {
+            console.warn('Autoplay might be blocked:', e);
+        });
+
+        // When the audio finishes playing, remove the hide class if the flag is set
+        $(newAudio).on('ended', function() {
+            if (flag) {
+                $('#start-assignment').removeClass('hide');
+                $('#robot-emotions').removeClass("speaking");
+            }
+            $('body').removeClass('audio-playing');
+        });
     }
 
+
     function getRandomNumber() {
-        return Math.floor(Math.random() * 10) + 1; // returns a number between 1 to 10
+        return Math.floor(Math.random() * 9) + 1; // returns a number between 1 to 10
     }
 })(window.jQuery);
