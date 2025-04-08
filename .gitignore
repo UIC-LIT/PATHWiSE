@@ -5,3 +5,4 @@ nlp/cert.crt
 nlp/key.pem
 pathnlp
 tts/credentials.json
+log/logs.csv

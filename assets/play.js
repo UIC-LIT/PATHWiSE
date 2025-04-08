@@ -277,6 +277,11 @@
                 $('#robot-emotions').removeClass("speaking");
             }
             $('body').removeClass('audio-playing');
+            if($("#reading-status > li.done").length == 11){
+                setTimeout(function() {
+                    window.open('https://uic.ca1.qualtrics.com/jfe/form/SV_8nRwUWCMwRV2JEO', '_blank');
+                }, 1500);
+            }
         });
     }
 
