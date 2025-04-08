@@ -6,31 +6,38 @@ var isProduction = true;
 var studentsList = [{
         'name': '1',
         'id': 'student-1',
-        'current': 'Meet the Microbes and Meningitis'
-    },
-    {
-        'name': '2',
-        'id': 'student-2',
-        'current': 'Human Blood'
+        'current': 'Meet the Microbes'
     },
     {
         'name': '3',
         'id': 'student-3',
-        'current': 'What are Antibodies'
+        'current': 'Human Blood'
     },
     {
         'name': '4',
         'id': 'student-4',
+        'current': 'What are Antibodies'
+    },
+    {
+        'name': '9',
+        'id': 'student-9',
         'current': 'Justin Beiber and Lyme Disease'
     }
 ];
 
 var homeworks = [{
-        'title': 'Meet the Microbes and Meningitis',
+        'title': 'Meet the Microbes',
         'homework': [
-            { "text": "I'm a little confused, can you explain that to me?", "clip": "1001", "emotion": "6", "type": "1", "top": 249, "left": 528, "id": "c1" },
-            { "text": "I THINK I understood, but could you summarize what that means for me?", "clip": "1002", "emotion": "4", "type": "1", "top": 884, "left": 651, "id": "c2" },
-            { "text": "Is there something in your home that works this way?", "clip": "1003", "emotion": "3", "type": "3", "top": 1907, "left": 565, "id": "c3" }
+            { "text": "Wow, it's amazing to think about how tiny germs are and how they're everywhere around us without us even seeing them! Side note: What is smaller than tiny germs?", "emotion": "1", "type": "4", "top": 665, "left": 938, "id": "c1", "clip": "1001" },
+            { "text": "Why is it important to avoid sharing utensils, drinking glasses, and toothbrushes? Do you share a lot during lunch time?", "emotion": "2", "type": "2", "top": 5454, "left": 622, "id": "c10", "clip": "1002" },
+            { "text": "Huh? What do you think they mean when they say microorganisms?", "emotion": "1", "type": "2", "top": 743, "left": 1052, "id": "c2", "clip": "1003" },
+            { "text": "Have you heard of other diseases caused by viruses in health class?", "emotion": "1", "type": "3", "top": 1490, "left": 1026, "id": "c3", "clip": "1004" },
+            { "text": "Name another place in your home that matches  where bacteria love to live in.", "emotion": "2", "type": "2", "top": 1938, "left": 802, "id": "c4", "clip": "1005" },
+            { "text": "Just like germs, some robots get a bad reputation, but most of us are here to assist and help in any way we can.", "emotion": "4", "type": "3", "top": 992, "left": 624, "id": "c5", "clip": "1006" },
+            { "text": "Amoebic dysentery is a sickness that can make you have lots of loose poop, and it spreads when you drink bad water.", "emotion": "2", "type": "1", "top": 3053, "left": 668, "id": "c6", "clip": "1007" },
+            { "text": "Huh? What do you think they mean when they say your body 'kills' germs? How does that happen without you knowing?", "emotion": "6", "type": "2", "top": 3659, "left": 580, "id": "c7", "clip": "1008" },
+            { "text": "If antibiotics don't work against bacteria, then what does?", "emotion": "3", "type": "2", "top": 4023, "left": 936, "id": "c8", "clip": "1009" },
+            { "text": "Is there someone in your home that makes sure you always wash up? How diligent are you in washing your hands?", "emotion": "1", "type": "3", "top": 4662, "left": 566, "id": "c9", "clip": "1010" }
         ]
     },
     {
@@ -133,8 +140,12 @@ var outros = [
 ];
 
 var articleLibrary = [{
-        'title': 'Meet the Microbes and Meningitis',
-        'filename': 'meet_the_microbes_and_meningitis'
+        'title': 'Meet the Microbes',
+        'filename': 'meet_the_microbes'
+    },
+    {
+        'title': 'Menacing Meningitis',
+        'filename': 'menacing_meningitis'
     },
     {
         'title': 'Human Blood',
