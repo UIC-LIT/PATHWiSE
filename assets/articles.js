@@ -96,10 +96,10 @@ var prompts = [
     { "text": "Is there something else you'd like to say about this?", "clip": "2", "emotion": "100" },
     { "text": "Do you have any other thoughts to share?", "clip": "3", "emotion": "100" },
     { "text": "Would you like to continue with more input?", "clip": "4", "emotion": "100" },
-    { "text": "Shall we add more to this discussion?", "clip": "5", "emotion": "100" },
+    { "text": "Do you want to add more to this discussion?", "clip": "5", "emotion": "100" },
     { "text": "Would you like to expand on that?", "clip": "6", "emotion": "100" },
     { "text": "Any additional thoughts you'd like to share?", "clip": "7", "emotion": "100" },
-    { "text": "Should we continue with more ideas?", "clip": "8", "emotion": "100" },
+    { "text": "Do you want to continue with more ideas?", "clip": "8", "emotion": "100" },
     { "text": "Would you like to add another perspective?", "clip": "9", "emotion": "100" },
     { "text": "Anything else you'd like to contribute?", "clip ": "10", "emotion ": "100" }
 ];
