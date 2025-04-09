@@ -1,1 +1,383 @@
 
+Windows-Firefox-332899026560438,1744127630838,mousedown,"div#c1.cp p","{""which"":3,""pageX"":411,""pageY"":337}",,A
+Windows-Firefox-332899026560438,1744127631022,mousedown,"div#c1.cp p","{""which"":3,""pageX"":413,""pageY"":337}",,A
+Windows-Firefox-332899026560438,1744128875143,mousedown,div#user-profile,"{""which"":1,""pageX"":1877,""pageY"":45}",,A
+Windows-Firefox-332899026560438,1744128877688,mousedown,div#robot-emotions.anticipation,"{""which"":1,""pageX"":1584,""pageY"":225}",,A
+Windows-Firefox-332899026560438,1744128877747,mousedown,div#robot-emotions.anticipation,"{""which"":1,""pageX"":1584,""pageY"":225}",,A
+Windows-Firefox-332899026560438,1744129060098,mousedown,button#student-login,"{""which"":1,""pageX"":940,""pageY"":296}",,A
+Windows-Chrome-548402558572186,1744129962649,mousedown,div#student-splash,"{""which"":1,""pageX"":111,""pageY"":78}",,A
+Windows-Chrome-548402558572186,1744129964167,keydown,body.student-facing.student-computer-facing.audio-playing,"{""which"":17}",,A
+Windows-Chrome-548402558572186,1744129964208,keydown,body.student-facing.student-computer-facing.audio-playing,"{""which"":16}",,A
+Windows-Chrome-548402558572186,1744129964282,keydown,body.student-facing.student-computer-facing.audio-playing,"{""which"":82}",,A
+Windows-Chrome-548402558572186,1744129970499,mousedown,div#user-profile,"{""which"":1,""pageX"":1888,""pageY"":32}",,A
+Windows-Chrome-548402558572186,1744129971249,mousedown,"div#user-profile-menu ul","{""which"":1,""pageX"":1748,""pageY"":151}",,A
+Windows-Chrome-548402558572186,1744129973359,mousedown,div#user-profile,"{""which"":1,""pageX"":1887,""pageY"":29}",,A
+Windows-Chrome-548402558572186,1744129974272,mousedown,li#logout,"{""which"":1,""pageX"":1730,""pageY"":162}",,A
+Windows-Chrome-548402558572186,1744129976087,mousedown,"div#group-name p","{""which"":1,""pageX"":1020,""pageY"":244}",,A
+Windows-Chrome-548402558572186,1744129976952,mousedown,"div#group-name.active li","{""which"":1,""pageX"":976,""pageY"":385}",,A
+Windows-Chrome-548402558572186,1744129977614,mousedown,button#student-login,"{""which"":1,""pageX"":990,""pageY"":317}",,A
+Windows-Chrome-548402558572186,1744130100299,mousedown,button#start-assignment,"{""which"":1,""pageX"":401,""pageY"":535}",,A
+Windows-Chrome-548402558572186,1744133945277,mousedown,div#user-profile,"{""which"":1,""pageX"":1890,""pageY"":33}",,A
+Windows-Chrome-548402558572186,1744133946076,mousedown,"div#user-profile-menu ul","{""which"":1,""pageX"":1745,""pageY"":153}",,A
+Windows-Chrome-548402558572186,1744133948313,mousedown,div#user-profile,"{""which"":1,""pageX"":1883,""pageY"":28}",,A
+Windows-Chrome-548402558572186,1744133949062,mousedown,li#logout,"{""which"":1,""pageX"":1737,""pageY"":172}",,A
+Windows-Chrome-548402558572186,1744133950466,mousedown,"div#group-name p","{""which"":1,""pageX"":975,""pageY"":248}",,A
+Windows-Chrome-548402558572186,1744133951221,mousedown,"div#group-name.active li","{""which"":1,""pageX"":977,""pageY"":319}",,A
+Windows-Chrome-548402558572186,1744133951670,mousedown,button#student-login,"{""which"":1,""pageX"":965,""pageY"":285}",,A
+Windows-Chrome-548402558572186,1744133952499,mousedown,div#student-splash,"{""which"":3,""pageX"":873,""pageY"":312}",,A
+Windows-Chrome-548402558572186,1744133955149,mousedown,div#student-splash,"{""which"":1,""pageX"":567,""pageY"":415}",,A
+Windows-Chrome-548402558572186,1744133955605,mousedown,div#student-splash,"{""which"":3,""pageX"":567,""pageY"":414}",,A
+Windows-Chrome-548402558572186,1744133981912,mousedown,button#start-assignment,"{""which"":1,""pageX"":85,""pageY"":246}",,A
+Windows-Chrome-548402558572186,1744133999297,mousedown,"div.textLayer span","{""which"":1,""pageX"":333,""pageY"":260}",,A
+Windows-Chrome-548402558572186,1744133999311,mousedown,"div.textLayer span","{""which"":1,""pageX"":333,""pageY"":260}",,A
+Windows-Chrome-548402558572186,1744133999807,keydown,div#viewerContainer,"{""which"":17}",,A
+Windows-Chrome-548402558572186,1744133999990,keydown,div#viewerContainer,"{""which"":16}",,A
+Windows-Chrome-548402558572186,1744134000190,keydown,div#viewerContainer,"{""which"":82}",,A
+Windows-Chrome-548402558572186,1744134002750,mousedown,div.brand,"{""which"":3,""pageX"":854,""pageY"":147}",,A
+Windows-Chrome-548402558572186,1744138934886,mousedown,"ul#assignment-list li","{""which"":3,""pageX"":966,""pageY"":234}",,A
+Windows-Chrome-548402558572186,1744138936252,mousedown,div#student-splash,"{""which"":1,""pageX"":1047,""pageY"":732}",,A
+Windows-Chrome-548402558572186,1744138937408,mousedown,div#student-splash,"{""which"":3,""pageX"":1050,""pageY"":491}",,A
+Windows-Chrome-548402558572186,1744138954464,mousedown,div.textLayer,"{""which"":1,""pageX"":774,""pageY"":681}",,A
+Windows-Chrome-548402558572186,1744138963070,mousedown,div.textLayer,"{""which"":1,""pageX"":1220,""pageY"":656}",,A
+Windows-Chrome-548402558572186,1744138965210,mousedown,div.textLayer,"{""which"":1,""pageX"":798,""pageY"":671}",,A
+Windows-Chrome-548402558572186,1744138971006,mousedown,div#student-splash,"{""which"":1,""pageX"":247,""pageY"":136}",,A
+Windows-Chrome-548402558572186,1744138972177,keydown,body.student-facing.student-computer-facing.audio-playing,"{""which"":17}",,A
+Windows-Chrome-548402558572186,1744138972233,keydown,body.student-facing.student-computer-facing.audio-playing,"{""which"":16}",,A
+Windows-Chrome-548402558572186,1744138972330,keydown,body.student-facing.student-computer-facing.audio-playing,"{""which"":82}",,A
+Windows-Chrome-548402558572186,1744139026938,mousedown,div#student-splash,"{""which"":1,""pageX"":241,""pageY"":330}",,A
+Windows-Chrome-548402558572186,1744139039454,mousedown,div#student-splash,"{""which"":1,""pageX"":1301,""pageY"":703}",,A
+Windows-Chrome-548402558572186,1744139060233,mousedown,button#start-assignment,"{""which"":1,""pageX"":573,""pageY"":538}",,A
+Windows-Chrome-548402558572186,1744139076822,mousedown,"div#c11.cp p","{""which"":1,""pageX"":776,""pageY"":681}",,A
+Windows-Chrome-548402558572186,1744139095498,mousedown,div#user-profile,"{""which"":1,""pageX"":1885,""pageY"":34}",,A
+Windows-Chrome-548402558572186,1744139239346,mousedown,li#logout,"{""which"":1,""pageX"":1741,""pageY"":168}",,A
+Windows-Chrome-548402558572186,1744139240644,mousedown,"div#group-name p","{""which"":1,""pageX"":1020,""pageY"":247}",,A
+Windows-Chrome-548402558572186,1744139241496,mousedown,"div#group-name.active li","{""which"":1,""pageX"":971,""pageY"":412}",,A
+Windows-Chrome-548402558572186,1744139242541,mousedown,button#student-login,"{""which"":1,""pageX"":955,""pageY"":302}",,A
+Windows-Chrome-548402558572186,1744139247986,mousedown,li.active,"{""which"":3,""pageX"":808,""pageY"":436}",,A
+Windows-Chrome-548402558572186,1744139285840,mousedown,div#student-splash,"{""which"":1,""pageX"":152,""pageY"":79}",,A
+Windows-Chrome-548402558572186,1744139286593,keydown,body.student-facing.student-computer-facing.audio-playing,"{""which"":17}",,A
+Windows-Chrome-548402558572186,1744139286607,keydown,body.student-facing.student-computer-facing.audio-playing,"{""which"":16}",,A
+Windows-Chrome-548402558572186,1744139286705,keydown,body.student-facing.student-computer-facing.audio-playing,"{""which"":82}",,A
+Windows-Chrome-548402558572186,1744140200066,mousedown,div#student-splash,"{""which"":1,""pageX"":174,""pageY"":62}",,A
+Windows-Chrome-548402558572186,1744140200827,keydown,body.student-facing.student-computer-facing,"{""which"":17}",,A
+Windows-Chrome-548402558572186,1744140200883,keydown,body.student-facing.student-computer-facing,"{""which"":16}",,A
+Windows-Chrome-548402558572186,1744140200964,keydown,body.student-facing.student-computer-facing,"{""which"":82}",,A
+Windows-Chrome-548402558572186,1744140205166,mousedown,div#robot-emotions.anticipation,"{""which"":3,""pageX"":1507,""pageY"":129}",,A
+Windows-Chrome-548402558572186,1744140233026,mousedown,button#start-assignment,"{""which"":1,""pageX"":197,""pageY"":543}",,A
+Windows-Chrome-548402558572186,1744140250080,mousedown,"div#c2.cp p","{""which"":1,""pageX"":584,""pageY"":722}",,A
+Windows-Chrome-548402558572186,1744141383928,mousedown,div#robot-emotions.sadness,"{""which"":3,""pageX"":1458,""pageY"":145}",,A
+Windows-Chrome-548402558572186,1744141390968,mousedown,div#robot-emotions.sadness,"{""which"":1,""pageX"":1292,""pageY"":301}",,A
+Windows-Chrome-548402558572186,1744141391747,keydown,body.student-facing.student-computer-facing,"{""which"":17}",,A
+Windows-Chrome-548402558572186,1744141391811,keydown,body.student-facing.student-computer-facing,"{""which"":16}",,A
+Windows-Chrome-548402558572186,1744141391879,keydown,body.student-facing.student-computer-facing,"{""which"":82}",,A
+Windows-Chrome-548402558572186,1744141394355,keydown,div#viewerContainer,"{""which"":17}",,A
+Windows-Chrome-548402558572186,1744141394412,keydown,div#viewerContainer,"{""which"":16}",,A
+Windows-Chrome-548402558572186,1744141394479,keydown,div#viewerContainer,"{""which"":82}",,A
+Windows-Chrome-548402558572186,1744141426304,mousedown,button#start-assignment,"{""which"":1,""pageX"":295,""pageY"":538}",,A
+Windows-Chrome-548402558572186,1744141442271,mousedown,"div#c1.cp p","{""which"":1,""pageX"":888,""pageY"":863}",,A
+Windows-Chrome-548402558572186,1744141478406,mousedown,"div#c2.cp p","{""which"":1,""pageX"":597,""pageY"":629}",,A
+Windows-Chrome-548402558572186,1744141478465,mousedown,"div#c2.cp.focused p","{""which"":1,""pageX"":597,""pageY"":629}",,A
+Windows-Chrome-548402558572186,1744194908524,mousedown,div#student-splash,"{""which"":3,""pageX"":1306,""pageY"":83}",,A
+Windows-Chrome-548402558572186,1744194920790,mousedown,div#student-splash,"{""which"":1,""pageX"":140,""pageY"":473}",,A
+Windows-Chrome-548402558572186,1744194934161,mousedown,button#start-assignment,"{""which"":1,""pageX"":436,""pageY"":558}",,A
+Windows-Chrome-548402558572186,1744195064108,mousedown,div.textLayer,"{""which"":1,""pageX"":249,""pageY"":380}",,A
+Windows-Chrome-548402558572186,1744195067773,mousedown,"div#c1.cp p","{""which"":1,""pageX"":897,""pageY"":364}",,A
+Windows-Chrome-548402558572186,1744195071296,mousedown,"div.textLayer span","{""which"":1,""pageX"":595,""pageY"":636}",,A
+Windows-Chrome-548402558572186,1744195113717,mousedown,"div#c2.cp p","{""which"":1,""pageX"":595,""pageY"":622}",,A
+Windows-Chrome-548402558572186,1744195142964,mousedown,"div.textLayer span","{""which"":1,""pageX"":369,""pageY"":746}",,A
+Windows-Chrome-548402558572186,1744195254652,mousedown,"div#c3.cp p","{""which"":1,""pageX"":375,""pageY"":642}",,A
+Windows-Chrome-548402558572186,1744195254699,mousedown,"div#c3.cp.focused p","{""which"":1,""pageX"":375,""pageY"":642}",,A
+Windows-Chrome-548402558572186,1744195279326,mousedown,"div#c4.cp p","{""which"":1,""pageX"":874,""pageY"":768}",,A
+Windows-Chrome-548402558572186,1744195389025,mousedown,"div#c5.cp p","{""which"":1,""pageX"":529,""pageY"":575}",,A
+Windows-Chrome-548402558572186,1744195394323,mousedown,"div#c6.cp p","{""which"":1,""pageX"":775,""pageY"":610}",,A
+Windows-Chrome-548402558572186,1744195402659,mousedown,"div.textLayer span","{""which"":1,""pageX"":430,""pageY"":660}",,A
+Windows-Chrome-548402558572186,1744195402715,mousedown,"div.textLayer span","{""which"":1,""pageX"":430,""pageY"":660}",,A
+Windows-Chrome-548402558572186,1744195623167,mousedown,div#student-splash,"{""which"":1,""pageX"":143,""pageY"":115}",,A
+Windows-Chrome-548402558572186,1744195624469,keydown,body.student-facing.student-computer-facing.audio-playing,"{""which"":16}",,A
+Windows-Chrome-548402558572186,1744195624493,keydown,body.student-facing.student-computer-facing.audio-playing,"{""which"":17}",,A
+Windows-Chrome-548402558572186,1744195624565,keydown,body.student-facing.student-computer-facing.audio-playing,"{""which"":82}",,A
+Windows-Chrome-548402558572186,1744195632961,mousedown,div#student-splash,"{""which"":1,""pageX"":143,""pageY"":115}",,A
+Windows-Chrome-548402558572186,1744195633021,mousedown,div#student-splash,"{""which"":1,""pageX"":143,""pageY"":115}",,A
+Windows-Chrome-548402558572186,1744195634631,mousedown,div.brand,"{""which"":1,""pageX"":755,""pageY"":159}",,A
+Windows-Chrome-548402558572186,1744195657838,mousedown,button#start-assignment,"{""which"":1,""pageX"":544,""pageY"":525}",,A
+Windows-Chrome-548402558572186,1744195675086,mousedown,"div#c1.cp p","{""which"":1,""pageX"":901,""pageY"":356}",,A
+Windows-Chrome-548402558572186,1744195677805,mousedown,"div.textLayer span","{""which"":1,""pageX"":597,""pageY"":634}",,A
+Windows-Chrome-548402558572186,1744195677915,mousedown,"div.textLayer span","{""which"":1,""pageX"":597,""pageY"":634}",,A
+Windows-Chrome-548402558572186,1744195687172,mousedown,"div#c2.cp p","{""which"":1,""pageX"":593,""pageY"":628}",,A
+Windows-Chrome-548402558572186,1744195710619,mousedown,"div#c3.cp p","{""which"":1,""pageX"":366,""pageY"":738}",,A
+Windows-Chrome-548402558572186,1744195716515,mousedown,"div#c4.cp p","{""which"":1,""pageX"":848,""pageY"":875}",,A
+Windows-Chrome-548402558572186,1744195721025,mousedown,"div.textLayer span","{""which"":1,""pageX"":534,""pageY"":765}",,A
+Windows-Chrome-548402558572186,1744195723045,mousedown,"div.textLayer span","{""which"":1,""pageX"":538,""pageY"":773}",,A
+Windows-Chrome-548402558572186,1744195740400,mousedown,"div#c5.cp p","{""which"":1,""pageX"":532,""pageY"":562}",,A
+Windows-Chrome-548402558572186,1744196763807,mousedown,div.container,"{""which"":1,""pageX"":695,""pageY"":34}",,A
+Windows-Chrome-548402558572186,1744196764410,keydown,body.student-facing.student-computer-facing,"{""which"":17}",,A
+Windows-Chrome-548402558572186,1744196764524,keydown,body.student-facing.student-computer-facing,"{""which"":16}",,A
+Windows-Chrome-548402558572186,1744196764602,keydown,body.student-facing.student-computer-facing,"{""which"":82}",,A
+Windows-Chrome-548402558572186,1744196771941,mousedown,div#student-splash,"{""which"":1,""pageX"":695,""pageY"":33}",,A
+Windows-Chrome-548402558572186,1744196773643,keydown,body.student-facing.student-computer-facing.audio-playing,"{""which"":17}",,A
+Windows-Chrome-548402558572186,1744196773802,keydown,body.student-facing.student-computer-facing.audio-playing,"{""which"":16}",,A
+Windows-Chrome-548402558572186,1744196773876,keydown,body.student-facing.student-computer-facing.audio-playing,"{""which"":82}",,A
+Windows-Chrome-548402558572186,1744196776054,mousedown,div#student-splash,"{""which"":1,""pageX"":166,""pageY"":357}",,A
+Windows-Chrome-548402558572186,1744196812637,mousedown,button#start-assignment,"{""which"":1,""pageX"":484,""pageY"":545}",,A
+Windows-Chrome-548402558572186,1744196827917,mousedown,"div#c1.cp p","{""which"":1,""pageX"":910,""pageY"":457}",,A
+Windows-Chrome-548402558572186,1744196827994,mousedown,"div#c1.cp.focused p","{""which"":1,""pageX"":910,""pageY"":457}",,A
+Windows-Chrome-548402558572186,1744196849117,mousedown,"div#c2.cp p","{""which"":1,""pageX"":600,""pageY"":735}",,A
+Windows-Chrome-548402558572186,1744196894499,mousedown,"div.textLayer span","{""which"":1,""pageX"":388,""pageY"":838}",,A
+Windows-Chrome-548402558572186,1744196894614,mousedown,"div.textLayer span","{""which"":1,""pageX"":388,""pageY"":838}",,A
+Windows-Chrome-548402558572186,1744196895547,mousedown,"div.textLayer span","{""which"":1,""pageX"":388,""pageY"":838}",,A
+Windows-Chrome-548402558572186,1744197123784,mousedown,div#viewer.pdfViewer,"{""which"":1,""pageX"":174,""pageY"":248}",,A
+Windows-Chrome-548402558572186,1744197124362,keydown,div#viewerContainer,"{""which"":17}",,A
+Windows-Chrome-548402558572186,1744197124481,keydown,div#viewerContainer,"{""which"":16}",,A
+Windows-Chrome-548402558572186,1744197124625,keydown,div#viewerContainer,"{""which"":82}",,A
+Windows-Chrome-548402558572186,1744197128010,mousedown,div#student-splash,"{""which"":1,""pageX"":174,""pageY"":248}",,A
+Windows-Chrome-548402558572186,1744197129266,keydown,body.student-facing.student-computer-facing.audio-playing,"{""which"":17}",,A
+Windows-Chrome-548402558572186,1744197129323,keydown,body.student-facing.student-computer-facing.audio-playing,"{""which"":16}",,A
+Windows-Chrome-548402558572186,1744197129402,keydown,body.student-facing.student-computer-facing.audio-playing,"{""which"":82}",,A
+Windows-Chrome-548402558572186,1744197142357,mousedown,div#student-splash,"{""which"":1,""pageX"":193,""pageY"":285}",,A
+Windows-Chrome-548402558572186,1744197163424,mousedown,button#start-assignment,"{""which"":1,""pageX"":407,""pageY"":552}",,A
+Windows-Chrome-548402558572186,1744197167020,mousedown,"div.textLayer span","{""which"":1,""pageX"":900,""pageY"":172}",,A
+Windows-Chrome-548402558572186,1744197186240,mousedown,"div#c1.cp p","{""which"":1,""pageX"":880,""pageY"":361}",,A
+Windows-Chrome-548402558572186,1744197247028,mousedown,"div#c2.cp p","{""which"":1,""pageX"":592,""pageY"":629}",,A
+Windows-Chrome-548402558572186,1744197259359,mousedown,"div#c3.cp p","{""which"":1,""pageX"":379,""pageY"":736}",,A
+Windows-Chrome-548402558572186,1744197259433,mousedown,"div#c3.cp.focused p","{""which"":1,""pageX"":379,""pageY"":736}",,A
+Windows-Chrome-548402558572186,1744197259495,mousedown,"div#c3.cp.focused p","{""which"":1,""pageX"":379,""pageY"":736}",,A
+Windows-Chrome-548402558572186,1744197267656,mousedown,div.textLayer,"{""which"":1,""pageX"":866,""pageY"":865}",,A
+Windows-Chrome-548402558572186,1744197267775,mousedown,div.textLayer,"{""which"":1,""pageX"":866,""pageY"":865}",,A
+Windows-Chrome-548402558572186,1744197271168,mousedown,"div#c4.cp p","{""which"":1,""pageX"":866,""pageY"":668}",,A
+Windows-Chrome-548402558572186,1744206391264,mousedown,div#viewer.pdfViewer,"{""which"":1,""pageX"":146,""pageY"":181}",,A
+Windows-Chrome-548402558572186,1744206395384,keydown,div#viewerContainer,"{""which"":17}",,A
+Windows-Chrome-548402558572186,1744206395470,keydown,div#viewerContainer,"{""which"":16}",,A
+Windows-Chrome-548402558572186,1744206395638,keydown,div#viewerContainer,"{""which"":82}",,A
+Windows-Chrome-548402558572186,1744206404632,mousedown,ul#assignment-list,"{""which"":1,""pageX"":757,""pageY"":264}",,A
+Windows-Chrome-548402558572186,1744206405338,mousedown,ul#assignment-list,"{""which"":1,""pageX"":866,""pageY"":263}",,A
+Windows-Chrome-548402558572186,1744206405817,mousedown,ul#assignment-list,"{""which"":1,""pageX"":877,""pageY"":345}",,A
+Windows-Chrome-548402558572186,1744206406361,mousedown,div#student-splash,"{""which"":1,""pageX"":885,""pageY"":497}",,A
+Windows-Chrome-548402558572186,1744206432611,mousedown,button#start-assignment,"{""which"":1,""pageX"":661,""pageY"":545}",,A
+Windows-Chrome-548402558572186,1744206438332,mousedown,"div.textLayer span","{""which"":1,""pageX"":902,""pageY"":365}",,A
+Windows-Chrome-548402558572186,1744206768075,mousedown,div#viewer.pdfViewer,"{""which"":1,""pageX"":179,""pageY"":335}",,A
+Windows-Chrome-548402558572186,1744206789596,mousedown,div#viewer.pdfViewer,"{""which"":1,""pageX"":196,""pageY"":112}",,A
+Windows-Chrome-548402558572186,1744206790397,keydown,div#viewerContainer,"{""which"":17}",,A
+Windows-Chrome-548402558572186,1744206790655,keydown,div#viewerContainer,"{""which"":16}",,A
+Windows-Chrome-548402558572186,1744206790772,keydown,div#viewerContainer,"{""which"":82}",,A
+Windows-Chrome-548402558572186,1744206795919,mousedown,div#student-splash,"{""which"":1,""pageX"":115,""pageY"":70}",,A
+Windows-Chrome-548402558572186,1744206827863,mousedown,button#start-assignment,"{""which"":1,""pageX"":537,""pageY"":532}",,A
+Windows-Chrome-548402558572186,1744206847999,mousedown,"div#c1.cp p","{""which"":1,""pageX"":889,""pageY"":365}",,A
+Windows-Chrome-548402558572186,1744206861047,mousedown,div.textLayer,"{""which"":1,""pageX"":903,""pageY"":429}",,A
+Windows-Chrome-548402558572186,1744206862750,mousedown,"div#c2.cp p","{""which"":1,""pageX"":612,""pageY"":631}",,A
+Windows-Chrome-548402558572186,1744206903629,mousedown,div#viewer.pdfViewer,"{""which"":1,""pageX"":70,""pageY"":464}",,A
+Windows-Chrome-548402558572186,1744206904612,keydown,div#viewerContainer,"{""which"":17}",,A
+Windows-Chrome-548402558572186,1744206904732,keydown,div#viewerContainer,"{""which"":16}",,A
+Windows-Chrome-548402558572186,1744206904781,keydown,div#viewerContainer,"{""which"":82}",,A
+Windows-Chrome-548402558572186,1744206909106,mousedown,div#student-splash,"{""which"":1,""pageX"":70,""pageY"":463}",,A
+Windows-Chrome-548402558572186,1744206940274,mousedown,button#start-assignment,"{""which"":1,""pageX"":477,""pageY"":540}",,A
+Windows-Chrome-548402558572186,1744206957197,mousedown,"div#c1.cp p","{""which"":1,""pageX"":898,""pageY"":363}",,A
+Windows-Chrome-548402558572186,1744206979041,mousedown,"div#c2.cp p","{""which"":1,""pageX"":588,""pageY"":616}",,A
+Windows-Chrome-548402558572186,1744206994791,mousedown,"div#c3.cp p","{""which"":1,""pageX"":380,""pageY"":739}",,A
+Windows-Chrome-548402558572186,1744209917575,mousedown,div#student-splash,"{""which"":1,""pageX"":156,""pageY"":147}",,A
+Windows-Chrome-548402558572186,1744209918613,keydown,body.student-facing.student-computer-facing,"{""which"":17}",,A
+Windows-Chrome-548402558572186,1744209918757,keydown,body.student-facing.student-computer-facing,"{""which"":16}",,A
+Windows-Chrome-548402558572186,1744209918789,keydown,body.student-facing.student-computer-facing,"{""which"":82}",,A
+Windows-Chrome-548402558572186,1744209955157,mousedown,button#start-assignment,"{""which"":1,""pageX"":488,""pageY"":551}",,A
+Windows-Chrome-548402558572186,1744210764880,mousedown,div#viewer.pdfViewer,"{""which"":1,""pageX"":170,""pageY"":231}",,A
+Windows-Chrome-548402558572186,1744210768286,mousedown,div#student-splash,"{""which"":1,""pageX"":83,""pageY"":195}",,A
+Windows-Chrome-548402558572186,1744210768998,keydown,body.student-facing.student-computer-facing.audio-playing,"{""which"":17}",,A
+Windows-Chrome-548402558572186,1744210769052,keydown,body.student-facing.student-computer-facing.audio-playing,"{""which"":16}",,A
+Windows-Chrome-548402558572186,1744210769187,keydown,body.student-facing.student-computer-facing.audio-playing,"{""which"":82}",,A
+Windows-Chrome-548402558572186,1744210803167,mousedown,button#start-assignment,"{""which"":1,""pageX"":428,""pageY"":522}",,A
+Windows-Chrome-548402558572186,1744210818282,mousedown,"div#c1.cp p","{""which"":1,""pageX"":902,""pageY"":569}",,A
+Windows-Chrome-548402558572186,1744210828729,mousedown,"div#c2.cp p","{""which"":1,""pageX"":599,""pageY"":729}",,A
+Windows-Chrome-548402558572186,1744210830695,mousedown,"div.textLayer span","{""which"":1,""pageX"":382,""pageY"":643}",,A
+Windows-Chrome-548402558572186,1744210832639,mousedown,"div.textLayer span","{""which"":1,""pageX"":850,""pageY"":777}",,A
+Windows-Chrome-548402558572186,1744210844527,mousedown,"div#c4.cp p","{""which"":1,""pageX"":868,""pageY"":372}",,A
+Windows-Chrome-548402558572186,1744210850985,mousedown,"div#c3.cp p","{""which"":1,""pageX"":374,""pageY"":350}",,A
+Windows-Chrome-548402558572186,1744210855881,mousedown,"div#c5.cp p","{""which"":1,""pageX"":546,""pageY"":463}",,A
+Windows-Chrome-548402558572186,1744210859695,mousedown,"div#c6.cp p","{""which"":1,""pageX"":783,""pageY"":491}",,A
+Windows-Chrome-548402558572186,1744210865545,mousedown,"div#c7.cp p","{""which"":1,""pageX"":444,""pageY"":373}",,A
+Windows-Chrome-548402558572186,1744210878022,mousedown,"div#c8.cp p","{""which"":1,""pageX"":1144,""pageY"":577}",,A
+Windows-Chrome-548402558572186,1744210889957,mousedown,"div#c9.cp p","{""which"":1,""pageX"":844,""pageY"":672}",,A
+Windows-Chrome-548402558572186,1744210898701,mousedown,"div#c10.cp p","{""which"":1,""pageX"":355,""pageY"":809}",,A
+Windows-Chrome-548402558572186,1744210908120,mousedown,"div#c11.cp p","{""which"":1,""pageX"":974,""pageY"":892}",,A
+Windows-Chrome-548402558572186,1744210908163,mousedown,"div#c11.cp.focused p","{""which"":1,""pageX"":974,""pageY"":892}",,A
+Windows-Chrome-548402558572186,1744210932132,mousedown,"div#c11.cp.focused p","{""which"":1,""pageX"":985,""pageY"":892}",,A
+Windows-Chrome-548402558572186,1744211091264,mousedown,"div#c7.cp.focused p","{""which"":1,""pageX"":439,""pageY"":301}",,A
+Windows-Chrome-548402558572186,1744212627214,mousedown,button#start-assignment,"{""which"":1,""pageX"":517,""pageY"":546}",,A
+Windows-Chrome-548402558572186,1744212635720,mousedown,div.textLayer,"{""which"":1,""pageX"":865,""pageY"":546}",,A
+Windows-Chrome-548402558572186,1744212636271,mousedown,"div.textLayer span","{""which"":1,""pageX"":893,""pageY"":570}",,A
+Windows-Chrome-548402558572186,1744212642224,mousedown,"div#c1.cp p","{""which"":1,""pageX"":906,""pageY"":561}",,A
+Windows-Chrome-548402558572186,1744212653194,mousedown,"div#c1.cp.focused p","{""which"":1,""pageX"":882,""pageY"":567}",,A
+Windows-Chrome-548402558572186,1744212662878,mousedown,"div#c2.cp p","{""which"":1,""pageX"":595,""pageY"":629}",,A
+Windows-Chrome-548402558572186,1744212689490,mousedown,"div#c3.cp p","{""which"":1,""pageX"":370,""pageY"":752}",,A
+Windows-Chrome-548402558572186,1744212708542,mousedown,div#c4.cp,"{""which"":1,""pageX"":888,""pageY"":887}",,A
+Windows-Chrome-548402558572186,1744212716579,mousedown,"div#c4.cp p","{""which"":1,""pageX"":875,""pageY"":771}",,A
+Windows-Chrome-548402558572186,1744212716673,mousedown,"div#c4.cp.focused p","{""which"":1,""pageX"":875,""pageY"":771}",,A
+Windows-Chrome-548402558572186,1744212726518,mousedown,div#c5.cp,"{""which"":1,""pageX"":567,""pageY"":666}",,A
+Windows-Chrome-548402558572186,1744212726599,mousedown,div#c5.cp,"{""which"":1,""pageX"":567,""pageY"":666}",,A
+Windows-Chrome-548402558572186,1744212730985,mousedown,div#c5.cp,"{""which"":3,""pageX"":567,""pageY"":666}",,A
+Windows-Chrome-548402558572186,1744212743989,mousedown,div#c5.cp,"{""which"":3,""pageX"":580,""pageY"":670}",,A
+Windows-Chrome-548402558572186,1744212781032,mousedown,"div#c5.cp p","{""which"":1,""pageX"":540,""pageY"":662}",,A
+Windows-Chrome-548402558572186,1744212788609,mousedown,"div#c7.cp p","{""which"":3,""pageX"":451,""pageY"":756}",,A
+Windows-Chrome-548402558572186,1744212822937,mousedown,"div.textLayer span","{""which"":1,""pageX"":808,""pageY"":303}",,A
+Windows-Chrome-548402558572186,1744212823743,mousedown,"div.textLayer span","{""which"":1,""pageX"":806,""pageY"":299}",,A
+Windows-Chrome-548402558572186,1744212824411,mousedown,div.textLayer,"{""which"":1,""pageX"":802,""pageY"":309}",,A
+Windows-Chrome-548402558572186,1744212825080,mousedown,"div.textLayer span","{""which"":1,""pageX"":794,""pageY"":316}",,A
+Windows-Chrome-548402558572186,1744212825166,mousedown,"div.textLayer span","{""which"":1,""pageX"":794,""pageY"":316}",,A
+Windows-Chrome-548402558572186,1744212826650,mousedown,div#c6.cp,"{""which"":1,""pageX"":769,""pageY"":319}",,A
+Windows-Chrome-548402558572186,1744212839341,mousedown,div#c6.cp,"{""which"":3,""pageX"":769,""pageY"":319}",,A
+Windows-Chrome-548402558572186,1744213110074,mousedown,div.textLayer,"{""which"":1,""pageX"":231,""pageY"":488}",,A
+Windows-Chrome-548402558572186,1744213111614,keydown,div#viewerContainer,"{""which"":16}",,A
+Windows-Chrome-548402558572186,1744213111630,keydown,div#viewerContainer,"{""which"":17}",,A
+Windows-Chrome-548402558572186,1744213111694,keydown,div#viewerContainer,"{""which"":82}",,A
+Windows-Chrome-548402558572186,1744213145029,mousedown,button#start-assignment,"{""which"":1,""pageX"":510,""pageY"":550}",,A
+Windows-Chrome-548402558572186,1744213163698,mousedown,div#c1.cp,"{""which"":1,""pageX"":928,""pageY"":679}",,A
+Windows-Chrome-548402558572186,1744213209484,mousedown,"div#c1.cp p","{""which"":3,""pageX"":906,""pageY"":675}",,A
+Windows-Chrome-548402558572186,1744213242297,mousedown,"div.textLayer span","{""which"":1,""pageX"":928,""pageY"":673}",,A
+Windows-Chrome-548402558572186,1744213293972,mousedown,div.textLayer,"{""which"":1,""pageX"":874,""pageY"":644}",,A
+Windows-Chrome-548402558572186,1744213294651,mousedown,div.textLayer,"{""which"":1,""pageX"":875,""pageY"":645}",,A
+Windows-Chrome-548402558572186,1744213295569,mousedown,"div#c1.cp p","{""which"":1,""pageX"":876,""pageY"":647}",,A
+Windows-Chrome-548402558572186,1744213300189,mousedown,"div#c1.cp.focused p","{""which"":1,""pageX"":889,""pageY"":663}",,A
+Windows-Chrome-548402558572186,1744213304090,mousedown,"div#c2.cp p","{""which"":1,""pageX"":583,""pageY"":729}",,A
+Windows-Chrome-548402558572186,1744213308287,mousedown,"div#c3.cp p","{""which"":1,""pageX"":372,""pageY"":848}",,A
+Windows-Chrome-548402558572186,1744213338861,mousedown,div#viewer.pdfViewer,"{""which"":1,""pageX"":114,""pageY"":211}",,A
+Windows-Chrome-548402558572186,1744213339358,keydown,div#viewerContainer,"{""which"":17}",,A
+Windows-Chrome-548402558572186,1744213339471,keydown,div#viewerContainer,"{""which"":16}",,A
+Windows-Chrome-548402558572186,1744213339645,keydown,div#viewerContainer,"{""which"":82}",,A
+Windows-Chrome-548402558572186,1744213342928,keydown,div#viewerContainer,"{""which"":16}",,A
+Windows-Chrome-548402558572186,1744213343101,keydown,div#viewerContainer,"{""which"":82}",,A
+Windows-Chrome-548402558572186,1744213345200,keydown,div#viewerContainer,"{""which"":17}",,A
+Windows-Chrome-548402558572186,1744213345246,keydown,div#viewerContainer,"{""which"":16}",,A
+Windows-Chrome-548402558572186,1744213345351,keydown,div#viewerContainer,"{""which"":82}",,A
+Windows-Chrome-548402558572186,1744213376481,mousedown,button#start-assignment,"{""which"":1,""pageX"":440,""pageY"":555}",,A
+Windows-Chrome-548402558572186,1744213395972,mousedown,div#c1.cp,"{""which"":1,""pageX"":890,""pageY"":283}",,A
+Windows-Chrome-548402558572186,1744213409060,mousedown,"div#c1.cp p","{""which"":1,""pageX"":894,""pageY"":272}",,A
+Windows-Chrome-548402558572186,1744213409103,mousedown,"div#c1.cp.focused p","{""which"":1,""pageX"":894,""pageY"":272}",,A
+Windows-Chrome-548402558572186,1744213425776,mousedown,"div#c2.cp p","{""which"":1,""pageX"":592,""pageY"":521}",,A
+Windows-Chrome-548402558572186,1744213425848,mousedown,"div#c2.cp.focused p","{""which"":1,""pageX"":592,""pageY"":521}",,A
+Windows-Chrome-548402558572186,1744213440846,mousedown,"div#c3.cp p","{""which"":1,""pageX"":372,""pageY"":657}",,A
+Windows-Chrome-548402558572186,1744213445763,mousedown,div#c4.cp,"{""which"":1,""pageX"":843,""pageY"":792}",,A
+Windows-Chrome-548402558572186,1744213456713,mousedown,"div#c4.cp p","{""which"":3,""pageX"":875,""pageY"":757}",,A
+Windows-Chrome-548402558572186,1744213473824,mousedown,"div#c6.cp p","{""which"":1,""pageX"":752,""pageY"":678}",,A
+Windows-Chrome-548402558572186,1744213518046,mousedown,div#user-profile,"{""which"":1,""pageX"":1875,""pageY"":34}",,A
+Windows-Chrome-548402558572186,1744213518857,mousedown,li#logout,"{""which"":1,""pageX"":1767,""pageY"":162}",,A
+Windows-Chrome-548402558572186,1744213520363,mousedown,"div#group-name p","{""which"":1,""pageX"":1005,""pageY"":238}",,A
+Windows-Chrome-548402558572186,1744213520446,mousedown,"div#group-name.active p","{""which"":1,""pageX"":1005,""pageY"":238}",,A
+Windows-Chrome-548402558572186,1744213521190,mousedown,"div#group-name p","{""which"":1,""pageX"":979,""pageY"":231}",,A
+Windows-Chrome-548402558572186,1744213521915,mousedown,"div#group-name.active li","{""which"":1,""pageX"":990,""pageY"":327}",,A
+Windows-Chrome-548402558572186,1744213522558,mousedown,button#student-login,"{""which"":1,""pageX"":980,""pageY"":305}",,A
+Windows-Chrome-548402558572186,1744213560300,mousedown,button#start-assignment,"{""which"":1,""pageX"":471,""pageY"":547}",,A
+Windows-Chrome-548402558572186,1744215721193,mousedown,div#viewer.pdfViewer,"{""which"":1,""pageX"":101,""pageY"":168}",,A
+Windows-Chrome-548402558572186,1744215721738,keydown,div#viewerContainer,"{""which"":17}",,A
+Windows-Chrome-548402558572186,1744215721856,keydown,div#viewerContainer,"{""which"":16}",,A
+Windows-Chrome-548402558572186,1744215721976,keydown,div#viewerContainer,"{""which"":82}",,A
+Windows-Chrome-548402558572186,1744215892406,mousedown,div#student-splash,"{""which"":1,""pageX"":233,""pageY"":384}",,A
+Windows-Chrome-548402558572186,1744215893408,keydown,body.student-facing.student-computer-facing,"{""which"":17}",,A
+Windows-Chrome-548402558572186,1744215893463,keydown,body.student-facing.student-computer-facing,"{""which"":16}",,A
+Windows-Chrome-548402558572186,1744215893599,keydown,body.student-facing.student-computer-facing,"{""which"":82}",,A
+Windows-Chrome-548402558572186,1744215928065,mousedown,button#start-assignment,"{""which"":1,""pageX"":438,""pageY"":544}",,A
+Windows-Chrome-548402558572186,1744215944045,mousedown,"div#c1.cp p","{""which"":1,""pageX"":741,""pageY"":383}",,A
+Windows-Chrome-548402558572186,1744215982896,mousedown,"div#c2.cp p","{""which"":1,""pageX"":793,""pageY"":580}",,A
+Windows-Chrome-548402558572186,1744216262714,mousedown,div#viewer.pdfViewer,"{""which"":1,""pageX"":138,""pageY"":251}",,A
+Windows-Chrome-548402558572186,1744216263735,keydown,div#viewerContainer,"{""which"":17}",,A
+Windows-Chrome-548402558572186,1744216263783,keydown,div#viewerContainer,"{""which"":16}",,A
+Windows-Chrome-548402558572186,1744216263920,keydown,div#viewerContainer,"{""which"":82}",,A
+Windows-Chrome-548402558572186,1744216269669,mousedown,div#student-splash,"{""which"":1,""pageX"":105,""pageY"":95}",,A
+Windows-Chrome-548402558572186,1744216298195,mousedown,button#start-assignment,"{""which"":1,""pageX"":540,""pageY"":531}",,A
+Windows-Chrome-548402558572186,1744216319275,mousedown,div#viewer.pdfViewer,"{""which"":1,""pageX"":98,""pageY"":663}",,A
+Windows-Chrome-548402558572186,1744216383846,mousedown,div.textLayer,"{""which"":1,""pageX"":265,""pageY"":313}",,A
+Windows-Chrome-548402558572186,1744216383877,mousedown,div.textLayer,"{""which"":1,""pageX"":265,""pageY"":313}",,A
+Windows-Chrome-548402558572186,1744216384311,keydown,div#viewerContainer,"{""which"":17}",,A
+Windows-Chrome-548402558572186,1744216384446,keydown,div#viewerContainer,"{""which"":16}",,A
+Windows-Chrome-548402558572186,1744216384606,keydown,div#viewerContainer,"{""which"":82}",,A
+Windows-Chrome-548402558572186,1744216385673,mousedown,div.textLayer,"{""which"":1,""pageX"":265,""pageY"":312}",,A
+Windows-Chrome-548402558572186,1744216386167,keydown,div#viewerContainer,"{""which"":17}",,A
+Windows-Chrome-548402558572186,1744216386640,keydown,div#viewerContainer,"{""which"":16}",,A
+Windows-Chrome-548402558572186,1744216386854,keydown,div#viewerContainer,"{""which"":82}",,A
+Windows-Chrome-548402558572186,1744216388263,keydown,div#viewerContainer,"{""which"":17}",,A
+Windows-Chrome-548402558572186,1744216388319,keydown,div#viewerContainer,"{""which"":16}",,A
+Windows-Chrome-548402558572186,1744216388543,keydown,div#viewerContainer,"{""which"":82}",,A
+Windows-Chrome-548402558572186,1744216390696,mousedown,div#student-splash,"{""which"":1,""pageX"":139,""pageY"":360}",,A
+Windows-Chrome-548402558572186,1744216390763,mousedown,div#student-splash,"{""which"":1,""pageX"":139,""pageY"":360}",,A
+Windows-Chrome-548402558572186,1744216420978,mousedown,button#start-assignment,"{""which"":1,""pageX"":435,""pageY"":536}",,A
+Windows-Chrome-548402558572186,1744216421042,mousedown,div.textLayer,"{""which"":1,""pageX"":435,""pageY"":536}",,A
+Windows-Chrome-548402558572186,1744216450270,mousedown,"div#c1.cp p","{""which"":1,""pageX"":735,""pageY"":400}",,A
+Windows-Chrome-548402558572186,1744216706803,mousedown,div#viewer.pdfViewer,"{""which"":1,""pageX"":80,""pageY"":215}",,A
+Windows-Chrome-548402558572186,1744216707822,keydown,div#viewerContainer,"{""which"":17}",,A
+Windows-Chrome-548402558572186,1744216707902,keydown,div#viewerContainer,"{""which"":16}",,A
+Windows-Chrome-548402558572186,1744216708030,keydown,div#viewerContainer,"{""which"":82}",,A
+Windows-Chrome-548402558572186,1744216712716,mousedown,div#student-splash,"{""which"":1,""pageX"":135,""pageY"":129}",,A
+Windows-Chrome-548402558572186,1744216744922,mousedown,button#start-assignment,"{""which"":1,""pageX"":508,""pageY"":548}",,A
+Windows-Chrome-548402558572186,1744216745980,mousedown,div#viewer.pdfViewer,"{""which"":1,""pageX"":203,""pageY"":271}",,A
+Windows-Chrome-548402558572186,1744216761261,mousedown,"div#c1.cp p","{""which"":1,""pageX"":738,""pageY"":395}",,A
+Windows-Chrome-548402558572186,1744217086136,mousedown,"div#c2.cp p","{""which"":1,""pageX"":806,""pageY"":572}",,A
+Windows-Chrome-548402558572186,1744217571316,mousedown,div#viewer.pdfViewer,"{""which"":1,""pageX"":104,""pageY"":273}",,A
+Windows-Chrome-548402558572186,1744217572212,keydown,div#viewerContainer,"{""which"":17}",,A
+Windows-Chrome-548402558572186,1744217572308,keydown,div#viewerContainer,"{""which"":16}",,A
+Windows-Chrome-548402558572186,1744217572492,keydown,div#viewerContainer,"{""which"":82}",,A
+Windows-Chrome-548402558572186,1744217576409,mousedown,div#student-splash,"{""which"":1,""pageX"":86,""pageY"":129}",,A
+Windows-Chrome-548402558572186,1744217576466,mousedown,div#student-splash,"{""which"":1,""pageX"":86,""pageY"":129}",,A
+Windows-Chrome-548402558572186,1744217579795,mousedown,div#student-splash,"{""which"":1,""pageX"":108,""pageY"":93}",,A
+Windows-Chrome-548402558572186,1744217580624,keydown,body.student-facing.student-computer-facing.audio-playing,"{""which"":17}",,A
+Windows-Chrome-548402558572186,1744217580702,keydown,body.student-facing.student-computer-facing.audio-playing,"{""which"":16}",,A
+Windows-Chrome-548402558572186,1744217580756,keydown,body.student-facing.student-computer-facing.audio-playing,"{""which"":82}",,A
+Windows-Chrome-548402558572186,1744217609437,mousedown,button#start-assignment,"{""which"":1,""pageX"":480,""pageY"":531}",,A
+Windows-Chrome-548402558572186,1744217614043,mousedown,div.textLayer,"{""which"":1,""pageX"":733,""pageY"":401}",,A
+Windows-Chrome-548402558572186,1744217614487,mousedown,div.textLayer,"{""which"":1,""pageX"":814,""pageY"":403}",,A
+Windows-Chrome-548402558572186,1744217615044,mousedown,"div.textLayer span","{""which"":1,""pageX"":483,""pageY"":421}",,A
+Windows-Chrome-548402558572186,1744217624722,mousedown,"div#c1.cp p","{""which"":1,""pageX"":747,""pageY"":399}",,A
+Windows-Chrome-548402558572186,1744217693923,mousedown,"div#c2.cp p","{""which"":1,""pageX"":806,""pageY"":582}",,A
+Windows-Chrome-548402558572186,1744217715814,mousedown,div.textLayer,"{""which"":1,""pageX"":240,""pageY"":246}",,A
+Windows-Chrome-548402558572186,1744217770313,mousedown,"div.textLayer span","{""which"":1,""pageX"":397,""pageY"":845}",,A
+Windows-Chrome-548402558572186,1744217773454,mousedown,"div.textLayer span","{""which"":1,""pageX"":411,""pageY"":843}",,A
+Windows-Chrome-548402558572186,1744217848453,mousedown,div#viewer.pdfViewer,"{""which"":1,""pageX"":163,""pageY"":401}",,A
+Windows-Chrome-548402558572186,1744217850905,mousedown,div#viewer.pdfViewer,"{""which"":3,""pageX"":1302,""pageY"":191}",,A
+Windows-Chrome-548402558572186,1744217851883,mousedown,div#viewer.pdfViewer,"{""which"":1,""pageX"":131,""pageY"":330}",,A
+Windows-Chrome-548402558572186,1744217853077,keydown,div#viewerContainer,"{""which"":17}",,A
+Windows-Chrome-548402558572186,1744217853099,keydown,div#viewerContainer,"{""which"":16}",,A
+Windows-Chrome-548402558572186,1744217853212,keydown,div#viewerContainer,"{""which"":82}",,A
+Windows-Chrome-548402558572186,1744217879241,mousedown,div#student-splash,"{""which"":1,""pageX"":739,""pageY"":212}",,A
+Windows-Chrome-548402558572186,1744217887221,mousedown,button#start-assignment,"{""which"":1,""pageX"":569,""pageY"":550}",,A
+Windows-Chrome-548402558572186,1744217903685,mousedown,"div#c1.cp p","{""which"":1,""pageX"":754,""pageY"":293}",,A
+Windows-Chrome-548402558572186,1744218087258,mousedown,"div#c2.cp p","{""which"":1,""pageX"":815,""pageY"":482}",,A
+Windows-Chrome-548402558572186,1744218138126,mousedown,"div#c3.cp p","{""which"":1,""pageX"":388,""pageY"":546}",,A
+Windows-Chrome-548402558572186,1744218181445,mousedown,"div#c9.cp p","{""which"":1,""pageX"":1012,""pageY"":305}",,A
+Windows-Chrome-548402558572186,1744218198771,mousedown,"div#c4.cp p","{""which"":1,""pageX"":786,""pageY"":470}",,A
+Windows-Chrome-548402558572186,1744218213422,mousedown,"div#c5.cp p","{""which"":1,""pageX"":493,""pageY"":238}",,A
+Windows-Chrome-548402558572186,1744218226135,mousedown,"div#c6.cp p","{""which"":1,""pageX"":914,""pageY"":309}",,A
+Windows-Chrome-548402558572186,1744218244071,mousedown,"div#c7.cp p","{""which"":1,""pageX"":563,""pageY"":515}",,A
+Windows-Chrome-548402558572186,1744218250775,mousedown,"div#c10.cp p","{""which"":1,""pageX"":986,""pageY"":336}",,A
+Windows-Chrome-548402558572186,1744218259451,mousedown,"div#c8.cp p","{""which"":1,""pageX"":455,""pageY"":462}",,A
+Windows-Chrome-548402558572186,1744218294434,mousedown,"div#cNaN.cp p","{""which"":1,""pageX"":775,""pageY"":577}",,A
+Windows-Chrome-548402558572186,1744218296932,mousedown,div.textLayer,"{""which"":1,""pageX"":484,""pageY"":479}",,A
+Windows-Chrome-548402558572186,1744218298618,mousedown,"div#cNaN.cp.focused p","{""which"":1,""pageX"":789,""pageY"":577}",,A
+Windows-Chrome-548402558572186,1744218302451,mousedown,"div#cNaN.cp.focused p","{""which"":1,""pageX"":789,""pageY"":577}",,A
+Windows-Chrome-548402558572186,1744218314267,mousedown,"div#cNaN.cp.focused p","{""which"":3,""pageX"":781,""pageY"":602}",,A
+Windows-Chrome-548402558572186,1744218435543,mousedown,div#viewer.pdfViewer,"{""which"":1,""pageX"":39,""pageY"":291}",,A
+Windows-Chrome-548402558572186,1744218436170,keydown,div#viewerContainer,"{""which"":17}",,A
+Windows-Chrome-548402558572186,1744218436346,keydown,div#viewerContainer,"{""which"":16}",,A
+Windows-Chrome-548402558572186,1744218436858,keydown,div#viewerContainer,"{""which"":82}",,A
+Windows-Chrome-548402558572186,1744218441199,mousedown,div#student-splash,"{""which"":1,""pageX"":372,""pageY"":542}",,A
+Windows-Chrome-548402558572186,1744218471310,mousedown,button#start-assignment,"{""which"":1,""pageX"":493,""pageY"":528}",,A
+Windows-Chrome-548402558572186,1744218486859,mousedown,"div#c15.cp p","{""which"":1,""pageX"":787,""pageY"":495}",,A
+Windows-Chrome-548402558572186,1744218505164,mousedown,"div#c8.cp p","{""which"":1,""pageX"":459,""pageY"":384}",,A
+Windows-Chrome-548402558572186,1744218516732,mousedown,"div#c7.cp p","{""which"":1,""pageX"":566,""pageY"":225}",,A
+Windows-Chrome-548402558572186,1744218519828,mousedown,div.textLayer,"{""which"":3,""pageX"":774,""pageY"":700}",,A
+Windows-Chrome-548402558572186,1744218523834,mousedown,"div#c15.cp.focused p","{""which"":3,""pageX"":780,""pageY"":696}",,A
+Windows-Chrome-548402558572186,1744218551994,mousedown,"div#c6.cp p","{""which"":1,""pageX"":929,""pageY"":336}",,A
+Windows-Chrome-548402558572186,1744218573067,mousedown,"div#c5.cp p","{""which"":1,""pageX"":495,""pageY"":166}",,A
+Windows-Chrome-548402558572186,1744218581622,mousedown,"div#c10.cp p","{""which"":1,""pageX"":992,""pageY"":556}",,A
+Windows-Chrome-548402558572186,1744218590090,mousedown,"div#c4.cp p","{""which"":1,""pageX"":773,""pageY"":289}",,A
+Windows-Chrome-548402558572186,1744218598424,mousedown,"div#c9.cp p","{""which"":1,""pageX"":1020,""pageY"":420}",,A
+Windows-Chrome-548402558572186,1744218603822,mousedown,"div#c3.cp p","{""which"":1,""pageX"":395,""pageY"":467}",,A
+Windows-Chrome-548402558572186,1744218639688,mousedown,"div#c2.cp p","{""which"":1,""pageX"":809,""pageY"":488}",,A
+Windows-Chrome-548402558572186,1744218639742,mousedown,"div#c2.cp.focused p","{""which"":1,""pageX"":809,""pageY"":488}",,A
+Windows-Chrome-548402558572186,1744218646366,mousedown,"div#c1.cp p","{""which"":1,""pageX"":743,""pageY"":310}",,A
+Windows-Chrome-548402558572186,1744218646456,mousedown,"div#c1.cp.focused p","{""which"":1,""pageX"":743,""pageY"":309}",,A
+Windows-Chrome-548402558572186,1744218711821,mousedown,div#student-splash,"{""which"":1,""pageX"":734,""pageY"":557}",,A
+Windows-Chrome-548402558572186,1744218716004,mousedown,button#start-assignment,"{""which"":1,""pageX"":660,""pageY"":541}",,A
+Windows-Chrome-548402558572186,1744218725336,mousedown,div.textLayer,"{""which"":3,""pageX"":774,""pageY"":274}",,A
+Windows-Chrome-548402558572186,1744218731283,mousedown,"div#c15.cp p","{""which"":3,""pageX"":787,""pageY"":276}",,A
+Windows-Chrome-548402558572186,1744218878628,mousedown,div#viewer.pdfViewer,"{""which"":1,""pageX"":38,""pageY"":249}",,A
+Windows-Chrome-548402558572186,1744218879361,keydown,div#viewerContainer,"{""which"":17}",,A
+Windows-Chrome-548402558572186,1744218879561,keydown,div#viewerContainer,"{""which"":16}",,A
+Windows-Chrome-548402558572186,1744218879769,keydown,div#viewerContainer,"{""which"":82}",,A
+Windows-Chrome-548402558572186,1744218881053,mousedown,div#student-splash,"{""which"":1,""pageX"":38,""pageY"":249}",,A
+Windows-Chrome-548402558572186,1744218911646,mousedown,button#start-assignment,"{""which"":1,""pageX"":459,""pageY"":537}",,A
