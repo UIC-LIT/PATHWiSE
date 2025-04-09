@@ -9,12 +9,12 @@ $behaviorName = isset($data['behaviorName']) ? $data['behaviorName'] : null;
 
 // Validate the received data
 if (!$mistyIP) {
-    echo json_encode(['status' => 'error', 'message' => 'Misty IP is missing.']);
+    echo json_encode(['status' => 'error', 'message' => 'API: Misty IP is missing.']);
     exit();
 }
 
 if (!$behaviorName) {
-    echo json_encode(['status' => 'error', 'message' => 'Behavior name is missing.']);
+    echo json_encode(['status' => 'error', 'message' => 'API: Behavior name is missing.']);
     exit();
 }
 

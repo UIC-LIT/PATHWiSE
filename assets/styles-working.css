@@ -1831,6 +1831,10 @@ body.emoji-toggle-active #pages .cp[data-emotion="8"]>p::after {
     z-index: -1;
 }
 
+.student-facing .cp::before {
+    display: none !important;
+}
+
 #pages .cp>ul {
     position: absolute;
     width: 95px;

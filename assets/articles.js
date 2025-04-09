@@ -2,6 +2,8 @@ if (localStorage.getItem("auth") == null) {
     localStorage.setItem("auth", "true");
 }
 var isProduction = true;
+var lastCustomComment = "c15";
+var totalCommentCount  = 11;
 
 var studentsList = [{
         'name': '1',
@@ -38,7 +40,7 @@ var homeworks = [{
             { "text": "Huh? What do you think they mean when they say your body 'kills' germs? How does that happen without you knowing?", "emotion": "6", "type": "2", "top": 3659, "left": 580, "id": "c7", "clip": "1008" },
             { "text": "If antibiotics don't work against bacteria, then what does?", "emotion": "3", "type": "2", "top": 4023, "left": 936, "id": "c8", "clip": "1009" },
             { "text": "Is there someone in your home that makes sure you always wash up? How diligent are you in washing your hands?", "emotion": "1", "type": "3", "top": 4662, "left": 566, "id": "c9", "clip": "1010" },
-            { "text": "", "emotion": "1", "type": "1", "top": 5802, "left": 622, "id": "c11", "clip": "" }
+            { "text": "", "emotion": "1", "type": "1", "top": 5802, "left": 622, "id": lastCustomComment, "clip": "" }
         ]
     },
     {
@@ -54,7 +56,7 @@ var homeworks = [{
             { "text": "Hoooold on. How do you think blood can be separated? The cells are so small!", "emotion": "6", "type": "2", "top": 2619, "left": 516, "id": "c7", "clip": "2008" },
             { "text": "Did you know that an African American scientist, Charles Drew, was the first to come up with a way to store blood?", "emotion": "4", "type": "1", "top": 2769, "left": 390, "id": "c8", "clip": "2009" },
             { "text": "Does that mean blood is made in your bones? What do you think?", "emotion": "1", "type": "2", "top": 1610, "left": 966, "id": "c9", "clip": "2010" },
-            { "text": "", "emotion": "", "type": "", "top": 3087, "left": 730, "id": "c11", "clip": "" }
+            { "text": "", "emotion": "1", "type": "1", "top": 3087, "left": 730, "id": lastCustomComment, "clip": "" }
         ]
     },
     {
@@ -70,7 +72,7 @@ var homeworks = [{
             { "text": "Which type of antibody or cell are you thankful to have in keeping you healthy?", "emotion": "7", "type": "2", "top": 2437, "left": 916, "id": "c7", "clip": "3008" },
             { "text": "Vaccines are like superheroes training the memory cells in your body to fight off the bad guys!", "emotion": "4", "type": "4", "top": 2662, "left": 404, "id": "c8", "clip": "3009" },
             { "text": "How would you explain this to someone else in class?", "emotion": "1", "type": "1", "top": 2773, "left": 437, "id": "c9", "clip": "3010" },
-            { "text": "", "emotion": "", "type": "", "top": 3271, "left": 601, "id": "c11", "clip": "" }
+            { "text": "", "emotion": "1", "type": "1", "top": 3271, "left": 601, "id": lastCustomComment, "clip": "" }
         ]
     },
     {
@@ -86,7 +88,7 @@ var homeworks = [{
             { "text": "I can relate to the importance of early detection and treatment, as regular maintenance checks help prevent malfunctions and ensure optimal performance for robots like me too!", "emotion": "7", "type": "3", "top": 1970, "left": 388, "id": "c7", "clip": "4008" },
             { "text": "This reminds me of that class activity we did, where we created posters to inform other students what we learned. It looks like teaching others is valued.", "emotion": "4", "type": "1", "top": 2184, "left": 1081, "id": "c8", "clip": "4009" },
             { "text": "Is there another foundation that we talked about in class? It was something relating to the two way mirror project.", "emotion": "1", "type": "3", "top": 2341, "left": 794, "id": "c9", "clip": "4010" },
-            { "text": "", "emotion": "", "type": "", "top": 2566, "left": 910, "id": "c11", "clip": "" }
+            { "text": "", "emotion": "1", "type": "1", "top": 2566, "left": 910, "id": lastCustomComment, "clip": "" }
         ]
     }
 ];

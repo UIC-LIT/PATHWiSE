@@ -4,5 +4,5 @@ nlp/pathnlp
 nlp/cert.crt
 nlp/key.pem
 pathnlp
-tts/credentials.json
+tools/credentials.json
 log/logs.csv

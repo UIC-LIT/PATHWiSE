@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Misty MP3 Files Viewer</title>
+</head>
+
+<body>
+    <h1>Misty MP3 Files Viewer</h1>
+    <div>
+        <label for="mistyIp">Misty IP Address: </label>
+        <input type="text" id="mistyIp" placeholder="Enter Misty IP">
+        <button onclick="saveMistyIp()">Save IP</button>
+    </div>
+    <div>
+        <button onclick="clearAllAudio()">Clear All Audio Files</button>
+    </div>
+    <div>
+        <button onclick="fetchMp3Files()">View Uploaded MP3 Files</button>
+    </div>
+    <ul id="mp3FilesList"></ul>
+    <script>
+    let mistyIp = localStorage.getItem('mistyIp') || '';
+    const mp3FilesList = document.getElementById('mp3FilesList');
+
+    function saveMistyIp() {
+        const inputIp = document.getElementById('mistyIp').value;
+        localStorage.setItem('mistyIp', inputIp);
+        mistyIp = inputIp;
+        alert('Misty IP saved');
+    }
+
+    function clearAllAudio() {
+        fetch(`http://${mistyIp}/api/audio`, {
+                method: 'DELETE',
+                headers: {
+                    'Authorization': 'Basic ' + btoa('misty:your_password') // Use base64 encoded credentials here
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Cleared all audio:', data);
+                alert('All audio files cleared');
+            })
+            .catch(error => {
+                console.error('Error clearing audio files:', error);
+                alert('Failed to clear audio files');
+            });
+    }
+
+    function fetchMp3Files() {
+        if (!mistyIp) {
+            alert('Please enter Misty IP address.');
+            return;
+        }
+
+        fetch(`http://${mistyIp}/api/files`, {
+                method: 'GET',
+                headers: {
+                    'Authorization': 'Basic ' + btoa('misty:your_password') // Use base64 encoded credentials here
+                }
+            })
+            .then(response => response.json())
+            .then(files => {
+                const mp3Files = files.filter(file => file.Name.endsWith('.mp3'));
+                mp3FilesList.innerHTML = '';
+                mp3Files.forEach(file => {
+                    const li = document.createElement('li');
+                    li.textContent = file.Name;
+                    mp3FilesList.appendChild(li);
+                });
+
+                if (mp3Files.length === 0) {
+                    mp3FilesList.innerHTML = '<li>No MP3 files found.</li>';
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching files:', error);
+                alert('Failed to fetch files');
+            });
+    }
+    </script>
+</body>
+
+</html>
