@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 $data = json_decode(file_get_contents('php://input'), true);
 
 // Optional: Validate required fields
-$required = ['uid', 'time', 'name', 'target', 'info', 'state', 'version'];
+$required = ['uid', 'time', 'name', 'target', 'info', 'state', 'version', 'article', 'username'];
 foreach ($required as $field) {
     if (!isset($data[$field])) {
         http_response_code(400);
@@ -24,7 +24,7 @@ $file = 'logs.csv';
 
 // If file doesn't exist, add headers
 if (!file_exists($file)) {
-    $headers = ['UID', 'Time', 'EventName', 'Target', 'Info', 'State', 'Version'];
+    $headers = ['UID', 'Time', 'EventName', 'Target', 'Info', 'State', 'Version', 'article', 'username'];
     $fp = fopen($file, 'w');
     fputcsv($fp, $headers);
     fclose($fp);
@@ -39,7 +39,9 @@ fputcsv($fp, [
     $data['target'],
     $data['info'],
     $data['state'],
-    $data['version']
+    $data['version'],
+    $data['article'],
+    $data['username']
 ]);
 fclose($fp);
 

@@ -220,8 +220,12 @@ function sendNetworkLogLocal(uid, time, name, target, info, state, version) {
             version
         };
 
+        logData.article = window.pathArticleTitle;
+        logData.username = localStorage.getItem("auth-name");
+        logData.version = isRobotControl ? "Robot" : "Computer";
+
         const logUrl = window.origin + '/log/log.php';
-        console.log('Sending log to:', logUrl);
+        console.log('Sending log' + JSON.stringify(logData) + ' to:', logUrl);
 
         // Using jQuery's $.ajax to send the log
         $.ajax({

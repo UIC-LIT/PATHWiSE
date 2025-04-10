@@ -132,7 +132,8 @@ li {
     padding-top: 100px;
 }
 
-.student-computer-facing #student-splash {
+.student-computer-facing #student-splash,
+.student-computer-facing #splash {
     max-width: calc(100vw - 470px) !important;
 }
 
@@ -370,6 +371,11 @@ nav>.container>ul>li>span {
 
 #nav-right {
     display: flex;
+}
+
+.logged-out #nav-right {
+    opacity: 0 !important;
+    pointer-events: none !important;
 }
 
 /* ------ USER PROFILE --------- */

@@ -1270,6 +1270,7 @@
         // initializes all the default htmls from json objs
         var elem = "";
         if (localStorage.getItem("auth") == "true") {
+            $('body').addClass('logged-out');
             $("#splash").removeClass("hide");
             if ($('.student-facing').length) {
                 groups = studentsList;

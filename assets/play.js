@@ -1,7 +1,7 @@
 (function($) {
     var mistyIP = !localStorage.getItem("mistyIP") ? "10.0.0.221" : localStorage.getItem("mistyIP");
-    console.log("Misty IP is currently set to: " + mistyIP + ", you can update it here: " + window.location.origin + "/robot-ip.htm if needed. Reload this page after you're done updating to confirm the updated IP in effect.");
-    var isRobotControl = true;
+    var computerIP = !localStorage.getItem("computerIP") ? "10.0.0.221" : localStorage.getItem("computerIP");
+    console.log("Misty IP is currently set to: " + mistyIP + ", and the computer IP is set to : " + computerIP + ". You can update it here: " + window.location.origin + "/set-ip.htm if needed. Reload this page after you're done updating to confirm the updated IP in effect.");
     var recognitionInstance = null;
     var silenceTimer = null;
 
@@ -276,12 +276,14 @@
 
     function sendToRobot(text, behavior, clip) {
         executeBehavior(behavior);
-        console.log("Sent to misty to play: ", clip);
+        //var audioBase = "https://" + computerIP + "/assets/audios/";
+        var audioBase = "https://anistuhin.com/misty/";
+        console.log("Sent to misty to play: " + audioBase + clip + ".mp3");
         if (isProduction) {
             Promise.race([
                     fetch('http://' + mistyIP + '/api/audio/play', {
                         method: 'POST',
-                        body: '{ "FileName":"https://anistuhin.com/misty/' + clip + '.mp3" }'
+                        body: '{ "FileName": "' + audioBase + clip + '.mp3" }'
                     }),
                     new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 10000))
                 ])
@@ -353,11 +355,11 @@
 
     function classifyResponse(text) {
         const positiveReplies = ["yes", "yeah", "yup", "sure", "okay", "ok", "absolutely", "indeed", "of course", "yessir"];
-        const negativeReplies = ["no", "nope", "nah", "never", "not at all", "no way"];
+        const negativeReplies = ["no", "nope", "nah", "never", "not at all", "no way", "move on", "move forward"];
         const repeatReplies = ["repeat", "again", "pardon", "what", "say that again", "come again", "can you", "didn't catch"];
 
         text = text.trim().toLowerCase();
-
+        console.log('classification input: ' , text)
         if (repeatReplies.some(word => text.includes(word))) return 2; // repeat
         if (positiveReplies.some(word => text.includes(word))) return 1; // positive
         if (negativeReplies.some(word => text.includes(word))) return 0; // negative
@@ -386,7 +388,7 @@
             recognition.interimResults = true;
             recognition.lang = 'en-US';
 
-            const SILENCE_TIMEOUT = 2500; // 2.5 seconds
+            const SILENCE_TIMEOUT = 2000; // 2 seconds
             let finalTranscript = '';
 
             recognition.onresult = function(event) {
@@ -470,10 +472,30 @@
         switch (classification) {
             case 2:
                 $('.cp#' + currentComment).click();
-                console.log('Repeat happend on first run');
                 break;
             case 0:
+                stopSpeechRecognition();
+                if (isRobotControl) {
+                    sendToRobot(negativeIntent[0].text, emotionsList[negativeIntent[0].emotion], negativeIntent[0].clip);
+                } else {
+                    playInComputer(negativeIntent[0].text, negativeIntent[0].emotion, negativeIntent[0].clip);
+                }
                 break;
+            // case 1:
+            //     if (isRobotControl) {
+            //         sendToRobot(positiveIntent[0].text, emotionsList[positiveIntent[0].emotion], positiveIntent[0].clip);
+            //     } else {
+            //         playInComputer(positiveIntent[0].text, positiveIntent[0].emotion, positiveIntent[0].clip);
+            //     }
+            //     $('body').removeClass('audio-playing');
+            //     const duration = await getAudioDuration(positiveIntent[0].clip);
+            //     console.log('Audio Duration:', duration, ' ', positiveIntent[0].clip);
+            //     // Delay the execution of the following actions by the audio duration in milliseconds
+            //     setTimeout(() => {
+            //         $('body').removeClass('audio-playing');
+            //         manageRecognitionResultsFromPrompts();
+            //     }, duration * 1000); // Multiply by 1000 to convert from seconds to milliseconds
+            //     break;
             default:
                 runPrompts();
                 break;

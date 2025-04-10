@@ -1,18 +1,19 @@
 if (localStorage.getItem("auth") == null) {
     localStorage.setItem("auth", "true");
 }
+var isRobotControl = true;
 var isProduction = true;
 var lastCustomComment = "c15";
 var totalCommentCount  = 11;
 
 var studentsList = [{
-        'name': '7',
-        'id': 'student-7',
+        'name': '5',
+        'id': 'student-5',
         'current': 'Meet the Microbes'
     },
     {
-        'name': '11',
-        'id': 'student-11',
+        'name': '6',
+        'id': 'student-6',
         'current': 'Human Blood'
     }
     //    ,
@@ -106,6 +107,9 @@ var prompts = [
     { "text": "Would you like to add another perspective?", "clip": "9", "emotion": "100" },
     { "text": "Anything else you'd like to contribute?", "clip ": "10", "emotion ": "100" }
 ];
+
+var positiveIntent = [{ "text" : "Great! Go ahead and tell me what else you'd like to add.", "clip": "21", "emotion": "4"  }];
+var negativeIntent = [{ "text" : "Alright! Let's move on to the next part!", "clip": "22", "emotion": "1"  }];
 
 var preIntros = [
     { "text": "Hey! I’m really looking forward to going through the article with you today. Before we jump in, here’s how we’ll work together: Whenever you spot a speech bubble in the article, give it a click, and I’ll know you’re ready for my question. After I ask, hold off on responding until my eyes turn green. If my eyes are red, I’m still talking, yellow means I’m mulling it over, and green means you can jump in! Ready to begin? Hit the start button.", "clip": "101", "emotion": "100" },

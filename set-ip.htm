@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pathwise</title>
+    <link rel="stylesheet" type="text/css" href="assets/styles-working.css" />
+    <link rel="icon" type="image/x-icon" href="assets/icons/favicon.png" />
+    <style type="text/css">
+    #set-ip {
+        width: 300px;
+        margin: 50px auto 0;
+    }
+
+    #set-ip p,
+    #set-ip input,
+    #set-ip button {
+        display: block;
+        width: 300px;
+        height: 40px;
+        margin: 15px auto 0;
+        text-align: center;
+        font-size: 20px;
+        line-height: 40px;
+        color: #457ab1;
+    }
+
+    #set-ip p {
+        text-align: left;
+        color: black;
+    }
+
+    #set-ip button {
+        text-transform: uppercase;
+        cursor: pointer;
+    }
+
+    .inactive {
+        pointer-events: none;
+    }
+    </style>
+</head>
+
+<body class="student-facing student-robot-facing">
+    <nav id="primary-nav">
+        <!-- Navigation -->
+        <div class="container">
+            <div class="brand">PATHWiSE</div>
+            <div id="nav-right">
+                <div id="user-profile">
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main data-comments="1" data-comments-toggle="1">
+        <div class="container">
+            <div id="main-content-wrapper">
+                <!-- main content start -->
+                <div id="main-content">
+                    <div id="set-ip">
+                        <p>Robot IP</p>
+                        <input type="text" id="robot-ip">
+                        <p>Computer IP</p>
+                        <input type="text" id="computer-ip">
+                        <button class="inactive">Update</button>
+                        <p>Get the robot IP from the misty robot app.<br />
+                            <br />To get the computer IP run in a shell/cmd:<br />
+                            Windows: "ipconfig"<br/>
+                            Linux: "ip a"<br/>
+                            macOS: "ipconfig getifaddr en0"
+                        </p>
+                    </div>
+                </div>
+                <!-- main content -->
+            </div>
+        </div>
+    </main>
+    <script type="text/javascript" src="assets/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript">
+    (function($) {
+        $(document).ready(function() {
+            var mistyIP = "10.0.0.221";
+            var computerIP = "10.0.0.248";
+            if (!localStorage.getItem("mistyIP")) {
+                localStorage.setItem("mistyIP", mistyIP);
+                $("#robot-ip").val(localStorage.getItem("mistyIP"));
+                status();
+            } else {
+                $("#robot-ip").val(localStorage.getItem("mistyIP"));
+                status();
+            }
+            if (!localStorage.getItem("computerIP")) {
+                localStorage.setItem("computerIP", computerIP);
+                $("#computer-ip").val(localStorage.getItem("computerIP"));
+                status();
+            } else {
+                $("#computer-ip").val(localStorage.getItem("computerIP"));
+                status();
+            }
+            $(document).on('click', '#set-ip > button', function() {
+                localStorage.setItem("mistyIP", $("#robot-ip").val().trim());
+                localStorage.setItem("computerIP", $("#computer-ip").val().trim());
+                status();
+            });
+            $(document).on("input", "#set-ip>input", function() {
+                $("#set-ip>button").removeClass("inactive");
+            });
+        });
+
+        function status() {
+            console.log("Misty IP is currently set to: ", localStorage.getItem("mistyIP"), " and the Computer IP is set to: ",  localStorage.getItem("computerIP"));
+        }
+    })(window.jQuery);
+    </script>
+</body>
+
+</html>
