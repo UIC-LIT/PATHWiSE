@@ -489,7 +489,7 @@
                     playInComputer(positiveIntent[0].text, positiveIntent[0].emotion, positiveIntent[0].clip);
                 }
                 $('body').removeClass('audio-playing');
-                const duration = await getAudioDuration(positiveIntent[0].clip);
+                const duration = await getAudioDuration(window.location.origin + '/assets/audios/' + positiveIntent[0].clip);
                 console.log('Audio Duration:', duration, ' ', positiveIntent[0].clip);
                 // Delay the execution of the following actions by the audio duration in milliseconds
                 setTimeout(() => {
