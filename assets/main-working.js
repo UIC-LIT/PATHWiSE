@@ -27,7 +27,7 @@
     var redactors = [];
     var meta = {};
     var loginGroup = "";
-    window.pathArticleTitle = $("#assignment-title").text().trim();
+    window.pathArticleTitle = "";
     var selectedText = "";
     var commentsGroup = "all";
     // flori: variables start point -------
@@ -1077,7 +1077,7 @@
             }, 500);
         });
         window.addEventListener('beforeunload', (event) => {
-            console.log("Testing unload: ", isUpdated);
+            // console.log("Testing unload: ", isUpdated);
             if (isUpdated) {
                 activateExitConfirmation(true);
                 // Prevent the immediate closing of the tab
@@ -1096,6 +1096,7 @@
 
     function logout() {
         localStorage.setItem("auth", "true");
+        localStorage.setItem("auth-name", "");
         location.reload();
     }
 

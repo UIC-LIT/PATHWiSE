@@ -142,7 +142,12 @@ var GLOBAL_STATE_TO_LOG = function() {
             console.log(uid, time, name, target, info, state, LOG_VERSION);
         }
         if (ENABLE_NETWORK_LOGGING) {
-            sendNetworkLogLocal(uid, time, name, target, info, state, LOG_VERSION);
+            try {
+                sendNetworkLogLocal(uid, time, name, target, info, state, LOG_VERSION);
+                // sendNetworkLog(uid, time, name, target, info, state, LOG_VERSION);
+            } catch (e) {
+                console.log("Log saving error: ", e);
+            }
         }
     }
 
@@ -181,14 +186,7 @@ var GLOBAL_STATE_TO_LOG = function() {
 // "A" version network log submission function
 // submits to the google form at this URL:
 // docs.google.com/forms/d/1Ao......................................QE0/edit
-function sendNetworkLog(
-    uid,
-    time,
-    name,
-    target,
-    info,
-    state,
-    version) {
+function sendNetworkLog(uid, time, name, target, info, state, version) {
     var formid = "e/1FAIpQLScO-nRoe4k3VUIQYFucYu0WUk7HNkduIOiN1nu0N0ymxsIX9g";
     var data = {
         "entry.2032535083": uid,
@@ -209,41 +207,37 @@ function sendNetworkLog(
 }
 
 function sendNetworkLogLocal(uid, time, name, target, info, state, version) {
-    try {
-        const logData = {
-            uid,
-            time,
-            name,
-            target,
-            info,
-            state,
-            version
-        };
+    const logData = {
+        uid,
+        time,
+        name,
+        target,
+        info,
+        state,
+        version
+    };
 
-        logData.article = window.pathArticleTitle;
-        logData.username = localStorage.getItem("auth-name");
-        logData.version = isRobotControl ? "Robot" : "Computer";
+    logData.article = window.pathArticleTitle;
+    logData.username = localStorage.getItem("auth-name");
+    logData.version = isRobotControl ? "Robot" : "Computer";
 
-        const logUrl = window.origin + '/log/log.php';
-        console.log('Sending log' + JSON.stringify(logData) + ' to:', logUrl);
+    const logUrl = window.origin + '/log/log.php';
+    console.log('Sending log' + JSON.stringify(logData) + ' to:', logUrl);
 
-        // Using jQuery's $.ajax to send the log
-        $.ajax({
-            url: logUrl,
-            type: 'POST',
-            contentType: 'application/json',
-            data: JSON.stringify(logData),
-            success: function(response) {
-                console.log('Log sent successfully:', response);
-            },
-            error: function(xhr, status, error) {
-                console.error('Log send failed:', error);
-                console.error('Status:', status);
-                console.error('Response:', xhr.responseText);
-            },
-            timeout: 5000 // Timeout in case of slow responses
-        });
-    } catch (e) {
-        console.log("sendNetworkLogLocal error: ", e)
-    }
+    // Using jQuery's $.ajax to send the log
+    // $.ajax({
+    //     url: logUrl,
+    //     type: 'POST',
+    //     contentType: 'application/json',
+    //     data: JSON.stringify(logData),
+    //     success: function(response) {
+    //         console.log('Log sent successfully:', response);
+    //     },
+    //     error: function(xhr, status, error) {
+    //         console.error('Log send failed:', error);
+    //         console.error('Status:', status);
+    //         console.error('Response:', xhr.responseText);
+    //     },
+    //     timeout: 5000 // Timeout in case of slow responses
+    // });
 }
