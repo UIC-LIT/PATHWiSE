@@ -482,7 +482,7 @@
                     playInComputer(negativeIntent[0].text, negativeIntent[0].emotion, negativeIntent[0].clip);
                 }
                 break;
-            // case 1:
+            case 1:
                 if (isRobotControl) {
                     sendToRobot(positiveIntent[0].text, emotionsList[positiveIntent[0].emotion], positiveIntent[0].clip);
                 } else {
