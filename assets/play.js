@@ -277,8 +277,8 @@
     function sendToRobot(text, behavior, clip) {
         executeBehavior(behavior);
         //var audioBase = "https://" + computerIP + "/assets/audios/";
-        //var audioBase = "https://anistuhin.com/misty/";
-        var audioBase = "";
+        var audioBase = "https://anistuhin.com/misty/";
+        //var audioBase = "";
         console.log("Sent to misty to play: " + audioBase + clip + ".mp3");
         if (isProduction) {
             Promise.race([
