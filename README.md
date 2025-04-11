@@ -109,6 +109,22 @@
    - Open your browser and navigate to `https://pathwi.se`.
    - You may encounter a security warning because the certificate is self-signed; proceed and add exception or accept risk to view the site. 
 
-- Create a database named "pathwise_prototype" with a username of 'root' and password ''. A copy of these details can be found in validate/index.php, lines 32-35. (Please reach out to Anis for a demo database that can be imported and has some dummy data ready.)
+## **Part 3: Prepare the Browser (Student side only)**
+
+1. **Use Google chrome only & Allow some permissions**:
+   - Open your browser and navigate to this URL: chrome://settings/content/siteDetails?site=https%3A%2F%2Fpathwi.se to "Allow" some permissions for `https://pathwi.se`or change the site settings using this tutorial: https://support.google.com/chrome/answer/114662
+   - You mast add "Allow" for the following permissions if not already: 'Microphone', 'Pop-ups and redirects', 'Sound', 'Automatic downloads' and 'Insecure content' 
+
+## **Part 4: Prepare the database (Teacher side only)**
+
+1. **Create a database**:
+   - Click on the wampserver icon from the action tray and choose PhpMyAdmin and from the dropdown choose the latest version one. It should take you to a browser page similar to this URL: http://localhost/phpmyadmin5.x.x/
+   - Create a database named "pathwise_prototype" with a username of 'root' and password ''. A copy of these details can be found in validate/index.php, lines 32-35.
+   - Please reach out to Anis for a demo database that can be imported and has some dummy data ready. Or select the database name from the left hand menu and then click on SQL menu at the top of the page and then run the following command to start from scratch:
+    ```
+         Demo SQL
+     ```
+
+## **Part 5: Additional steps/notes**
 - Update the Misty robot IP here: https://pathwi.se/set-ip.htm (Note: This step makes the robot play generated audio from Google TTS or speak on the go. You may also need to configure the speech parameters to make it sound more human-like if you want to use "speak on the go" inside the assets/robot-play.js file, lines 197-203)
 - That completes the system setup with all dependencies. You may now open the teacher's side of the editor (i.e., https://pathwi.se/index-working.htm or the other virtual host URL from Step 2 if you choose so), make annotations as you see fit, and save them. The student-facing versions (https://pathwi.se/student-robot.htm & https://pathwi.se/student-computer.htm) fetch the latest data from your most recent saves.
