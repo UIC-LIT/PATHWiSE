@@ -494,8 +494,8 @@
                 // Delay the execution of the following actions by the audio duration in milliseconds
                 setTimeout(() => {
                     $('body').removeClass('audio-playing');
-                    //manageRecognitionResultsFromPrompts();
-                    runPrompts();
+                     manageRecognitionResultsFromPrompts();
+                    // runPrompts();
                 }, duration * 1000); // Multiply by 1000 to convert from seconds to milliseconds
                 break;
             default:
