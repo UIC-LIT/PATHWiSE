@@ -483,20 +483,21 @@
                 }
                 break;
             // case 1:
-            //     if (isRobotControl) {
-            //         sendToRobot(positiveIntent[0].text, emotionsList[positiveIntent[0].emotion], positiveIntent[0].clip);
-            //     } else {
-            //         playInComputer(positiveIntent[0].text, positiveIntent[0].emotion, positiveIntent[0].clip);
-            //     }
-            //     $('body').removeClass('audio-playing');
-            //     const duration = await getAudioDuration(positiveIntent[0].clip);
-            //     console.log('Audio Duration:', duration, ' ', positiveIntent[0].clip);
-            //     // Delay the execution of the following actions by the audio duration in milliseconds
-            //     setTimeout(() => {
-            //         $('body').removeClass('audio-playing');
-            //         manageRecognitionResultsFromPrompts();
-            //     }, duration * 1000); // Multiply by 1000 to convert from seconds to milliseconds
-            //     break;
+                if (isRobotControl) {
+                    sendToRobot(positiveIntent[0].text, emotionsList[positiveIntent[0].emotion], positiveIntent[0].clip);
+                } else {
+                    playInComputer(positiveIntent[0].text, positiveIntent[0].emotion, positiveIntent[0].clip);
+                }
+                $('body').removeClass('audio-playing');
+                const duration = await getAudioDuration(positiveIntent[0].clip);
+                console.log('Audio Duration:', duration, ' ', positiveIntent[0].clip);
+                // Delay the execution of the following actions by the audio duration in milliseconds
+                setTimeout(() => {
+                    $('body').removeClass('audio-playing');
+                    //manageRecognitionResultsFromPrompts();
+                    runPrompts();
+                }, duration * 1000); // Multiply by 1000 to convert from seconds to milliseconds
+                break;
             default:
                 runPrompts();
                 break;
