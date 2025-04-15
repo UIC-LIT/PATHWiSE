@@ -7,26 +7,25 @@ var lastCustomComment = "c15";
 var totalCommentCount  = 11;
 
 var studentsList = [{
-        'name': '5',
-        'id': 'student-5',
+        'name': '1',
+        'id': 'student-1',
+        'current': 'Justin Beiber and Lyme Disease'
+    },
+    {
+        'name': '3',
+        'id': 'student-3',
         'current': 'Meet the Microbes'
     },
     {
-        'name': '6',
-        'id': 'student-6',
+        'name': '4',
+        'id': 'student-4',
         'current': 'Human Blood'
+    },
+    {
+        'name': '9',
+        'id': 'student-9',
+        'current': 'What are Antibodies'
     }
-    //    ,
-    // {
-    //     'name': '4',
-    //     'id': 'student-4',
-    //     'current': 'What are Antibodies'
-    // },
-    // {
-    //     'name': '9',
-    //     'id': 'student-9',
-    //     'current': 'Justin Beiber and Lyme Disease'
-    // }
 ];
 
 var homeworks = [{

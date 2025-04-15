@@ -354,19 +354,61 @@
         return Math.floor(Math.random() * 8) + 1; // returns a number between 1 to 8
     }
 
-    function classifyResponse(text) {
+    // function classifyResponse(text) { // basic match
+    //     const positiveReplies = ["yes", "yeah", "yup", "sure", "okay", "ok", "absolutely", "indeed", "of course", "yessir"];
+    //     const negativeReplies = ["no", "nope", "nah", "never", "not at all", "no way", "move on", "move forward"];
+    //     const repeatReplies = ["repeat", "again", "pardon", "what", "say that again", "come again", "can you", "didn't catch"];
+
+    //     text = text.trim().toLowerCase();
+    //     console.log('classification input text: ' , text)
+    //     if (repeatReplies.some(word => text.includes(word))) return 2; // repeat
+    //     if (positiveReplies.some(word => text.includes(word))) return 1; // positive
+    //     if (negativeReplies.some(word => text.includes(word))) return 0; // negative
+
+    //     return 3; // Default to positive
+    // }
+
+    function classifyResponse(text) { // score based strict match
         const positiveReplies = ["yes", "yeah", "yup", "sure", "okay", "ok", "absolutely", "indeed", "of course", "yessir"];
-        const negativeReplies = ["no", "nope", "nah", "never", "not at all", "no way", "move on", "move forward"];
-        const repeatReplies = ["repeat", "again", "pardon", "what", "say that again", "come again", "can you", "didn't catch"];
+        const negativeReplies = ["no", "nope", "nah", "naah", "not really", "not at all", "move on", "move forward"];
+        const repeatReplies = ["repeat", "again", "pardon", "what", "say that again", "come again", "didn't catch"];
 
         text = text.trim().toLowerCase();
-        console.log('classification input: ' , text)
-        if (repeatReplies.some(word => text.includes(word))) return 2; // repeat
-        if (positiveReplies.some(word => text.includes(word))) return 1; // positive
-        if (negativeReplies.some(word => text.includes(word))) return 0; // negative
+        console.log('classification input text:', text);
 
-        return 3; // Default to positive
+        const categories = [negativeReplies, positiveReplies, repeatReplies];
+        const scores = [0, 0, 0]; // index 0 = negative, 1 = positive, 2 = repeat
+
+        for (let i = 0; i < categories.length; i++) {
+            for (const phrase of categories[i]) {
+                const pattern = new RegExp(`\\b${phrase.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i');
+                if (pattern.test(text)) {
+                    scores[i]++;
+                }
+            }
+        }
+
+        console.log('Match Scores → Negative:', scores[0], 'Positive:', scores[1], 'Repeat:', scores[2]);
+
+        const maxScore = Math.max(...scores);
+        if (maxScore === 0) {
+            return 3; // return 3 if nothing matched
+        }
+
+        const maxIndices = scores.map((val, idx) => val === maxScore ? idx : -1).filter(idx => idx !== -1);
+
+        // Tie breaker: repeat > positive > negative
+        const priority = [2, 1, 0];
+        for (const preferred of priority) {
+            if (maxIndices.includes(preferred)) {
+                return preferred;
+            }
+        }
+
+        return 3; // fallback if something weird happens
     }
+
+
 
     function startSpeechRecognition() {
         return new Promise((resolve, reject) => {
@@ -412,14 +454,16 @@
 
             recognition.onend = function() {
                 recognitionInstance = null;
+                $('body').removeClass('audio-playing');
                 resolve(finalTranscript.trim());
             };
 
             recognition.onerror = function(event) {
                 recognitionInstance = null;
+                $('body').removeClass('audio-playing');
                 reject('Speech recognition error: ' + event.error);
             };
-
+            $('body').addClass('audio-playing');
             recognition.start();
         });
     }
@@ -488,13 +532,13 @@
                 } else {
                     playInComputer(positiveIntent[0].text, positiveIntent[0].emotion, positiveIntent[0].clip);
                 }
-                $('body').removeClass('audio-playing');
+                $('body').addClass('audio-playing');
                 const duration = await getAudioDuration(window.location.origin + '/assets/audios/' + positiveIntent[0].clip + '.mp3');
                 console.log('Audio Duration:', duration, ' ', positiveIntent[0].clip);
                 // Delay the execution of the following actions by the audio duration in milliseconds
                 setTimeout(() => {
                     $('body').removeClass('audio-playing');
-                     manageRecognitionResultsFromPrompts();
+                    manageRecognitionResultsFromPrompts();
                     // runPrompts();
                 }, duration * 1000); // Multiply by 1000 to convert from seconds to milliseconds
                 break;
@@ -527,14 +571,14 @@
                     try {
                         manageRecognitionResults();
                     } catch (err) {
-                        console.log('Recog/Classi error: ', err)
+                        console.log('Recog/Classi error: ', err);
                     }
                 }
                 if (flag == 3) {
                     try {
                         manageRecognitionResultsFromPrompts();
                     } catch (err) {
-                        console.log('Recog/Classi error 2: ', err)
+                        console.log('Recog/Classi error 2: ', err);
                     }
                 }
                 $('body').removeClass('audio-playing');
