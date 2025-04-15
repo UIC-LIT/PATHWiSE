@@ -1,6 +1,7 @@
 if (localStorage.getItem("auth") == null) {
     localStorage.setItem("auth", "true");
 }
+
 var isRobotControl = true;
 var isProduction = true;
 var lastCustomComment = "c15";
