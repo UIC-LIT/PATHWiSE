@@ -13,6 +13,11 @@ var studentsList = [{
         'current': 'Justin Beiber and Lyme Disease'
     },
     {
+        'name': '2',
+        'id': 'student-2',
+        'current': 'Human Blood'
+    },
+    {
         'name': '3',
         'id': 'student-3',
         'current': 'Meet the Microbes'
@@ -23,8 +28,28 @@ var studentsList = [{
         'current': 'Human Blood'
     },
     {
+        'name': '5',
+        'id': 'student-5',
+        'current': 'What are Antibodies'
+    },
+    {
+        'name': '6',
+        'id': 'student-6',
+        'current': 'Justin Beiber and Lyme Disease'
+    },
+    {
+        'name': '7',
+        'id': 'student-7',
+        'current': 'Justin Beiber and Lyme Disease'
+    },
+    {
         'name': '9',
         'id': 'student-9',
+        'current': 'What are Antibodies'
+    },
+    {
+        'name': '11',
+        'id': 'student-11',
         'current': 'What are Antibodies'
     }
 ];
