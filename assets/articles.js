@@ -30,7 +30,7 @@ var studentsList = [{
     {
         'name': '5',
         'id': 'student-5',
-        'current': 'What are Antibodies' // 'Human Blood'
+        'current': 'Human Blood'
     },
     {
         'name': '6',
