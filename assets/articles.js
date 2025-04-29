@@ -10,47 +10,47 @@ var totalCommentCount  = 11;
 var studentsList = [{
         'name': '1',
         'id': 'student-1',
-        'current': 'Human Blood'
+        'current': 'What are Antibodies'
     },
     {
         'name': '2',
         'id': 'student-2',
-        'current': 'Meet the Microbes'
+        'current': 'Justin Beiber and Lyme Disease'
     },
     {
         'name': '3',
         'id': 'student-3',
-        'current': 'What are Antibodies'
+        'current': 'Justin Beiber and Lyme Disease'
     },
     {
         'name': '4',
         'id': 'student-4',
-        'current': 'Justin Beiber and Lyme Disease'
+        'current': 'Meet the Microbes'
     },
     {
         'name': '5',
         'id': 'student-5',
-        'current': 'Human Blood'
+        'current': 'Justin Beiber and Lyme Disease'
     },
     {
         'name': '6',
         'id': 'student-6',
-        'current': 'Meet the Microbes'
+        'current': 'What are Antibodies'
     },
     {
         'name': '7',
         'id': 'student-7',
-        'current': 'What are Antibodies'
+        'current': 'Human Blood'
     },
     {
         'name': '9',
         'id': 'student-9',
-        'current': 'Meet the Microbes'
+        'current': 'Human Blood'
     },
     {
         'name': '11',
         'id': 'student-11',
-        'current': 'Justin Beiber and Lyme Disease'
+        'current': 'Meet the Microbes'
     }
 ];
 
