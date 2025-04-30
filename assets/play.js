@@ -276,9 +276,9 @@
 
     function sendToRobot(text, behavior, clip) {
         executeBehavior(behavior);
-        //var audioBase = "https://" + computerIP + "/assets/audios/"; // computer based server to serve the audios
-        var audioBase = "https://anistuhin.com/misty/"; // internet based server to serve the audios
-        //var audioBase = ""; // robot based file system to serve the audios
+        //var audioBase = "https://" + computerIP + "/assets/audios/"; // still has bug: computer based server to serve the audios
+        // var audioBase = "https://anistuhin.com/misty/"; // internet based server to serve the audios
+        var audioBase = ""; // robot based file system to serve the audios
         console.log("Sent to misty to play: " + audioBase + clip + ".mp3");
         if (isProduction) {
             Promise.race([

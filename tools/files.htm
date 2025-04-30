@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Misty Audio Manager</title>
+    <style>
+        /* Basic Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 8px 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        button {
+            padding: 6px 12px;
+            margin-left: 10px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #deleteAllBtn {
+            background-color: red;
+        }
+
+        #deleteAllBtn:hover {
+            background-color: darkred;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Misty Audio Manager</h1>
+    <input type="file" id="audioFile" accept=".mp3" multiple />
+    <label>
+        <input type="checkbox" id="overwrite"> Overwrite if exists
+    </label>
+    <button onclick="uploadFiles()">⬆️ Upload</button>
+    <br><br>
+    <button onclick="refreshFileList()">🔄 Refresh File List</button>
+    <button id="deleteAllBtn" onclick="deleteAllFiles()">🗑️ Delete All</button>
+    <table id="fileList">
+        <thead>
+            <tr>
+                <th>File Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <script type="text/javascript" src="assets/jquery-3.6.0.min.js"></script>
+    <script>
+    const mistyIP = localStorage.getItem("mistyIP");
+
+    async function uploadFiles() {
+        const fileInput = document.getElementById("audioFile");
+        const overwrite = document.getElementById("overwrite").checked;
+        const files = fileInput.files;
+
+        if (!files.length) {
+            alert("Please select at least one file.");
+            return;
+        }
+
+        for (const file of files) {
+            const formData = new FormData();
+            formData.append("File", file);
+            formData.append("FileName", file.name);
+            formData.append("OverwriteExisting", overwrite);
+
+            try {
+                const response = await fetch(`http://${mistyIP}/api/audio`, {
+                    method: "POST",
+                    body: formData
+                });
+
+                const result = await response.json();
+                if (result.status === "Success") {
+                    console.log(`Uploaded: ${file.name}`);
+                } else {
+                    alert(`Upload failed for ${file.name}: ` + JSON.stringify(result));
+                }
+            } catch (error) {
+                alert(`Upload error for ${file.name}: ` + error.message);
+            }
+        }
+
+        refreshFileList();
+    }
+
+    async function refreshFileList() {
+        const listElement = document.getElementById("fileList").getElementsByTagName('tbody')[0];
+        listElement.innerHTML = "";
+
+        try {
+            const response = await fetch(`http://${mistyIP}/api/audio/list`);
+            const data = await response.json();
+
+            if (data.result && Array.isArray(data.result)) {
+                data.result.forEach(file => {
+                    const fileName = file.name || "Unknown";
+
+                    const row = listElement.insertRow();
+                    const fileNameCell = row.insertCell(0);
+                    fileNameCell.classList.add('filename');
+                    fileNameCell.textContent = fileName;
+
+                    const actionsCell = row.insertCell(1);
+
+                    const playBtn = document.createElement("button");
+                    playBtn.textContent = "▶️ Play";
+                    playBtn.onclick = () => playFile(fileName);
+                    actionsCell.appendChild(playBtn);
+
+                    const deleteBtn = document.createElement("button");
+                    deleteBtn.textContent = "❌ Delete";
+                    deleteBtn.onclick = () => deleteFile(fileName);
+                    actionsCell.appendChild(deleteBtn);
+                });
+            } else {
+                const row = listElement.insertRow();
+                const cell = row.insertCell(0);
+                cell.colSpan = 2;
+                cell.textContent = "No audio files found.";
+            }
+        } catch (error) {
+            const row = listElement.insertRow();
+            const cell = row.insertCell(0);
+            cell.colSpan = 2;
+            cell.textContent = "Error loading files: " + error.message;
+        }
+    }
+
+    async function playFile(name) {
+        try {
+            await fetch(`http://${mistyIP}/api/audio/play`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ FileName: name })
+            });
+        } catch (error) {
+            alert("Play failed: " + error.message);
+        }
+    }
+
+    async function deleteFile(name) {
+        if (!confirm(`Delete '${name}'?`)) return;
+
+        try {
+            await fetch(`http://${mistyIP}/api/audio/`, {
+                method: "DELETE",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ FileName: name })
+            });
+            console.log(name + " Deleted.");
+            refreshFileList();
+        } catch (error) {
+            alert("Delete failed: " + error.message);
+        }
+    }
+
+    async function deleteAllFiles() {
+        if (!confirm("Are you sure you want to delete all files?")) return;
+
+        const cells = $("#fileList tbody > tr > td.filename").toArray();
+
+        for (const cell of cells) {
+            const fileName = $(cell).text().trim();
+
+            try {
+                const response = await fetch(`http://${mistyIP}/api/audio/`, {
+                    method: "DELETE",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ FileName: fileName })
+                });
+
+                const result = await response.json();
+                if (result.status === "Success") {
+                    console.log(`${fileName} deleted.`);
+                } else {
+                    console.warn(`Skipped ${fileName}: ${result.error}`)
+                }
+            } catch (error) {
+                alert("Error deleting " + fileName + ": " + error.message);
+                // break; // Stop if there's an error
+            }
+        }
+
+        refreshFileList();
+    }
+
+
+
+
+    // Initial load
+    refreshFileList();
+    </script>
+</body>
+
+</html>
