@@ -180,5 +180,11 @@
      ```
 
 ## **Part 5: Additional steps/notes**
-- Update the Misty robot IP here: https://pathwi.se/set-ip.htm (Note: This step makes the robot play generated audio from Google TTS or speak on the go. You may also need to configure the speech parameters to make it sound more human-like if you want to use "speak on the go" inside the assets/robot-play.js file, lines 197-203)
+- Update the Misty robot IP here: https://pathwi.se/set-ip.htm (Note: This step makes the robot play generated audio from "Google TTS" or "speak on the go". You may also need to configure the speech parameters to make it sound more human-like if you want to use "speak on the go" inside the assets/robot-play.js file, lines 197-203)
+- Upload the audio files from "assets/audios/" to the robot. Use https://pathwi.se/tools/files.htm to upload, play or delete files from the robots. 
+- Optional: Use https://pathwi.se/tools/tts.htm to genrate audios from the homeworks comments or other prompts (found is the articles.js)
 - That completes the system setup with all dependencies. You may now open the teacher's side of the editor (i.e., https://pathwi.se/index-working.htm or the other virtual host URL from Step 2 if you choose so), make annotations as you see fit, and save them. The student-facing versions (https://pathwi.se/student-robot.htm & https://pathwi.se/student-computer.htm) fetch the latest data from your most recent saves.
+
+## **Part 6: Common issues/scenarios found in the FPMS study**
+- Roatted PDF: use "SHIFT+R" to rotate it multiple times and bring back todefault orientation
+- Unclickable Comment Pins: 
