@@ -186,5 +186,6 @@
 - That completes the system setup with all dependencies. You may now open the teacher's side of the editor (i.e., https://pathwi.se/index-working.htm or the other virtual host URL from Step 2 if you choose so), make annotations as you see fit, and save them. The student-facing versions (https://pathwi.se/student-robot.htm & https://pathwi.se/student-computer.htm) fetch the latest data from your most recent saves.
 
 ## **Part 6: Common issues/scenarios found in the FPMS study**
-- Roatted PDF: use "SHIFT+R" to rotate it multiple times and bring back todefault orientation
-- Unclickable Comment Pins: 
+- Browser Requirement: The system works on Google Chrome only (until we launch to an online server like evl VM etc)
+- Roatted PDF: use "SHIFT+R" to rotate it multiple times and bring back to the default orientation
+- Unclickable Comment Pins: Remove "audio-playing" class from "body" using inspect element.
