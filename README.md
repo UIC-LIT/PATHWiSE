@@ -188,4 +188,10 @@
 ## **Part 6: Common issues/scenarios found in the FPMS study**
 - Browser Requirement: The system works on Google Chrome only (until we launch to an online server like evl VM etc)
 - Roatted PDF: use "SHIFT+R" to rotate it multiple times and bring back to the default orientation
-- Unclickable Comment Pins: Remove "audio-playing" class from "body" using inspect element.
+- Unclickable Comment Pins: Remove "audio-playing" class from "body" using inspect element.## **Part 6: Common issues/scenarios found in the FPMS study**
+
+## **Part 7: Things to improve**
+- Listening state eyes of the robot
+- Update the audio files according to the new promopts based on chnaged eye color logic
+- Send the robot back to normal state after each comment
+
