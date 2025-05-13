@@ -20,7 +20,7 @@ var studentsList = [{
     {
         'name': '3',
         'id': 'student-3',
-        'current': 'What are Antibodies'
+        'current': 'Human Blood'
     },
     {
         'name': '4',
@@ -35,7 +35,7 @@ var studentsList = [{
     {
         'name': '6',
         'id': 'student-6',
-        'current': 'Human Blood'
+        'current': 'Justin Beiber and Lyme Disease'
     }
 ];
 
