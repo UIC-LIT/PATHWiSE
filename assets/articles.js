@@ -10,47 +10,32 @@ var totalCommentCount  = 11;
 var studentsList = [{
         'name': '1',
         'id': 'student-1',
-        'current': 'What are Antibodies'
+        'current': 'Meet the Microbes'
     },
     {
         'name': '2',
         'id': 'student-2',
-        'current': 'Justin Beiber and Lyme Disease'
+        'current': 'Human Blood'
     },
     {
         'name': '3',
         'id': 'student-3',
-        'current': 'Justin Beiber and Lyme Disease'
+        'current': 'What are Antibodies'
     },
     {
         'name': '4',
         'id': 'student-4',
-        'current': 'Meet the Microbes'
+        'current': 'What are Antibodies'
     },
     {
         'name': '5',
         'id': 'student-5',
-        'current': 'Justin Beiber and Lyme Disease'
+        'current': 'Meet the Microbes'
     },
     {
         'name': '6',
         'id': 'student-6',
-        'current': 'What are Antibodies'
-    },
-    {
-        'name': '7',
-        'id': 'student-7',
         'current': 'Human Blood'
-    },
-    {
-        'name': '9',
-        'id': 'student-9',
-        'current': 'Human Blood'
-    },
-    {
-        'name': '11',
-        'id': 'student-11',
-        'current': 'Meet the Microbes'
     }
 ];
 
@@ -136,18 +121,32 @@ var prompts = [
 var positiveIntent = [{ "text" : "Great! Go ahead and tell me what else you'd like to add.", "clip": "21", "emotion": "4"  }];
 var negativeIntent = [{ "text" : "Alright! Let's move on to the next part!", "clip": "22", "emotion": "1"  }];
 
+// var preIntros = [
+//     { "text": "Hey! I’m really looking forward to going through the article with you today. Before we jump in, here’s how we’ll work together: Whenever you spot a speech bubble in the article, give it a click, and I’ll know you’re ready for my question. After I ask, hold off on responding until my eyes turn green. If my eyes are red, I’m still talking, yellow means I’m mulling it over, and green means you can jump in! Ready to begin? Hit the start button.", "clip": "101", "emotion": "100" },
+//     { "text": "Hi! So excited to read through with you today. Let’s quickly go over how we’ll interact while reading: You’ll notice speech bubbles in the article—click on them to let me know you’re ready for a question. Once I ask, please wait for my eye color to change to green before answering. Red means I’m still speaking, yellow means I’m thinking, and green means it’s your turn! Once you’re good to go, just click the start button.", "clip": "102", "emotion": "100" },
+//     { "text": "Hey there! I’m super excited to read with you today. Before we get started, here’s a quick breakdown of how we’ll go about it: Whenever you see a speech bubble, click it so I know you’re ready for a question. After I ask, wait for my eye color to turn green before replying. If my eyes are red, I’m still talking; yellow means I’m processing; and green means it’s your turn to speak! Once you’re ready, just hit the start button.", "clip": "103", "emotion": "100" },
+//     { "text": "Hi! Excited to dive into this with you today. Before we begin, here’s how we’ll work together: When you see a speech bubble in the article, click it to let me know you’re ready for me to ask a question. After I ask, pause until you see my eyes turn green—only then should you reply. If my eyes are red, I’m still talking; yellow means I’m thinking; and green means it’s your time to respond! Once you’re set, just hit the start button.", "clip": "104", "emotion": "100" },
+//     { "text": "Hey! I’m thrilled to read with you today. Here’s how we can go about it: Every time you see a speech bubble, click on it so I know you’re ready for a question. After I ask, wait for my eye color to change to green before you respond. Red means I’m still talking, yellow means I’m still thinking, and green means it’s your turn! When you’re ready, click the start button to begin.", "clip": "105", "emotion": "100" },
+//     { "text": "Hello! I’m excited to read with you today. Let’s quickly go over how we’ll communicate as we read: Click on any speech bubble you see to signal you’re ready for my question. After I ask, hold off on responding until my eyes turn green. If my eyes are red, I’m still speaking; yellow means I need more time to think; and green means it’s your chance to answer! Once you’re ready, just hit the start button.", "clip": "106", "emotion": "100" },
+//     { "text": "Hi there! Ready to explore with me today? Before we dive in, here’s how we’ll go through it together: When a speech bubble appears, click it to let me know you’re ready for me to ask you something. After I ask, wait for my eye color to turn green before responding. Red means I’m still talking, yellow means I’m still thinking, and green means go ahead and reply! Once you’re all set, just press the start button.", "clip": "107", "emotion": "100" },
+//     { "text": "Hey! I’m so excited to read through with you today. Here’s a quick rundown of how we’ll work through this: Whenever you see a speech bubble in the article, click on it so I know you’re ready for my question. Once I ask, hold off on responding until my eyes turn green. Red means I’m still talking, yellow means I’m thinking, and green means it’s your turn! When you’re all set, click the start button.", "clip": "108", "emotion": "100" },
+//     { "text": "Hi! I’m excited to go through with you today. Before we start, let me explain how we’ll handle things: Click on the speech bubble when you’re ready for me to ask you a question. After I ask, please wait for my eye color to turn green before responding. If my eyes are red, I’m still talking; yellow means I’m thinking; and green means it’s your chance to respond! Click the start button when you’re ready.", "clip": "109", "emotion": "100" },
+//     { "text": "Hey! I’m really excited to read with you today. Before we begin, here’s a refresher on how we’ll go through it: If you see a speech bubble, click it to let me know you’re ready for a question. Once I ask, please wait for my eye color to turn green before responding. If my eyes are red, it means I’m still talking; yellow means I’m thinking; and green means it’s your turn to respond! Click the start button when you’re ready.", "clip": "110", "emotion": "100" }
+// ];
+
 var preIntros = [
-    { "text": "Hey! I’m really looking forward to going through the article with you today. Before we jump in, here’s how we’ll work together: Whenever you spot a speech bubble in the article, give it a click, and I’ll know you’re ready for my question. After I ask, hold off on responding until my eyes turn green. If my eyes are red, I’m still talking, yellow means I’m mulling it over, and green means you can jump in! Ready to begin? Hit the start button.", "clip": "101", "emotion": "100" },
-    { "text": "Hi! So excited to read through with you today. Let’s quickly go over how we’ll interact while reading: You’ll notice speech bubbles in the article—click on them to let me know you’re ready for a question. Once I ask, please wait for my eye color to change to green before answering. Red means I’m still speaking, yellow means I’m thinking, and green means it’s your turn! Once you’re good to go, just click the start button.", "clip": "102", "emotion": "100" },
-    { "text": "Hey there! I’m super excited to read with you today. Before we get started, here’s a quick breakdown of how we’ll go about it: Whenever you see a speech bubble, click it so I know you’re ready for a question. After I ask, wait for my eye color to turn green before replying. If my eyes are red, I’m still talking; yellow means I’m processing; and green means it’s your turn to speak! Once you’re ready, just hit the start button.", "clip": "103", "emotion": "100" },
-    { "text": "Hi! Excited to dive into this with you today. Before we begin, here’s how we’ll work together: When you see a speech bubble in the article, click it to let me know you’re ready for me to ask a question. After I ask, pause until you see my eyes turn green—only then should you reply. If my eyes are red, I’m still talking; yellow means I’m thinking; and green means it’s your time to respond! Once you’re set, just hit the start button.", "clip": "104", "emotion": "100" },
-    { "text": "Hey! I’m thrilled to read with you today. Here’s how we can go about it: Every time you see a speech bubble, click on it so I know you’re ready for a question. After I ask, wait for my eye color to change to green before you respond. Red means I’m still talking, yellow means I’m still thinking, and green means it’s your turn! When you’re ready, click the start button to begin.", "clip": "105", "emotion": "100" },
-    { "text": "Hello! I’m excited to read with you today. Let’s quickly go over how we’ll communicate as we read: Click on any speech bubble you see to signal you’re ready for my question. After I ask, hold off on responding until my eyes turn green. If my eyes are red, I’m still speaking; yellow means I need more time to think; and green means it’s your chance to answer! Once you’re ready, just hit the start button.", "clip": "106", "emotion": "100" },
-    { "text": "Hi there! Ready to explore with me today? Before we dive in, here’s how we’ll go through it together: When a speech bubble appears, click it to let me know you’re ready for me to ask you something. After I ask, wait for my eye color to turn green before responding. Red means I’m still talking, yellow means I’m still thinking, and green means go ahead and reply! Once you’re all set, just press the start button.", "clip": "107", "emotion": "100" },
-    { "text": "Hey! I’m so excited to read through with you today. Here’s a quick rundown of how we’ll work through this: Whenever you see a speech bubble in the article, click on it so I know you’re ready for my question. Once I ask, hold off on responding until my eyes turn green. Red means I’m still talking, yellow means I’m thinking, and green means it’s your turn! When you’re all set, click the start button.", "clip": "108", "emotion": "100" },
-    { "text": "Hi! I’m excited to go through with you today. Before we start, let me explain how we’ll handle things: Click on the speech bubble when you’re ready for me to ask you a question. After I ask, please wait for my eye color to turn green before responding. If my eyes are red, I’m still talking; yellow means I’m thinking; and green means it’s your chance to respond! Click the start button when you’re ready.", "clip": "109", "emotion": "100" },
-    { "text": "Hey! I’m really excited to read with you today. Before we begin, here’s a refresher on how we’ll go through it: If you see a speech bubble, click it to let me know you’re ready for a question. Once I ask, please wait for my eye color to turn green before responding. If my eyes are red, it means I’m still talking; yellow means I’m thinking; and green means it’s your turn to respond! Click the start button when you’re ready.", "clip": "110", "emotion": "100" }
+    { "text": "Hey! I’m really looking forward to going through the article with you today. Before we jump in, here’s how we’ll work together: Whenever you spot a speech bubble in the article, give it a click, and I’ll know you’re ready for my question. After I ask, hold off on responding until my eyes turn green. Ready to begin? Hit the start button.", "clip": "101", "emotion": "100" },
+    { "text": "Hi! So excited to read through with you today. Let’s quickly go over how we’ll interact while reading: You’ll notice speech bubbles in the article—click on them to let me know you’re ready for a question. Once I ask, please wait for my eye color to change to green before answering. Once you’re good to go, just click the start button.", "clip": "102", "emotion": "100" },
+    { "text": "Hey there! I’m super excited to read with you today. Before we get started, here’s a quick breakdown of how we’ll go about it: Whenever you see a speech bubble, click it so I know you’re ready for a question. After I ask, wait for my eye color to turn green before replying. Once you’re ready, just hit the start button.", "clip": "103", "emotion": "100" },
+    { "text": "Hi! Excited to dive into this with you today. Before we begin, here’s how we’ll work together: When you see a speech bubble in the article, click it to let me know you’re ready for me to ask a question. After I ask, pause until you see my eyes turn green—only then should you reply. Once you’re set, just hit the start button.", "clip": "104", "emotion": "100" },
+    { "text": "Hey! I’m thrilled to read with you today. Here’s how we can go about it: Every time you see a speech bubble, click on it so I know you’re ready for a question. After I ask, wait for my eye color to change to green before you respond. When you’re ready, click the start button to begin.", "clip": "105", "emotion": "100" },
+    { "text": "Hello! I’m excited to read with you today. Let’s quickly go over how we’ll communicate as we read: Click on any speech bubble you see to signal you’re ready for my question. After I ask, hold off on responding until my eyes turn green. Once you’re ready, just hit the start button.", "clip": "106", "emotion": "100" },
+    { "text": "Hi there! Ready to explore with me today? Before we dive in, here’s how we’ll go through it together: When a speech bubble appears, click it to let me know you’re ready for me to ask you something. After I ask, wait for my eye color to turn green before responding. Once you’re all set, just press the start button.", "clip": "107", "emotion": "100" },
+    { "text": "Hey! I’m so excited to read through with you today. Here’s a quick rundown of how we’ll work through this: Whenever you see a speech bubble in the article, click on it so I know you’re ready for my question. Once I ask, hold off on responding until my eyes turn green. When you’re all set, click the start button.", "clip": "108", "emotion": "100" },
+    { "text": "Hi! I’m excited to go through with you today. Before we start, let me explain how we’ll handle things: Click on the speech bubble when you’re ready for me to ask you a question. After I ask, please wait for my eye color to turn green before responding. Click the start button when you’re ready.", "clip": "109", "emotion": "100" },
+    { "text": "Hey! I’m really excited to read with you today. Before we begin, here’s a refresher on how we’ll go through it: If you see a speech bubble, click it to let me know you’re ready for a question. Once I ask, please wait for my eye color to turn green before responding. Click the start button when you’re ready.", "clip": "110", "emotion": "100" }
 ];
+
 
 var intros = [
     { "text": "Awesome! You can start reading now. Whenever you come across a speech bubble, click on it, and I’ll ask you a question. Just remember to wait until my eyes are green before answering. Enjoy reading!", "clip": "201", "emotion": "100" },

@@ -20,6 +20,7 @@
         "surprise",
         "trust",
         "neutral",
+        "listening"
     ];
 
     var behaviors = {
@@ -53,6 +54,7 @@
         "apprehension": "SL 500\nFI eyes_apprehension.jpg\nTL 0 0 0 0 64 255 breathe 2387\nMAS 90 100 90 100\nMH 0 0 -2 100\nSL 100\nMAS 80 100 80 100\nMH 0 0 2 100\nMH 0 0 -2 100\nMAS 90 100 90 100\nSL 100\nMAS 80 100 80 100",
         "terror": "SL 500\nFI eyes_terror.jpg\nTL 0 0 0 170 0 255 breathe 1220\nMH 0 10 0 90\nMT -75 0 500\nMAS 90 100 90 100\nMH 0 5 -2 100\nSL 100\nMAS 80 100 80 100\nMH 0 5 2 100\nMH 0 5 -2 100\nMH 0 5 2 100\nMAS 90 100 90 100\nMH 0 5 -2 100\nSL 100\nMAS 80 100 80 100",
         "intro": "SL 500\nFI eyes_default.jpg\nCL 255 255 255\nMH 0 0 0 100\nMAS 90 100 90 100",
+        "listening": "SL 500\nTL 0 0 0 255 230 0 breathe 1702\nMH 0 -5 0 100\nMAS 55 100 55 100\nSL 500\nFI listening.png\nMT 25 0 500",
     };
 
     const executeBehavior = async (behaviorName) => {
@@ -370,7 +372,7 @@
 
     function classifyResponse(text) { // score based strict match
         const positiveReplies = ["yes", "yeah", "yup", "sure", "okay", "ok", "absolutely", "indeed", "of course", "yessir"];
-        const negativeReplies = ["no", "nope", "nah", "naah", "not really", "not at all", "move on", "move forward"];
+        const negativeReplies = ["no", "no thanks", "no thank you", "nope", "nah", "naah", "not really", "not at all", "move on", "move forward"];
         const repeatReplies = ["repeat", "again", "pardon", "what", "say that again", "come again", "didn't catch"];
 
         text = text.trim().toLowerCase();
@@ -464,6 +466,11 @@
                 reject('Speech recognition error: ' + event.error);
             };
             $('body').addClass('audio-playing');
+            if(isRobotControl) {
+                executeBehavior(emotionsList["9"]);    
+            } else {
+                $(document).find('#selected-emotion > ul li[data-id="9"]').click();
+            }
             recognition.start();
         });
     }

@@ -21,6 +21,7 @@
         "surprise",
         "trust",
         "neutral",
+        "listening"
     ];
     var typeList = ["custom", "summary", "vocab", "personal", "emotional"];
     var pins = [];
