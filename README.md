@@ -193,9 +193,10 @@
 
 ## **Part 7: VOSK server as offline backup**
 - Install Python (if not already) from https://www.python.org/downloads/
-- Download vosk from here: https://alphacephei.com/vosk/models/vosk-model-small-en-us-0.15.zip
-- Extract that zip file and rename it to "model"
-- Move the "model" folder to the "assets/vosk" folder of the project
+- Go to "assets/vosk/" folder and look for a folder named "model". If it's not there do the follwing:
+   - Download vosk from here: https://alphacephei.com/vosk/models/vosk-model-small-en-us-0.15.zip
+   - Extract that zip file and rename it to "model"
+   - Move the "model" folder to the "assets/vosk" folder of the project
 - Open a terminal/shell and run the following one by one:
 ```
 pip install -r requirements.txt
