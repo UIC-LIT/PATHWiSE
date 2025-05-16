@@ -391,7 +391,7 @@
 
     function classifyResponse(text) { // score based strict match
         const positiveReplies = ["yes", "yeah", "yup", "sure", "okay", "ok", "absolutely", "indeed", "of course", "yessir"];
-        const negativeReplies = ["no", "no thanks", "no thank you", "nope", "nah", "naah", "not really", "not at all", "move on", "move forward"];
+        const negativeReplies = ["no", "no thanks", "no thank you", "nope", "nah", "naah", "not really", "not at all", "move on", "move forward", "that's all", "thats all", "dont think so", "don't think so"];
         const repeatReplies = ["repeat", "again", "pardon", "what", "say that again", "come again", "didn't catch"];
 
         text = text.trim().toLowerCase();

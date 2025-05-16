@@ -36,6 +36,11 @@ var studentsList = [{
         'name': '6',
         'id': 'student-6',
         'current': 'Justin Beiber and Lyme Disease'
+    },
+    {
+        'name': '7',
+        'id': 'student-7',
+        'current': 'What are Antibodies'
     }
 ];
 
