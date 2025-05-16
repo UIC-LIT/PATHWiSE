@@ -195,7 +195,7 @@
 - Go to "assets/vosk" folder
 - Open a terminal/shell and run the following one by one:
 ```
-pip install -r vosk_server/requirements.txt
+pip install -r requirements.txt
 wget https://alphacephei.com/vosk/models/vosk-model-small-en-us-0.15.zip
 unzip vosk-model-small-en-us-0.15.zip
 mv vosk-model-small-en-us-0.15 model
