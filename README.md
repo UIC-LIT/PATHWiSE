@@ -197,7 +197,7 @@
    - Download vosk from here: https://alphacephei.com/vosk/models/vosk-model-small-en-us-0.15.zip
    - Extract that zip file and rename it to "model"
    - Move the "model" folder to the "assets/vosk" folder of the project
-- Open a terminal/shell and run the following one by one:
+- Open a terminal/shell and run the following:
 ```
 pip install -r requirements.txt
 ```
@@ -205,8 +205,18 @@ pip install -r requirements.txt
 ```
 python app.py
 ```
+## **Part 8: Things to do before a study**
+- Setup the cameras
+- Turn on the computer
+- Do a git pull
+- Run wampserver
+- Turn on the Robot if needed and update the robot IP
+- Go to the "assets/vosk/" folder and run the Flask app:
+```
+python app.py
+```
 
-## **Part 8: Things to improve**
+## **Part 9: Things to improve**
 - (Done) Listening state eyes of the robot
 - (Done) Update the audio files according to the new promopts based on chnaged eye color logic
 - (done) Send the robot back to normal state after each comment
