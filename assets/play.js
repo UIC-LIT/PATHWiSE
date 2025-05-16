@@ -11,10 +11,17 @@
     // let audioContext = null;
     // let cheetahProcessor = null;
 
-    let mediaRecorder = null;
-    let chunks = [];
-    let silenceTimer = null;
     let isRecording = false;
+    let mediaRecorder;
+    let chunks = [];
+    let audioContext, mediaStreamSource, analyser, silenceCheckInterval;
+    let silenceStartTime = null;
+    let recordingStartedAt = null;
+
+    const SILENCE_DURATION = 2000; // 2 seconds
+    const SILENCE_THRESHOLD = 0.01; // Adjust as needed
+    const MIN_RECORDING_DURATION = 500; // Prevent too-short recordings
+
     const API_URL = 'http://localhost:5001/transcribe'; // Replace with your server's URL
 
     const audioPlayers = [];
@@ -422,97 +429,116 @@
         return 3; // fallback if something weird happens
     }
 
-    // Function to start speech recognition (offline using Vosk)
     async function startSpeechRecognition() {
         return new Promise((resolve, reject) => {
-            // If already recording, stop the previous instance
-            if (isRecording) {
-                stopSpeechRecognition(); // Stop the previous recording cleanly
-            }
+            if (isRecording) stopSpeechRecognition();
 
-            // Start a new MediaRecorder instance to capture audio
             navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
-                const audioContext = new(window.AudioContext || window.webkitAudioContext)();
-                mediaRecorder = new MediaRecorder(stream);
+                // Setup audio context & analyser
+                audioContext = new(window.AudioContext || window.webkitAudioContext)();
+                mediaStreamSource = audioContext.createMediaStreamSource(stream);
+                analyser = audioContext.createAnalyser();
+                analyser.fftSize = 2048;
+                mediaStreamSource.connect(analyser);
 
-                // Collect the audio data in chunks
+                // Setup media recorder
+                mediaRecorder = new MediaRecorder(stream);
+                chunks = [];
                 mediaRecorder.ondataavailable = (e) => chunks.push(e.data);
 
-                // When recording stops, convert the audio and send it to the server
                 mediaRecorder.onstop = async () => {
-                    const blob = new Blob(chunks, { type: 'audio/webm' });
-                    chunks = [];
-                    // Convert to WAV format and send it to the server
-                    const wavBlob = await convertWebMToWav(blob);
-                    sendToServer(wavBlob, resolve, reject);
+                    stopSilenceCheck();
+                    if (chunks.length === 0) {
+                        console.warn("No audio chunks recorded.");
+                        return;
+                    }
+
+                    try {
+                        const webmBlob = new Blob(chunks, { type: 'audio/webm' });
+                        const wavBlob = await convertWebMToWav(webmBlob);
+                        sendToServer(wavBlob, resolve, reject);
+                    } catch (e) {
+                        console.error("Audio conversion error:", e);
+                        reject(e);
+                    }
                 };
 
-                // Start recording
                 mediaRecorder.start();
                 isRecording = true;
-                console.log("Recording started");
+                recordingStartedAt = Date.now();
+                runPreSpeechBehavior();
+                startSilenceCheck();
 
-                // Set a timeout to stop recording after 2 seconds of silence
-                const SILENCE_TIMEOUT = 2000; // 2 seconds of silence
-                silenceTimer = setTimeout(() => {
-                    console.log("Silence detected, stopping recording...");
-                    stopSpeechRecognition(); // Automatically stop after silence
-                }, SILENCE_TIMEOUT);
+                console.log("Recording started...");
             }).catch((err) => {
-                console.error("Error accessing microphone", err);
+                console.error("Microphone access error:", err);
                 reject(err);
             });
         });
     }
 
-    // Function to stop speech recognition and clear resources
     function stopSpeechRecognition() {
-        // Stop recording if it's still active
         if (mediaRecorder && isRecording) {
             mediaRecorder.stop();
-            isRecording = false;
-            console.log("Recording stopped");
         }
-
-        // Clear any existing timers
-        if (silenceTimer) {
-            clearTimeout(silenceTimer);
-            silenceTimer = null;
-        }
-
-        // Clean up visual state
+        stopSilenceCheck();
+        isRecording = false;
         $('body').removeClass('audio-playing');
-        console.log("Stopped/Cleared recognitions");
+        console.log("Recording stopped.");
     }
 
-    // Function to trigger pre-speech behavior (visual or robotic action)
     function runPreSpeechBehavior() {
         $('body').addClass('audio-playing');
         if (isRobotControl) {
             executeBehavior(emotionsList["9"]);
         } else {
-            $(document).find('#selected-emotion > ul li[data-id="9"]').click();
+            $('#selected-emotion > ul li[data-id="9"]').click();
         }
     }
 
-    // Function to convert WebM to WAV (for Vosk to process)
-    async function convertWebMToWav(webmBlob) {
-        const arrayBuffer = await webmBlob.arrayBuffer();
-        const audioCtx = new(window.AudioContext || window.webkitAudioContext)();
-        const audioBuffer = await audioCtx.decodeAudioData(arrayBuffer);
+    // --- Silence Detection ---
+    function startSilenceCheck() {
+        const buffer = new Uint8Array(analyser.fftSize);
+        silenceCheckInterval = setInterval(() => {
+            analyser.getByteTimeDomainData(buffer);
+            const normalized = Array.from(buffer).map(v => (v - 128) / 128);
+            const rms = Math.sqrt(normalized.reduce((sum, val) => sum + val * val, 0) / normalized.length);
+
+            const now = Date.now();
+
+            if (rms < SILENCE_THRESHOLD) {
+                if (!silenceStartTime) silenceStartTime = now;
+                else if ((now - silenceStartTime > SILENCE_DURATION) && now - recordingStartedAt > MIN_RECORDING_DURATION) {
+                    console.log("Silence detected, stopping...");
+                    stopSpeechRecognition();
+                }
+            } else {
+                silenceStartTime = null; // reset silence timer
+            }
+        }, 100); // Check every 100ms
+    }
+
+    function stopSilenceCheck() {
+        clearInterval(silenceCheckInterval);
+        silenceStartTime = null;
+    }
+
+    // --- Audio Conversion ---
+    async function convertWebMToWav(blob) {
+        const buffer = await blob.arrayBuffer();
+        const context = new(window.AudioContext || window.webkitAudioContext)();
+        const audioBuffer = await context.decodeAudioData(buffer);
         const wavBuffer = encodeWAV(audioBuffer);
         return new Blob([wavBuffer], { type: 'audio/wav' });
     }
 
-    // Function to encode audio buffer to WAV format
     function encodeWAV(audioBuffer) {
         const sampleRate = 16000;
-        const channelData = audioBuffer.getChannelData(0); // mono
-        const downsampled = downsampleBuffer(channelData, audioBuffer.sampleRate, sampleRate);
+        const channel = audioBuffer.getChannelData(0);
+        const downsampled = downsampleBuffer(channel, audioBuffer.sampleRate, sampleRate);
         const buffer = new ArrayBuffer(44 + downsampled.length * 2);
         const view = new DataView(buffer);
 
-        // WAV header
         writeString(view, 0, 'RIFF');
         view.setUint32(4, 36 + downsampled.length * 2, true);
         writeString(view, 8, 'WAVE');
@@ -522,32 +548,28 @@
         view.setUint16(22, 1, true); // Mono
         view.setUint32(24, sampleRate, true);
         view.setUint32(28, sampleRate * 2, true);
-        view.setUint16(32, 2, true); // block align
-        view.setUint16(34, 16, true); // bits/sample
+        view.setUint16(32, 2, true);
+        view.setUint16(34, 16, true);
         writeString(view, 36, 'data');
         view.setUint32(40, downsampled.length * 2, true);
 
-        // PCM samples
         let offset = 44;
         for (let i = 0; i < downsampled.length; i++, offset += 2) {
             const s = Math.max(-1, Math.min(1, downsampled[i]));
             view.setInt16(offset, s < 0 ? s * 0x8000 : s * 0x7FFF, true);
         }
-
         return view.buffer;
     }
 
-    // Function to write a string to an ArrayBuffer at a specific offset
-    function writeString(view, offset, string) {
-        for (let i = 0; i < string.length; i++) {
-            view.setUint8(offset + i, string.charCodeAt(i));
+    function writeString(view, offset, str) {
+        for (let i = 0; i < str.length; i++) {
+            view.setUint8(offset + i, str.charCodeAt(i));
         }
     }
 
-    // Function to downsample buffer from original rate to desired rate
-    function downsampleBuffer(buffer, rate, outRate) {
-        if (outRate === rate) return buffer;
-        const ratio = rate / outRate;
+    function downsampleBuffer(buffer, inRate, outRate) {
+        if (inRate === outRate) return buffer;
+        const ratio = inRate / outRate;
         const length = Math.round(buffer.length / ratio);
         const result = new Float32Array(length);
         for (let i = 0; i < length; i++) {
@@ -556,23 +578,21 @@
         return result;
     }
 
-    // Function to send the WAV file to the server
+    // --- Sending Audio ---
     function sendToServer(wavBlob, resolve, reject) {
         const formData = new FormData();
         formData.append("audio", wavBlob, "recording.wav");
 
         fetch(API_URL, {
                 method: "POST",
-                body: formData
-            })
-            .then(response => response.json())
+                body: formData,
+            }).then(res => res.json())
             .then(data => {
-                console.log("Transcription:", data.transcript);
-                resolve(data.transcript); // Resolve with the transcription text
-            })
-            .catch(err => {
-                console.error("Speech recognition error:", err);
-                reject(err); // Reject on error
+                console.log("Transcript:", data.transcript);
+                resolve(data.transcript);
+            }).catch(err => {
+                console.error("Recognition failed:", err);
+                reject(err);
             });
     }
 
