@@ -2,8 +2,20 @@
     var mistyIP = !localStorage.getItem("mistyIP") ? "10.0.0.221" : localStorage.getItem("mistyIP");
     var computerIP = !localStorage.getItem("computerIP") ? "10.0.0.221" : localStorage.getItem("computerIP");
     console.log("Misty IP is currently set to: " + mistyIP + ", and the computer IP is set to : " + computerIP + ". You can update it here: " + window.location.origin + "/set-ip.htm if needed. Reload this page after you're done updating to confirm the updated IP in effect.");
-    var recognitionInstance = null;
-    var silenceTimer = null;
+
+    // let cheetahEnabled = true;
+    // let hasSwitchedToCheetah = false;
+    // let recognitionInstance = null;
+    // let silenceTimer = null;
+    // let cheetah = null;
+    // let audioContext = null;
+    // let cheetahProcessor = null;
+
+    let mediaRecorder = null;
+    let chunks = [];
+    let silenceTimer = null;
+    let isRecording = false;
+    const API_URL = 'http://localhost:5001/transcribe'; // Replace with your server's URL
 
     const audioPlayers = [];
 
@@ -410,83 +422,404 @@
         return 3; // fallback if something weird happens
     }
 
-
-
-    function startSpeechRecognition() {
+    // Function to start speech recognition (offline using Vosk)
+    async function startSpeechRecognition() {
         return new Promise((resolve, reject) => {
-            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-            if (!SpeechRecognition) {
-                reject('Web Speech API not supported.');
-                return;
+            // If already recording, stop the previous instance
+            if (isRecording) {
+                stopSpeechRecognition(); // Stop the previous recording cleanly
             }
 
-            // Cleanup previous instance if any
-            if (recognitionInstance) {
-                recognitionInstance.abort();
-                recognitionInstance = null;
-            }
+            // Start a new MediaRecorder instance to capture audio
+            navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
+                const audioContext = new(window.AudioContext || window.webkitAudioContext)();
+                mediaRecorder = new MediaRecorder(stream);
 
-            const recognition = new SpeechRecognition();
-            recognitionInstance = recognition;
+                // Collect the audio data in chunks
+                mediaRecorder.ondataavailable = (e) => chunks.push(e.data);
 
-            recognition.continuous = true;
-            recognition.interimResults = true;
-            recognition.lang = 'en-US';
+                // When recording stops, convert the audio and send it to the server
+                mediaRecorder.onstop = async () => {
+                    const blob = new Blob(chunks, { type: 'audio/webm' });
+                    chunks = [];
+                    // Convert to WAV format and send it to the server
+                    const wavBlob = await convertWebMToWav(blob);
+                    sendToServer(wavBlob, resolve, reject);
+                };
 
-            const SILENCE_TIMEOUT = 2000; // 2 seconds
-            let finalTranscript = '';
+                // Start recording
+                mediaRecorder.start();
+                isRecording = true;
+                console.log("Recording started");
 
-            recognition.onresult = function(event) {
-                let interimTranscript = '';
-                for (let i = event.resultIndex; i < event.results.length; ++i) {
-                    const transcript = event.results[i][0].transcript;
-                    if (event.results[i].isFinal) {
-                        finalTranscript += transcript + ' ';
-                    } else {
-                        interimTranscript += transcript;
-                    }
-                }
-
-                // Reset silence timer
-                if (silenceTimer) clearTimeout(silenceTimer);
+                // Set a timeout to stop recording after 2 seconds of silence
+                const SILENCE_TIMEOUT = 2000; // 2 seconds of silence
                 silenceTimer = setTimeout(() => {
-                    recognition.stop();
+                    console.log("Silence detected, stopping recording...");
+                    stopSpeechRecognition(); // Automatically stop after silence
                 }, SILENCE_TIMEOUT);
-            };
-
-            recognition.onend = function() {
-                recognitionInstance = null;
-                $('body').removeClass('audio-playing');
-                resolve(finalTranscript.trim());
-            };
-
-            recognition.onerror = function(event) {
-                recognitionInstance = null;
-                $('body').removeClass('audio-playing');
-                reject('Speech recognition error: ' + event.error);
-            };
-            $('body').addClass('audio-playing');
-            if(isRobotControl) {
-                executeBehavior(emotionsList["9"]);    
-            } else {
-                $(document).find('#selected-emotion > ul li[data-id="9"]').click();
-            }
-            recognition.start();
+            }).catch((err) => {
+                console.error("Error accessing microphone", err);
+                reject(err);
+            });
         });
     }
 
-    function stopSpeechRecognition() { // call to stop all recognizers at any time
+    // Function to stop speech recognition and clear resources
+    function stopSpeechRecognition() {
+        // Stop recording if it's still active
+        if (mediaRecorder && isRecording) {
+            mediaRecorder.stop();
+            isRecording = false;
+            console.log("Recording stopped");
+        }
+
+        // Clear any existing timers
         if (silenceTimer) {
             clearTimeout(silenceTimer);
             silenceTimer = null;
         }
-        if (recognitionInstance) {
-            recognitionInstance.abort();
-            recognitionInstance = null;
-        }
+
+        // Clean up visual state
         $('body').removeClass('audio-playing');
         console.log("Stopped/Cleared recognitions");
     }
+
+    // Function to trigger pre-speech behavior (visual or robotic action)
+    function runPreSpeechBehavior() {
+        $('body').addClass('audio-playing');
+        if (isRobotControl) {
+            executeBehavior(emotionsList["9"]);
+        } else {
+            $(document).find('#selected-emotion > ul li[data-id="9"]').click();
+        }
+    }
+
+    // Function to convert WebM to WAV (for Vosk to process)
+    async function convertWebMToWav(webmBlob) {
+        const arrayBuffer = await webmBlob.arrayBuffer();
+        const audioCtx = new(window.AudioContext || window.webkitAudioContext)();
+        const audioBuffer = await audioCtx.decodeAudioData(arrayBuffer);
+        const wavBuffer = encodeWAV(audioBuffer);
+        return new Blob([wavBuffer], { type: 'audio/wav' });
+    }
+
+    // Function to encode audio buffer to WAV format
+    function encodeWAV(audioBuffer) {
+        const sampleRate = 16000;
+        const channelData = audioBuffer.getChannelData(0); // mono
+        const downsampled = downsampleBuffer(channelData, audioBuffer.sampleRate, sampleRate);
+        const buffer = new ArrayBuffer(44 + downsampled.length * 2);
+        const view = new DataView(buffer);
+
+        // WAV header
+        writeString(view, 0, 'RIFF');
+        view.setUint32(4, 36 + downsampled.length * 2, true);
+        writeString(view, 8, 'WAVE');
+        writeString(view, 12, 'fmt ');
+        view.setUint32(16, 16, true);
+        view.setUint16(20, 1, true); // PCM
+        view.setUint16(22, 1, true); // Mono
+        view.setUint32(24, sampleRate, true);
+        view.setUint32(28, sampleRate * 2, true);
+        view.setUint16(32, 2, true); // block align
+        view.setUint16(34, 16, true); // bits/sample
+        writeString(view, 36, 'data');
+        view.setUint32(40, downsampled.length * 2, true);
+
+        // PCM samples
+        let offset = 44;
+        for (let i = 0; i < downsampled.length; i++, offset += 2) {
+            const s = Math.max(-1, Math.min(1, downsampled[i]));
+            view.setInt16(offset, s < 0 ? s * 0x8000 : s * 0x7FFF, true);
+        }
+
+        return view.buffer;
+    }
+
+    // Function to write a string to an ArrayBuffer at a specific offset
+    function writeString(view, offset, string) {
+        for (let i = 0; i < string.length; i++) {
+            view.setUint8(offset + i, string.charCodeAt(i));
+        }
+    }
+
+    // Function to downsample buffer from original rate to desired rate
+    function downsampleBuffer(buffer, rate, outRate) {
+        if (outRate === rate) return buffer;
+        const ratio = rate / outRate;
+        const length = Math.round(buffer.length / ratio);
+        const result = new Float32Array(length);
+        for (let i = 0; i < length; i++) {
+            result[i] = buffer[Math.round(i * ratio)];
+        }
+        return result;
+    }
+
+    // Function to send the WAV file to the server
+    function sendToServer(wavBlob, resolve, reject) {
+        const formData = new FormData();
+        formData.append("audio", wavBlob, "recording.wav");
+
+        fetch(API_URL, {
+                method: "POST",
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log("Transcription:", data.transcript);
+                resolve(data.transcript); // Resolve with the transcription text
+            })
+            .catch(err => {
+                console.error("Speech recognition error:", err);
+                reject(err); // Reject on error
+            });
+    }
+
+
+
+    // function stopSpeechRecognition() {
+    //     if (silenceTimer) {
+    //         clearTimeout(silenceTimer);
+    //         silenceTimer = null;
+    //     }
+    //     if (recognitionInstance) {
+    //         recognitionInstance.abort();
+    //         recognitionInstance = null;
+    //     }
+    //     if (cheetahProcessor && audioContext) {
+    //         cheetahProcessor.disconnect();
+    //         cheetahProcessor = null;
+    //     }
+    //     if (audioContext) {
+    //         audioContext.close();
+    //         audioContext = null;
+    //     }
+    //     if (cheetah) {
+    //         cheetah.release();
+    //         cheetah = null;
+    //     }
+
+    //     $('body').removeClass('audio-playing');
+    //     console.log("Stopped/Cleared recognitions");
+    // }
+
+    // function runPreSpeechBehavior() {
+    //     $('body').addClass('audio-playing');
+    //     if (typeof isRobotControl !== "undefined" && isRobotControl) {
+    //         executeBehavior(emotionsList["9"]);
+    //     } else {
+    //         $(document).find('#selected-emotion > ul li[data-id="9"]').click();
+    //     }
+    // }
+
+    // function startSmartSpeechRecognition() {
+    //     stopSpeechRecognition();
+    //     runPreSpeechBehavior();
+
+    //     if (!cheetahEnabled) {
+    //         return startChromeSpeechRecognition(false);
+    //     }
+
+    //     if (!hasSwitchedToCheetah && navigator.onLine && (window.SpeechRecognition || window.webkitSpeechRecognition)) {
+    //         return startChromeSpeechRecognition(true);
+    //     } else {
+    //         hasSwitchedToCheetah = true;
+    //         return startCheetahSpeechRecognition();
+    //     }
+    // }
+
+    // function startChromeSpeechRecognition(allowSwitching) {
+    //     return new Promise((resolve, reject) => {
+    //         const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    //         if (!SpeechRecognition) {
+    //             return reject('Web Speech API not supported.');
+    //         }
+
+    //         if (recognitionInstance) {
+    //             recognitionInstance.abort();
+    //             recognitionInstance = null;
+    //         }
+
+    //         const recognition = new SpeechRecognition();
+    //         recognitionInstance = recognition;
+
+    //         recognition.continuous = true;
+    //         recognition.interimResults = true;
+    //         recognition.lang = 'en-US';
+
+    //         let finalTranscript = '';
+    //         const SILENCE_TIMEOUT = 2000;
+
+    //         recognition.onresult = function(event) {
+    //             let interimTranscript = '';
+    //             for (let i = event.resultIndex; i < event.results.length; ++i) {
+    //                 const transcript = event.results[i][0].transcript;
+    //                 if (event.results[i].isFinal) {
+    //                     finalTranscript += transcript + ' ';
+    //                 } else {
+    //                     interimTranscript += transcript;
+    //                 }
+    //             }
+
+    //             if (silenceTimer) clearTimeout(silenceTimer);
+    //             silenceTimer = setTimeout(() => {
+    //                 recognition.stop();
+    //             }, SILENCE_TIMEOUT);
+    //         };
+
+    //         recognition.onend = function() {
+    //             recognitionInstance = null;
+    //             $('body').removeClass('audio-playing');
+    //             resolve(finalTranscript.trim());
+    //         };
+
+    //         recognition.onerror = async function(event) {
+    //             recognitionInstance = null;
+    //             $('body').removeClass('audio-playing');
+    //             console.warn("Chrome error:", event.error);
+
+    //             if (cheetahEnabled && allowSwitching && event.error === 'network' && !hasSwitchedToCheetah) {
+    //                 hasSwitchedToCheetah = true;
+    //                 try {
+    //                     const result = await startCheetahSpeechRecognition();
+    //                     resolve(result);
+    //                 } catch (err) {
+    //                     reject(err);
+    //                 }
+    //             } else {
+    //                 reject('Speech recognition error: ' + event.error);
+    //             }
+    //         };
+
+    //         recognition.start();
+    //     });
+    // }
+
+    // async function startCheetahSpeechRecognition() {
+    //     const SILENCE_TIMEOUT = 2000;
+
+    //     return new Promise(async (resolve, reject) => {
+    //         try {
+    //             const response = await fetch('assets/cheetah/config.json');
+    //             const config = await response.json();
+    //             const accessKey = config.accessKey;
+
+    //             const modelPath = 'assets/cheetah/cheetah_params.pv';
+    //             cheetah = await Cheetah.create(accessKey, { base64: false, modelPath });
+
+    //             const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    //             audioContext = new(window.AudioContext || window.webkitAudioContext)();
+    //             const source = audioContext.createMediaStreamSource(stream);
+
+    //             cheetahProcessor = audioContext.createScriptProcessor(512, 1, 1);
+    //             let finalTranscript = '';
+    //             let silenceTimer = null;
+
+    //             cheetahProcessor.onaudioprocess = async (event) => {
+    //                 const inputData = event.inputBuffer.getChannelData(0);
+    //                 const pcm = new Int16Array(inputData.length);
+    //                 for (let i = 0; i < inputData.length; i++) {
+    //                     pcm[i] = Math.max(-32768, Math.min(32767, inputData[i] * 32768));
+    //                 }
+
+    //                 const result = await cheetah.process(pcm);
+
+    //                 if (result.transcript) {
+    //                     finalTranscript += result.transcript + ' ';
+    //                     if (silenceTimer) clearTimeout(silenceTimer);
+    //                     silenceTimer = setTimeout(() => {
+    //                         stopSpeechRecognition();
+    //                         resolve(finalTranscript.trim());
+    //                     }, SILENCE_TIMEOUT);
+    //                 }
+    //             };
+
+    //             source.connect(cheetahProcessor);
+    //             cheetahProcessor.connect(audioContext.destination);
+    //         } catch (error) {
+    //             stopSpeechRecognition();
+    //             reject('Cheetah error: ' + error);
+    //         }
+    //     });
+    // }
+
+
+    // function startSpeechRecognition() {
+    //     return new Promise((resolve, reject) => {
+    //         const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    //         if (!SpeechRecognition) {
+    //             reject('Web Speech API not supported.');
+    //             return;
+    //         }
+
+    //         // Cleanup previous instance if any
+    //         if (recognitionInstance) {
+    //             recognitionInstance.abort();
+    //             recognitionInstance = null;
+    //         }
+
+    //         const recognition = new SpeechRecognition();
+    //         recognitionInstance = recognition;
+
+    //         recognition.continuous = true;
+    //         recognition.interimResults = true;
+    //         recognition.lang = 'en-US';
+
+    //         const SILENCE_TIMEOUT = 2000; // 2 seconds
+    //         let finalTranscript = '';
+
+    //         recognition.onresult = function(event) {
+    //             let interimTranscript = '';
+    //             for (let i = event.resultIndex; i < event.results.length; ++i) {
+    //                 const transcript = event.results[i][0].transcript;
+    //                 if (event.results[i].isFinal) {
+    //                     finalTranscript += transcript + ' ';
+    //                 } else {
+    //                     interimTranscript += transcript;
+    //                 }
+    //             }
+
+    //             // Reset silence timer
+    //             if (silenceTimer) clearTimeout(silenceTimer);
+    //             silenceTimer = setTimeout(() => {
+    //                 recognition.stop();
+    //             }, SILENCE_TIMEOUT);
+    //         };
+
+    //         recognition.onend = function() {
+    //             recognitionInstance = null;
+    //             $('body').removeClass('audio-playing');
+    //             resolve(finalTranscript.trim());
+    //         };
+
+    //         recognition.onerror = function(event) {
+    //             recognitionInstance = null;
+    //             $('body').removeClass('audio-playing');
+    //             reject('Speech recognition error: ' + event.error);
+    //         };
+    //         $('body').addClass('audio-playing');
+    //         if (isRobotControl) {
+    //             executeBehavior(emotionsList["9"]);
+    //         } else {
+    //             $(document).find('#selected-emotion > ul li[data-id="9"]').click();
+    //         }
+    //         recognition.start();
+    //     });
+    // }
+
+    // function stopSpeechRecognition() { // call to stop all recognizers at any time
+    //     if (silenceTimer) {
+    //         clearTimeout(silenceTimer);
+    //         silenceTimer = null;
+    //     }
+    //     if (recognitionInstance) {
+    //         recognitionInstance.abort();
+    //         recognitionInstance = null;
+    //     }
+    //     $('body').removeClass('audio-playing');
+    //     console.log("Stopped/Cleared recognitions");
+    // }
 
     function getAudioDuration(audioSrc) {
         return new Promise((resolve, reject) => {
@@ -505,7 +838,8 @@
     }
 
     async function manageRecognitionResults() {
-        const text = await startSpeechRecognition();
+        const text = await startSpeechRecognition(); // await startSmartSpeechRecognition();
+        console.log("Speech to text: ", text);
         const classification = classifyResponse(text);
         switch (classification) {
             case 2:
@@ -519,11 +853,16 @@
     }
 
     async function manageRecognitionResultsFromPrompts() {
-        const text = await startSpeechRecognition();
+        const text = await startSpeechRecognition(); // await startSmartSpeechRecognition()
         const classification = classifyResponse(text);
         switch (classification) {
             case 2:
                 $('.cp#' + currentComment).click();
+                if (isRobotControl) {
+                    executeBehavior(emotionsList["1"]);
+                } else {
+                    $(document).find('#selected-emotion > ul li[data-id="1"]').click();
+                }
                 break;
             case 0:
                 stopSpeechRecognition();
