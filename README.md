@@ -191,7 +191,21 @@
 - Roatted PDF: use "SHIFT+R" to rotate it multiple times and bring back to the default orientation
 - Unclickable Comment Pins: Remove "audio-playing" class from "body" using inspect element.
 
-## **Part 7: Things to improve**
+## **Part 7: VOSK server as offline backup**
+- Go to "assets/vosk" folder and run the following one by one:
+```
+pip install -r vosk_server/requirements.txt
+wget https://alphacephei.com/vosk/models/vosk-model-small-en-us-0.15.zip
+unzip vosk-model-small-en-us-0.15.zip
+mv vosk-model-small-en-us-0.15 model
+
+```
+- Run the Flask app:
+```
+python vosk_server/app.py
+```
+
+## **Part 8: Things to improve**
 - Listening state eyes of the robot
 - Update the audio files according to the new promopts based on chnaged eye color logic
 - Send the robot back to normal state after each comment
