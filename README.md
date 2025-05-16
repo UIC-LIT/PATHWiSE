@@ -202,7 +202,7 @@ pip install -r requirements.txt
 ```
 - Run the Flask app:
 ```
-python vosk_server/app.py
+python app.py
 ```
 
 ## **Part 8: Things to improve**
