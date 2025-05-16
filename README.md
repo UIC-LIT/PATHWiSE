@@ -192,7 +192,8 @@
 - Unclickable Comment Pins: Remove "audio-playing" class from "body" using inspect element.
 
 ## **Part 7: VOSK server as offline backup**
-- Go to "assets/vosk" folder and run the following one by one:
+- Go to "assets/vosk" folder
+- Open a terminal/shell and run the following one by one:
 ```
 pip install -r vosk_server/requirements.txt
 wget https://alphacephei.com/vosk/models/vosk-model-small-en-us-0.15.zip
@@ -206,7 +207,7 @@ python vosk_server/app.py
 ```
 
 ## **Part 8: Things to improve**
-- Listening state eyes of the robot
-- Update the audio files according to the new promopts based on chnaged eye color logic
-- Send the robot back to normal state after each comment
+- (Done) Listening state eyes of the robot
+- (Done) Update the audio files according to the new promopts based on chnaged eye color logic
+- (done) Send the robot back to normal state after each comment
 
