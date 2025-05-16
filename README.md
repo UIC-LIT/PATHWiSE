@@ -192,6 +192,7 @@
 - Unclickable Comment Pins: Remove "audio-playing" class from "body" using inspect element.
 
 ## **Part 7: VOSK server as offline backup**
+- Install Python (if not already) from https://www.python.org/downloads/
 - Go to "assets/vosk" folder
 - Open a terminal/shell and run the following one by one:
 ```
