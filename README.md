@@ -193,14 +193,12 @@
 
 ## **Part 7: VOSK server as offline backup**
 - Install Python (if not already) from https://www.python.org/downloads/
-- Go to "assets/vosk" folder
+- Download vosk from here: https://alphacephei.com/vosk/models/vosk-model-small-en-us-0.15.zip
+- Extract and rename it to "model"
+- Move the "move" folder to the "assets/vosk" folder of the project
 - Open a terminal/shell and run the following one by one:
 ```
 pip install -r requirements.txt
-wget https://alphacephei.com/vosk/models/vosk-model-small-en-us-0.15.zip
-unzip vosk-model-small-en-us-0.15.zip
-mv vosk-model-small-en-us-0.15 model
-
 ```
 - Run the Flask app:
 ```
