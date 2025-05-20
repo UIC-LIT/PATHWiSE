@@ -12,6 +12,7 @@
     // let cheetahProcessor = null;
 
     let isRecording = false;
+    let mediaStream = null;
     let mediaRecorder;
     let chunks = [];
     let audioContext, mediaStreamSource, analyser, silenceCheckInterval;
@@ -375,20 +376,6 @@
         return Math.floor(Math.random() * 8) + 1; // returns a number between 1 to 8
     }
 
-    // function classifyResponse(text) { // basic match
-    //     const positiveReplies = ["yes", "yeah", "yup", "sure", "okay", "ok", "absolutely", "indeed", "of course", "yessir"];
-    //     const negativeReplies = ["no", "nope", "nah", "never", "not at all", "no way", "move on", "move forward"];
-    //     const repeatReplies = ["repeat", "again", "pardon", "what", "say that again", "come again", "can you", "didn't catch"];
-
-    //     text = text.trim().toLowerCase();
-    //     console.log('classification input text: ' , text)
-    //     if (repeatReplies.some(word => text.includes(word))) return 2; // repeat
-    //     if (positiveReplies.some(word => text.includes(word))) return 1; // positive
-    //     if (negativeReplies.some(word => text.includes(word))) return 0; // negative
-
-    //     return 3; // Default to positive
-    // }
-
     function classifyResponse(text) { // score based strict match
         const positiveReplies = ["yes", "yeah", "yup", "sure", "okay", "ok", "absolutely", "indeed", "of course", "yessir"];
         const negativeReplies = ["no", "no thanks", "no thank you", "nope", "nah", "naah", "not really", "not at all", "move on", "move forward", "that's all", "thats all", "dont think so", "don't think so"];
@@ -434,22 +421,26 @@
             if (isRecording) stopSpeechRecognition();
 
             navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
-                // Setup audio context & analyser
+                mediaStream = stream; // Store stream reference
                 audioContext = new(window.AudioContext || window.webkitAudioContext)();
                 mediaStreamSource = audioContext.createMediaStreamSource(stream);
                 analyser = audioContext.createAnalyser();
                 analyser.fftSize = 2048;
                 mediaStreamSource.connect(analyser);
 
-                // Setup media recorder
                 mediaRecorder = new MediaRecorder(stream);
                 chunks = [];
                 mediaRecorder.ondataavailable = (e) => chunks.push(e.data);
 
                 mediaRecorder.onstop = async () => {
                     stopSilenceCheck();
-                    if (chunks.length === 0) {
-                        console.warn("No audio chunks recorded.");
+
+                    // Added duration check
+                    const recordingDuration = Date.now() - recordingStartedAt;
+                    if (chunks.length === 0 || recordingDuration < MIN_RECORDING_DURATION) {
+                        reject(new Error(recordingDuration < MIN_RECORDING_DURATION ?
+                            "Recording too short" :
+                            "No audio recorded"));
                         return;
                     }
 
@@ -468,7 +459,6 @@
                 recordingStartedAt = Date.now();
                 runPreSpeechBehavior();
                 startSilenceCheck();
-
                 console.log("Recording started...");
             }).catch((err) => {
                 console.error("Microphone access error:", err);
@@ -478,11 +468,27 @@
     }
 
     function stopSpeechRecognition() {
-        if (mediaRecorder && isRecording) {
+        isRecording = false; // Prevent race conditions
+
+        if (mediaRecorder && mediaRecorder.state === 'recording') {
             mediaRecorder.stop();
         }
+
+        if (mediaStream) {
+            mediaStream.getTracks().forEach(track => track.stop());
+            mediaStream = null;
+        }
+
+        try {
+            if (audioContext && audioContext.state !== "closed") {
+                audioContext.close();
+                audioContext = null;
+            }
+        } catch (e) {
+            console.warn("AudioContext close error:");
+        }
+
         stopSilenceCheck();
-        isRecording = false;
         $('body').removeClass('audio-playing');
         console.log("Recording stopped.");
     }
@@ -496,34 +502,45 @@
         }
     }
 
-    // --- Silence Detection ---
     function startSilenceCheck() {
         const buffer = new Uint8Array(analyser.fftSize);
         silenceCheckInterval = setInterval(() => {
             analyser.getByteTimeDomainData(buffer);
-            const normalized = Array.from(buffer).map(v => (v - 128) / 128);
-            const rms = Math.sqrt(normalized.reduce((sum, val) => sum + val * val, 0) / normalized.length);
+            const rms = calculateRMS(buffer);
+
+            console.log(`RMS: ${rms.toFixed(4)}`, `Silence timer: ${
+                silenceStartTime ? Date.now() - silenceStartTime : 0
+            }ms`);
 
             const now = Date.now();
-
             if (rms < SILENCE_THRESHOLD) {
-                if (!silenceStartTime) silenceStartTime = now;
-                else if ((now - silenceStartTime > SILENCE_DURATION) && now - recordingStartedAt > MIN_RECORDING_DURATION) {
+                silenceStartTime = silenceStartTime || now;
+                if ((now - silenceStartTime > SILENCE_DURATION) &&
+                    (now - recordingStartedAt > MIN_RECORDING_DURATION)) {
                     console.log("Silence detected, stopping...");
                     stopSpeechRecognition();
                 }
             } else {
-                silenceStartTime = null; // reset silence timer
+                silenceStartTime = null;
             }
-        }, 100); // Check every 100ms
+        }, 100);
     }
+
+    function calculateRMS(buffer) {
+        let sum = 0;
+        for (let i = 0; i < buffer.length; i++) {
+            const val = (buffer[i] - 128) / 128;
+            sum += val * val;
+        }
+        return Math.sqrt(sum / buffer.length);
+    }
+
 
     function stopSilenceCheck() {
         clearInterval(silenceCheckInterval);
         silenceStartTime = null;
     }
 
-    // --- Audio Conversion ---
     async function convertWebMToWav(blob) {
         const buffer = await blob.arrayBuffer();
         const context = new(window.AudioContext || window.webkitAudioContext)();
@@ -572,13 +589,16 @@
         const ratio = inRate / outRate;
         const length = Math.round(buffer.length / ratio);
         const result = new Float32Array(length);
+
         for (let i = 0; i < length; i++) {
-            result[i] = buffer[Math.round(i * ratio)];
+            const index = i * ratio;
+            const frac = index % 1;
+            result[i] = buffer[Math.floor(index)] * (1 - frac) +
+                buffer[Math.ceil(index)] * frac;
         }
         return result;
     }
 
-    // --- Sending Audio ---
     function sendToServer(wavBlob, resolve, reject) {
         const formData = new FormData();
         formData.append("audio", wavBlob, "recording.wav");
