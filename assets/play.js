@@ -19,9 +19,11 @@
     let silenceStartTime = null;
     let recordingStartedAt = null;
 
-    const SILENCE_DURATION = 2000; // 2 seconds
+    let SILENCE_DURATION = 3500; // 3.5 seconds in the begining, updates to 2 from second
     const SILENCE_THRESHOLD = 0.01; // Adjust as needed
     const MIN_RECORDING_DURATION = 500; // Prevent too-short recordings
+    let POSITIVE_PROMPTS_COUNTER = 0; // max two iterative postive propmts
+
 
     const API_URL = 'http://localhost:5001/transcribe'; // Replace with your server's URL
 
@@ -878,6 +880,7 @@
     }
 
     async function manageRecognitionResults() {
+        SILENCE_DURATION = 3500;
         const text = await startSpeechRecognition(); // await startSmartSpeechRecognition();
         console.log("Speech to text: ", text);
         const classification = classifyResponse(text);
@@ -887,16 +890,29 @@
                 console.log('Repeat happend on first run');
                 break;
             default:
-                runPrompts();
+                POSITIVE_PROMPTS_COUNTER = POSITIVE_PROMPTS_COUNTER + 1;
+                if (POSITIVE_PROMPTS_COUNTER > 3) {
+                    console.log("Maximum two prompts iteration reached. Resetting counter.")
+                    POSITIVE_PROMPTS_COUNTER = 0;
+                    if (isRobotControl) {
+                        sendToRobot(negativeIntent[0].text, emotionsList[negativeIntent[0].emotion], negativeIntent[0].clip);
+                    } else {
+                        playInComputer(negativeIntent[0].text, negativeIntent[0].emotion, negativeIntent[0].clip);
+                    }
+                } else {
+                    runPrompts();
+                }
                 break;
         }
     }
 
     async function manageRecognitionResultsFromPrompts() {
+        SILENCE_DURATION = 2000;
         const text = await startSpeechRecognition(); // await startSmartSpeechRecognition()
         const classification = classifyResponse(text);
         switch (classification) {
             case 2:
+                POSITIVE_PROMPTS_COUNTER = 0;
                 $('.cp#' + currentComment).click();
                 if (isRobotControl) {
                     executeBehavior(emotionsList["1"]);
@@ -905,6 +921,7 @@
                 }
                 break;
             case 0:
+                POSITIVE_PROMPTS_COUNTER = 0;
                 stopSpeechRecognition();
                 if (isRobotControl) {
                     sendToRobot(negativeIntent[0].text, emotionsList[negativeIntent[0].emotion], negativeIntent[0].clip);
@@ -913,6 +930,7 @@
                 }
                 break;
             case 1:
+                POSITIVE_PROMPTS_COUNTER = POSITIVE_PROMPTS_COUNTER + 1;
                 if (isRobotControl) {
                     sendToRobot(positiveIntent[0].text, emotionsList[positiveIntent[0].emotion], positiveIntent[0].clip);
                 } else {
@@ -925,11 +943,21 @@
                 setTimeout(() => {
                     $('body').removeClass('audio-playing');
                     manageRecognitionResultsFromPrompts();
-                    // runPrompts();
                 }, duration * 1000); // Multiply by 1000 to convert from seconds to milliseconds
                 break;
             default:
-                runPrompts();
+                POSITIVE_PROMPTS_COUNTER = POSITIVE_PROMPTS_COUNTER + 1;
+                if (POSITIVE_PROMPTS_COUNTER > 3) {
+                    console.log("Maximum two prompts iteration reached. Resetting counter.")
+                    POSITIVE_PROMPTS_COUNTER = 0;
+                    if (isRobotControl) {
+                        sendToRobot(negativeIntent[0].text, emotionsList[negativeIntent[0].emotion], negativeIntent[0].clip);
+                    } else {
+                        playInComputer(negativeIntent[0].text, negativeIntent[0].emotion, negativeIntent[0].clip);
+                    }
+                } else {
+                    runPrompts();
+                }
                 break;
         }
     }
