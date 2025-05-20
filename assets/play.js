@@ -12,6 +12,7 @@
     // let cheetahProcessor = null;
 
     let isRecording = false;
+    let speechDetected = false; // Track if speech has started
     let mediaStream = null;
     let mediaRecorder;
     let chunks = [];
@@ -514,11 +515,16 @@
                 silenceStartTime ? Date.now() - silenceStartTime : 0
             }ms`);
 
-            if(silenceStartTime) {} else {
-                SILENCE_DURATION = 2000;
+            const now = Date.now();
+
+            if (rms >= SILENCE_THRESHOLD) {
+                // Speech detected
+                console.log("Speech detected, switching to 2 seconds silence detecting.")
+                speechDetected = true;
+                SILENCE_DURATION = 2000; // Change silence duration after speech starts
+                silenceStartTime = null; // reset silence timer
             }
 
-            const now = Date.now();
             if (rms < SILENCE_THRESHOLD) {
                 silenceStartTime = silenceStartTime || now;
                 if ((now - silenceStartTime > SILENCE_DURATION) &&
