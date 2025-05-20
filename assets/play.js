@@ -953,7 +953,7 @@
                 break;
             default:
                 POSITIVE_PROMPTS_COUNTER = POSITIVE_PROMPTS_COUNTER + 1;
-                if (POSITIVE_PROMPTS_COUNTER > 3) {
+                if (POSITIVE_PROMPTS_COUNTER > 2) {
                     console.log("Maximum two prompts iteration reached. Resetting counter.")
                     POSITIVE_PROMPTS_COUNTER = 0;
                     if (isRobotControl) {
@@ -1009,7 +1009,7 @@
                 break;
             default:
                 POSITIVE_PROMPTS_COUNTER = POSITIVE_PROMPTS_COUNTER + 1;
-                if (POSITIVE_PROMPTS_COUNTER > 3) {
+                if (POSITIVE_PROMPTS_COUNTER > 2) {
                     console.log("Maximum two prompts iteration reached. Resetting counter.")
                     POSITIVE_PROMPTS_COUNTER = 0;
                     if (isRobotControl) {
