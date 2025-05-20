@@ -2349,15 +2349,15 @@ body.emoji-toggle-active #robot-emotions[class="neutral"]>div>p::after {
 }
 
 #robot-emotions.speaking {
-    background-image: url("images/interactions/speaking.png") !important;
+    background-image: url("images/misty/speaking.png") !important;
 }
 
 #robot-emotions.listening {
-    background-image: url("images/interactions/listening.png") !important;
+    background-image: url("images/misty/listening.png") !important;
 }
 
 #robot-emotions.transitioning {
-    background-image: url("images/interactions/transitioning.png") !important;
+    background-image: url("images/misty/transitioning.png") !important;
 }
 
 #selected-emotion {
