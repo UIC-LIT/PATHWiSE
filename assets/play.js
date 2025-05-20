@@ -969,7 +969,7 @@
     }
 
     async function manageRecognitionResultsFromPrompts() {
-        SILENCE_DURATION = 2000;
+        SILENCE_DURATION = 3500;
         const text = await startSpeechRecognition(); // await startSmartSpeechRecognition()
         const classification = classifyResponse(text);
         switch (classification) {
