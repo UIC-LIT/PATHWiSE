@@ -514,7 +514,7 @@
                 silenceStartTime ? Date.now() - silenceStartTime : 0
             }ms`);
 
-            if(silenceStartTime == Date.now() - silenceStartTime) {} else {
+            if(silenceStartTime) {} else {
                 SILENCE_DURATION = 2000;
             }
 
