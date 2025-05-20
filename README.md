@@ -182,7 +182,7 @@
 ## **Part 5: Additional steps/notes**
 - Update the Misty robot IP here: https://pathwi.se/set-ip.htm (Note: This step makes the robot play generated audio from "Google TTS" or "speak on the go". You may also need to configure the speech parameters to make it sound more human-like if you want to use "speak on the go" inside the assets/robot-play.js file, lines 197-203)
 - Upload the audio files from "assets/audios/" to the robot. Use https://pathwi.se/tools/files.htm to upload, play or delete files from the robots. (alternatively can also be done via the robot SDK dashboard in some robots, by using the robot IP in the browser URL, under "Explore > Expression")
-- Upload all the custom interaction images i.e. speaking, listening etc from the "assets/images/interactions/" to the robot using the robot default SDK dashboard (can be accessed by using the robot IP in the browser URL, under "Explore > Expression")
+- Upload all the custom interaction images(eyes only) i.e. anger, blink, joy, speaking, listening etc from the "assets/images/misty/" to the robot using the robot default SDK dashboard (can be accessed by using the robot IP in the browser URL, under "Explore > Expression")
 - Optional: Use https://pathwi.se/tools/tts.htm to genrate audios from the homeworks comments or other prompts (found is the articles.js)
 - That completes the system setup with all dependencies. You may now open the teacher's side of the editor (i.e., https://pathwi.se/index-working.htm or the other virtual host URL from Step 2 if you choose so), make annotations as you see fit, and save them. The student-facing versions (https://pathwi.se/student-robot.htm & https://pathwi.se/student-computer.htm) fetch the latest data from your most recent saves.
 
