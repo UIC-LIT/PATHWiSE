@@ -514,6 +514,10 @@
                 silenceStartTime ? Date.now() - silenceStartTime : 0
             }ms`);
 
+            if(silenceStartTime == Date.now() - silenceStartTime) {} else {
+                SILENCE_DURATION = 2000;
+            }
+
             const now = Date.now();
             if (rms < SILENCE_THRESHOLD) {
                 silenceStartTime = silenceStartTime || now;
