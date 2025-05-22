@@ -21,7 +21,7 @@
     let recordingStartedAt = null;
 
     let SILENCE_DURATION = 3500; // 3.5 seconds in the begining, updates to 2 from second
-    const SILENCE_THRESHOLD = 0.01; // Adjust as needed
+    const SILENCE_THRESHOLD = 0.03; // Adjust as needed
     const MIN_RECORDING_DURATION = 500; // Prevent too-short recordings
     let POSITIVE_PROMPTS_COUNTER = 0; // max two iterative postive propmts
 
@@ -433,7 +433,7 @@
 
     function classifyResponse(text) { // score based strict match
         const positiveReplies = ["yes", "yeah", "yup", "sure", "okay", "ok", "absolutely", "indeed", "of course", "yessir"];
-        const negativeReplies = ["no", "now", "know", "no thanks", "no thank you", "nope", "nah", "naah", "not really", "not at all", "move on", "move forward", "that's all", "thats all", "dont think so", "don't think so"];
+        const negativeReplies = ["no", "knew", "noun", "I'm good", "I am good", "now", "know", "no thanks", "no thank you", "nope", "nah", "naah", "not really", "not at all", "move on", "move forward", "that's all", "thats all", "dont think so", "don't think so"];
         const repeatReplies = ["repeat", "again", "pardon", "what", "say that again", "come again", "didn't catch"];
 
         text = text.trim().toLowerCase();
