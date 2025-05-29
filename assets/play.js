@@ -573,7 +573,7 @@
                 // Speech detected
                 console.log("Speech detected, switching to 2 seconds silence detecting.")
                 speechDetected = true;
-                SILENCE_DURATION = 2000; // Change silence duration after speech starts
+                SILENCE_DURATION = 2500; // Change silence duration after speech starts
                 silenceStartTime = null; // reset silence timer
             }
 
@@ -942,7 +942,7 @@
     }
 
     async function manageRecognitionResults() {
-        SILENCE_DURATION = 3500;
+        SILENCE_DURATION = 4000;
         const text = await startSpeechRecognition(); // await startSmartSpeechRecognition();
         console.log("Speech to text: ", text);
         const classification = classifyResponse(text);
