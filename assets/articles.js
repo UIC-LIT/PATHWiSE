@@ -20,7 +20,7 @@ var studentsList = [{
     {
         'name': '3',
         'id': 'student-3',
-        'current': 'Justin Beiber and Lyme Disease'
+        'current': 'Meet the Microbes'
     },
     {
         'name': '4',
