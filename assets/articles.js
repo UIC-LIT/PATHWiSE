@@ -120,7 +120,7 @@ var prompts = [
     { "text": "Any additional thoughts you'd like to share?", "clip": "7", "emotion": "100" },
     { "text": "Do you want to continue with more ideas?", "clip": "8", "emotion": "100" },
     { "text": "Would you like to add another perspective?", "clip": "9", "emotion": "100" },
-    { "text": "Anything else you'd like to contribute?", "clip ": "10", "emotion ": "100" }
+    { "text": "Anything else you'd like to contribute?", "clip": "10", "emotion": "100" }
 ];
 
 var positiveIntent = [{ "text" : "Great! Go ahead and tell me what else you'd like to add.", "clip": "21", "emotion": "4"  }];
