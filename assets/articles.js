@@ -41,7 +41,13 @@ var studentsList = [{
         'name': '7',
         'id': 'student-7',
         'current': 'Meet the Microbes'
+    },
+    {
+        'name': 'MW1',
+        'id': 'Mindworks-1',
+        'current': 'Human Blood'
     }
+
 ];
 
 var homeworks = [{
@@ -63,16 +69,16 @@ var homeworks = [{
     {
         'title': 'Human Blood',
         'homework': [
-            { "text": "How do you think this might inform someone doing sports?", "emotion": "1", "type": "3", "top": 898, "left": 685, "id": "c1", "clip": "2001" },
-            { "text": "It's heartwarming to know that volunteers selflessly donate blood, ensuring the safety of those in need.", "emotion": "4", "type": "4", "top": 2442, "left": 934, "id": "c10", "clip": "2002" },
-            { "text": "Wow, our blood does so much to keep us healthy and alive!", "emotion": "6", "type": "4", "top": 1078, "left": 754, "id": "c2", "clip": "2003" },
-            { "text": "I think when they're saying capillaries they mean a smaller type of artery and vein.", "emotion": "7", "type": "2", "top": 1451, "left": 347, "id": "c3", "clip": "2004" },
-            { "text": "What is the role of platelets in our body when we get a cut or bruise?", "emotion": "1", "type": "2", "top": 1774, "left": 727, "id": "c4", "clip": "2005" },
-            { "text": "It feels like red and white blood cells are a tag team. How would you summarize their roles in your own words?", "emotion": "1", "type": "2", "top": 2147, "left": 437, "id": "c5", "clip": "2006" },
-            { "text": "It's heartbreaking to think about how much some people suffer and how vital blood transfusions are in helping them heal.", "emotion": "5", "type": "4", "top": 2317, "left": 867, "id": "c6", "clip": "2007" },
-            { "text": "Hoooold on. How do you think blood can be separated? The cells are so small!", "emotion": "6", "type": "2", "top": 2619, "left": 516, "id": "c7", "clip": "2008" },
-            { "text": "Did you know that an African American scientist, Charles Drew, was the first to come up with a way to store blood?", "emotion": "4", "type": "1", "top": 2769, "left": 390, "id": "c8", "clip": "2009" },
-            { "text": "Does that mean blood is made in your bones? What do you think?", "emotion": "1", "type": "2", "top": 1610, "left": 966, "id": "c9", "clip": "2010" },
+            { "text": "How do you think this might inform someone doing sports?", "emotion": "1", "type": "3", "top": 898, "left": 1170, "id": "c1", "clip": "2001" },
+            { "text": "It's heartwarming to know that volunteers selflessly donate blood, ensuring the safety of those in need.", "emotion": "4", "type": "4", "top": 2442, "left": 1170, "id": "c10", "clip": "2002" },
+            { "text": "Wow, our blood does so much to keep us healthy and alive!", "emotion": "6", "type": "4", "top": 1078, "left": 1170, "id": "c2", "clip": "2003" },
+            { "text": "I think when they're saying capillaries they mean a smaller type of artery and vein.", "emotion": "7", "type": "2", "top": 1451, "left": 1170, "id": "c3", "clip": "2004" },
+            { "text": "I don't think I understand how these platelets work. Could you ask the adult with you to help explain it?", "emotion": "1", "type": "2", "top": 1774, "left": 1170, "id": "c4", "clip": "2011" },
+            { "text": "It feels like red and white blood cells are a tag team. How would you summarize their roles in your own words?", "emotion": "1", "type": "2", "top": 2147, "left": 1170, "id": "c5", "clip": "2006" },
+            { "text": "It's heartbreaking to think about how much some people suffer and how vital blood transfusions are in helping them heal.", "emotion": "5", "type": "4", "top": 2317, "left": 1170, "id": "c6", "clip": "2007" },
+            { "text": "Hoooold on. How do you think blood can be separated? The cells are so small!", "emotion": "6", "type": "2", "top": 2619, "left": 1170, "id": "c7", "clip": "2008" },
+            { "text": "Did you know that an African American scientist, Charles Drew, was the first to come up with a way to store blood?", "emotion": "4", "type": "1", "top": 2769, "left": 1170, "id": "c8", "clip": "2009" },
+            { "text": "Does that mean blood is made in your bones? What do you think?", "emotion": "1", "type": "2", "top": 1610, "left": 1170, "id": "c9", "clip": "2010" },
             { "text": "", "emotion": "1", "type": "1", "top": 3087, "left": 730, "id": lastCustomComment, "clip": "" }
         ]
     },
