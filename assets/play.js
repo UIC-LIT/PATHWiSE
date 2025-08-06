@@ -356,8 +356,8 @@
     function classifyResponse(text) { // score based strict match
         const positiveReplies = ["yes", "yeah", "yup", "sure", "okay", "ok", "absolutely", "indeed", "of course", "yessir"];
         const negativeReplies = ["no", "not", "knew", "noun", "I'm good", "I am good", "now", "know", "no thanks", "no thank you", "nope", "nah", "naah", "not really", "not at all", "move on", "move forward", "that's all", "thats all", "dont think so", "don't think so"];
-        const repeatReplies = ["repeat", "again", "pardon", "what", "say that again", "come again", "didn't catch"];
-
+        const repeatReplies = [];
+// List of repeatReples disabled: "repeat", "again", "pardon", "say that again", "come again", "didn't catch"
         text = text.trim().toLowerCase();
         console.log('classification input text:', text);
 
@@ -424,7 +424,7 @@
             recognition.interimResults = true;
             recognition.lang = 'en-US';
 
-            const SILENCE_TIMEOUT = 2000; // 2 seconds
+            const SILENCE_TIMEOUT = 4000; // 2 seconds
             let finalTranscript = '';
 
             recognition.onresult = function(event) {
@@ -454,7 +454,12 @@
             recognition.onerror = function(event) {
                 recognitionInstance = null;
                 $('body').removeClass('audio-playing');
-                reject('Speech recognition error: ' + event.error);
+                if (event.error = 'no-speech'){
+                    console.log("no speech detected");
+                    resolve('no-speech');
+                }else{
+                    reject('Speech recognition error: ' + event.error);
+                }
             };
             $('body').addClass('audio-playing');
             if (isRobotControl) {
