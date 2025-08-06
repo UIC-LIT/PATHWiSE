@@ -25,27 +25,17 @@ var studentsList = [{
     {
         'name': '4',
         'id': 'student-4',
-        'current': 'Meet the Microbes'
+        'current': 'Human Blood'
     },
     {
-        'name': '5',
+        'name': '5P',
         'id': 'student-5',
         'current': 'Human Blood-P'
     },
     {
-        'name': '6',
+        'name': '6C',
         'id': 'student-6',
-        'current': 'What are Antibodies'
-    },
-    {
-        'name': '7',
-        'id': 'student-7',
-        'current': 'Meet the Microbes'
-    },
-    {
-        'name': 'M1',
-        'id': 'mindworks-1',
-        'current': 'Human Blood-P'
+        'current': 'Human Blood-C'
     }
 
 ];
